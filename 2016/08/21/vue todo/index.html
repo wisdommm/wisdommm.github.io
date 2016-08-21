@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Wisdommm</title>
+  <meta name="author" content="Wisdommm">
+  
+  <meta name="description" content="programmer,front to end">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Wisdommm"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Wisdommm" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Wisdommm</a></h1>
+  <h2><a href="/">Welcome to my blog</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-08-21T09:03:14.000Z"><a href="/2016/08/21/vue todo/">2016-08-21</a></time>
+      
+      
+  
+    <h1 class="title"></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="vue-todo示例"><a href="#vue-todo示例" class="headerlink" title="vue todo示例"></a>vue todo示例</h1><p>最近抽空看了下vue，一个轻量级的前端框架（类库），它采用的mvvm模式，且数据双向绑定，刚好官方网站上有一个todo实例，我感觉和redux的todo实例很类似，所以准备将这两个框架的todo实例分别解读一下，来比较一下个中异同。</p>
+<p>这个代码就两部分，先是html：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;app&quot;&gt;</div><div class="line">  &lt;input v-model=&quot;newTodo&quot; v-on:keyup.enter=&quot;addTodo&quot;&gt;</div><div class="line">  &lt;ul&gt;</div><div class="line">    &lt;li v-for=&quot;todo in todos&quot;&gt;</div><div class="line">      &lt;span&gt;&#123;&#123; todo.text &#125;&#125;&lt;/span&gt;</div><div class="line">      &lt;button v-on:click=&quot;removeTodo($index)&quot;&gt;X&lt;/button&gt;</div><div class="line">    &lt;/li&gt;</div><div class="line">  &lt;/ul&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>接下来是js代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">new Vue(&#123;</div><div class="line">  el: &apos;#app&apos;,</div><div class="line">  data: &#123;</div><div class="line">    newTodo: &apos;&apos;,</div><div class="line">    todos: [</div><div class="line">      &#123; text: &apos;Add some todos&apos; &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  methods: &#123;</div><div class="line">    addTodo: function () &#123;</div><div class="line">      var text = this.newTodo.trim()</div><div class="line">      if (text) &#123;</div><div class="line">        this.todos.push(&#123; text: text &#125;)</div><div class="line">        this.newTodo = &apos;&apos;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    removeTodo: function (index) &#123;</div><div class="line">      this.todos.splice(index, 1)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>我第一次看到这段代码的时候觉得有点诧异，就这么点代码就实现了一个todo list，比react少了好多，如果是redux的todo list，别说代码，文件夹数量就可以让你一双手数不过来，而这vue两个文件夹一共才这么点代码，下面来仔细看看这个代码吧。<br>先看下html代码吧，除了原生的html代码外，这里有几个vue特有的属性，显而易见，所有以<strong>v</strong>开头的属性，都是vue特有的属性，比如这里的v-model=”newTodo”，v-on:keyup.enter=”addTodo”，v-for=”todo in todos”，v-on:click=”removeTodo($index)”，一共就这四个吧，而就是字符串模版了，从js文件的某个对象中获取数据来填充到页面上。<br>js代码也很少，估计一共才十多行，抛去中间的内容不看，就成了new Vue({})了，很显然这就是new了一个Vue实例，算是初始化，然后我们再来对内容一行一行地解读。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">el: &apos;#app&apos;</div></pre></td></tr></table></figure>
+<p>先看一下app在html文件里指代的是什么，一看便知，app在这里指代的是最外层div的id，而这里的＃应该类似于jQuery选择器中的符号吧（所以我猜测这里也可以用“.app”来选择class为app的元素来作为Vue的容器），前面的el应该指的是element吧。<br>再看下面：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">data: &#123;</div><div class="line">    newTodo: &apos;&apos;,</div><div class="line">    todos: [</div><div class="line">      &#123; text: &apos;Add some todos&apos; &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>这个data很明显说明了这里面装的是数据，我们可以看到这里一共有两条数据，一条是newTodo的数据，类型是字符串，另一条是todos数据，类型是数组对象，然后我们现在再返回html中，查看那里用到了这两条数据的，可以看到<strong>v-model=”newTodo”</strong>，所以我们暂时可以知道具有v-model属性的这个input输入框和newTodo这条数据绑定了起来，至于是单向绑定还是双向绑定还是仅仅是初始化的时候绑定一次，我们现在还不知道，接着看下面的todos，<strong>v-for=”todo in todos”</strong>，可以明白的知道，这是个for遍历，类似于for(i in object)一样，而这里的意思就类似于在todos这个数组中遍历一下，然后在li标签内对遍历到的数据进行操作，下面就用到了字符串模版，将需要的数据提取出来就好了。<br>继续往下面看：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">methods: &#123;</div><div class="line">    addTodo: function () &#123;</div><div class="line">      var text = this.newTodo.trim()</div><div class="line">      if (text) &#123;</div><div class="line">        this.todos.push(&#123; text: text &#125;)</div><div class="line">        this.newTodo = &apos;&apos;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    removeTodo: function (index) &#123;</div><div class="line">      this.todos.splice(index, 1)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这部分是methods，按照字面意思来看，叫做方法，也就是js中的函数（function），可以看到里面一共包含了两个function，一个是addTodo，另一个是removeTodo，回顾html文件，可以知道调用这两个函数方法的地方分别是<strong>v-on:keyup.enter</strong>和<strong>v-on:click</strong>，前一个就是类似于原生的onKeyup方法，而第二个就是onClick了，不过keyup后面跟了enter，说明这个keyup方法是和enter健绑定的，现在我们可以进入这两个函数内部看看，看它具体的实现方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">addTodo: function () &#123;</div><div class="line">      var text = this.newTodo.trim()</div><div class="line">      if (text) &#123;</div><div class="line">        this.todos.push(&#123; text: text &#125;)</div><div class="line">        this.newTodo = &apos;&apos;</div><div class="line">      &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个函数中主要是在针对this.newTodo进行操作，我们不难发现，newTodo这条数据是和v-model这个属性绑在一起的，然后这个属性又是和input输入框绑定在一起的，所以可以表明这里的this.newTodo指的就是input输入框里的值，然后再将其去除首尾空格，push进todos列表，最后再清空输入框。<br>而我们再来看下另一个函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">removeTodo: function (index) &#123;</div><div class="line">      this.todos.splice(index, 1)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个函数更简单，就一句话，执行一个数组操作，删除数组的某一项，而这个函数的调用在这里：v-on:click=”removeTodo($index)”，可以看到在调用的时候传入了一个参数$index，这指的是对应的li标签的index，然后当点击的时候，就可以通过index来删除这个li标签了。</p>
+<p>说了这么多，我知道，理工科的东西讲再多的道理都是十分抽象的，所以最后我还是上几张图吧，为了能够更好的理解。</p>
+<p><img src="http://oatasl78l.bkt.clouddn.com/vue%201.png" alt=""><br>图1<br>这是初始化的时候，一切都为空。</p>
+<p><img src="http://oatasl78l.bkt.clouddn.com/vue%202.png" alt=""><br>图2<br>然后我在输入框里输入数据，按下enter键。</p>
+<p><img src="http://oatasl78l.bkt.clouddn.com/vue%203.png" alt=""><br>图3<br>可以看到，下面列表中多了一条数据，是我刚才输入的数据。</p>
+<p><img src="http://oatasl78l.bkt.clouddn.com/vue%204.png" alt=""><br>图4<br>然后我又输入了几条数据，一共三条。</p>
+<p><img src="http://oatasl78l.bkt.clouddn.com/vue%205.png" alt=""><br>图5<br>最后我删除其中一条，就删除第二条吧，点击右边的那个小叉就可以了，可以看到这条就被删了，其他的数据不变。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comentarios</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://wisdommm.github.io/2016/08/21/vue todo/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Buscar">
+    <input type="hidden" name="q" value="site:wisdommm.github.io">
+  </form>
+</div>
+
+  
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 Wisdommm
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
