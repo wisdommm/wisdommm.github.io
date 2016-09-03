@@ -60,7 +60,7 @@
     </header>
     <div class="entry">
       
-        <h1 id="感想（hexo博客增加搜索功能）"><a href="#感想（hexo博客增加搜索功能）" class="headerlink" title="感想（hexo博客增加搜索功能）"></a>感想（hexo博客增加搜索功能）</h1><p>最近在用在某个项目上增加一个搜索框，后端用node＋mongodb实现，本来以为挺简单的，就用node爬一下页面title和href，然后放进mongodb中，再通过前端发请求传数据过来查找，然后node再在mongodb中查找，将数据返回前端。</p>
+        <h1 id="hexo博客增加搜索功能"><a href="#hexo博客增加搜索功能" class="headerlink" title="hexo博客增加搜索功能"></a>hexo博客增加搜索功能</h1><p>最近在用在某个项目上增加一个搜索框，后端用node＋mongodb实现，本来以为挺简单的，就用node爬一下页面title和href，然后放进mongodb中，再通过前端发请求传数据过来查找，然后node再在mongodb中查找，将数据返回前端。</p>
 <p>这是理想情况下的做法，可是现实往往充满了曲折,下面我来简单介绍下这个项目，然后说一下问题吧。</p>
 <ol>
 <li>这是个内网项目，所以爬虫爬不进去，好在有一个目录页，将所有页面的title和href整理了起来，不过读取这个文件也不是简单的事，因为这个是类似于json格式的文件，但是却没有任何的符号，全是汉字，而我们存储的时候是需要分层次的，这样利于查找，采用node的FS模块可以很容易地读取到文件的内容，但是仅仅是读取，直接存储的话会导致没有层次感，所以我就把这个文件复制了一份出来，通过人工维护的方式将其变为json格式，然后就很好操作了，不过需要人工维护与更新，不算是最好的办法，但是那个文件之前也是人工维护的（虽然我不知道是谁维护，否则可以叫他一起维护下）。</li>
@@ -101,7 +101,7 @@
 
 
 <section id="comment">
-  <h1 class="title">Comments</h1>
+  <h1 class="title">Kommentare</h1>
 
   
       <div id="fb-root"></div>
@@ -124,7 +124,7 @@
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="search" name="q" results="0" placeholder="Suche">
     <input type="hidden" name="q" value="site:wisdommm.github.io">
   </form>
 </div>
