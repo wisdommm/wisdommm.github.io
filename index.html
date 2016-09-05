@@ -51,6 +51,132 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-09-05T09:24:12.000Z"><a href="/2016/09/05/vue.js 组件入门（一）/">2016-09-05</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/09/05/vue.js 组件入门（一）/"></a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="vue-js-组件快速入门（一）"><a href="#vue-js-组件快速入门（一）" class="headerlink" title="vue.js 组件快速入门（一）"></a>vue.js 组件快速入门（一）</h2><p>原文（<a href="http://www.cnblogs.com/keepfool/p/5625583.html）" target="_blank" rel="external">http://www.cnblogs.com/keepfool/p/5625583.html）</a></p>
+<p>在前端开发中，以前我们会把常用的公共的方法（函数）提取出来，整合为一个库，最有名的当属jQ了吧，然后到了react出现，这些类库主要都是针对view层进行的操作与封装，我们又可以把view层面上的一些东西抽出来进行封装和整理，比如一个table，一个button，一个div等，也可以像曾经提取函数一样抽出来，写成公用的，在需要使用的地方直接引入就可以了，当然，也可以根据你实际运用的需要进行适当的自定义配置，而这些被抽出来共用的table，button，div这些，就叫做组件。</p>
+<p>上面是我自己瞎扯的，原文作者讲得比较繁琐，所以我就用自己的语言来概述了一下，虽然这篇文章是我转载的，不过我也参考了其它的文章／博客，知识点的流程和原文相似度80%，但是语言基本上都是我自己重新组织的，所以加了很多自己的想法和思考，下面我们开始进入正题。</p>
+<h1 id="vue组件，创建与注册的基本步骤。"><a href="#vue组件，创建与注册的基本步骤。" class="headerlink" title="vue组件，创建与注册的基本步骤。"></a>vue组件，创建与注册的基本步骤。</h1><p>vue组件的使用，有三个步骤，分别是创建组件，注册组件和使用组件，如下图所示。<br><img src="vue1" alt=""></p>
+<p>我们可以用一段代码来演示这三个步骤：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">    &lt;body&gt;</div><div class="line">        &lt;div id=&quot;app&quot;&gt;</div><div class="line">            &lt;!-- 3. #app是Vue实例挂载的元素，应该在挂载元素范围内使用组件--&gt;</div><div class="line">            &lt;my-component&gt;&lt;/my-component&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">    &lt;/body&gt;</div><div class="line">    &lt;script src=&quot;js/vue.js&quot;&gt;&lt;/script&gt;</div><div class="line">    &lt;script&gt;</div><div class="line">    </div><div class="line">        // 1.创建一个组件构造器</div><div class="line">        var myComponent = Vue.extend(&#123;</div><div class="line">            template: &apos;&lt;div&gt;This is my first component!&lt;/div&gt;&apos;</div><div class="line">        &#125;)</div><div class="line">        </div><div class="line">        // 2.注册组件，并指定组件的标签，组件的HTML标签为&lt;my-component&gt;</div><div class="line">        Vue.component(&apos;my-component&apos;, myComponent)</div><div class="line">        </div><div class="line">        new Vue(&#123;</div><div class="line">            el: &apos;#app&apos;</div><div class="line">        &#125;);</div><div class="line">        </div><div class="line">    &lt;/script&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>运行结果很简单，就是一句“This is my first component!”，可以看到，使用组件和使用普通的HTML元素没什么区别，你可以就把组件当做一个HTML元素来使用。</p>
+<p>要理解组件的创建和注册，我们可以用一下几个步骤来详细解释：</p>
+<ol>
+<li>Vue.extend()是Vue构造器的扩展，调用Vue.extend()创建的是一个组件构造器，而不是一个具体的组件实例。</li>
+<li>Vue.extend()构造器有一个选项对象，选项对象的template属性用于定义组件要渲染的HTML。 </li>
+<li>使用Vue.component()注册组件时，需要提供2个参数，第1个参数时组件的标签，第2个参数是组件构造器。 </li>
+<li>Vue.component()方法内部会调用组件构造器，创建一个组件实例。 </li>
+<li>组件应该挂载到某个Vue实例下，否则它不会生效。</li>
+</ol>
+<p>我们一句一句来分析，先是创建一个组件，代码是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var myComponent = Vue.extend(&#123;</div><div class="line">	template: &apos;&lt;div&gt;This is my first component!&lt;/div&gt;&apos;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>创建组件很简单，直接调用vue构造器的扩展方法就行了，里面会传入一个对象，对象里面有个template属性，它指代的是这个组件的view的内容，是不是像react里面的render函数啊，它也是return的view内容，<strong>它们有哪些不同呢？</strong>毕竟学习知识要针对各种不同的但是有类似的知识点来进行归纳，整理和综合，才能进行融会贯通的运用。毕竟古人云：学而时习之，不亦悦乎！<br><br>好了，这是创建，下面是注册了，注册也很简单，一句代码就搞定了：<figure class="highlight plain"><figcaption><span>myComponent);```，使用Vue.component方法，传入两个参数，第一个参数是你想注册的组件名，第二个参数是你创建的组件名，是不是有点混淆？先是你通过Vue.extend创建了一个组件，名字叫myComponent，然后为了在HTML中能够当做标签来使用，你需要给你创建的这个组件注册一个组件名，名字叫做my-component，所以你在HTML就可以直接把你注册的组件名当做HTML标签来使用，像这样<my-component></my-component>就可以了。<br></span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">现在组件创建好了，也注册好了，可是还不能直接使用，因为还需要new一个Vue实例，才能使用，像这样</div></pre></td></tr></table></figure></p>
+<p>new Vue({<br>    el: ‘#app’<br>});<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">一个Vue实例接收一个对象，里面的el属性是你组件的挂载节点，于是我又情不自禁地联想到了react，```ReactDOM.render( dom , root)```，就像这样，react也是将一个view界面的虚拟dom挂载到一个root节点上，而这里的Vue同样，需要将刚才的组件也挂载到某个节点下，这两者之间的异同后面再说吧，先说一点主要的，vue里的节点指的是vue组件的作用域，这点是和react差异比较大的一点，你将vue组件挂载在了某个节点下，意思是这个组件只有在这个节点范围内才可以使用，至于是使用多次，使用一次，还是一次都不使用，都没问题。而我们这个实例上，就是挂载在了id为app的节点上，所以在这个节点的范围内都可以使用&lt;my-component&gt;&lt;/my-component&gt;的形式，来调用vue组件myComponent。同理，如果你想在多个节点的作用域内使用某个vue组件的话，那你就得多new几次，把组件的挂载到多个节点下面就好了，而如果在没有实例化的组件中非法调用某个vue组件，它将不起任何作用。</div><div class="line">详细情况可以看以下代码：</div></pre></td></tr></table></figure></p>
+<p>&lt;!DOCTYPE html&gt;</p>
+<p><html><br>    <body><br>        <div id="app1"><br>            <my-component></my-component><br>        </div></body></html></p>
+<pre><code>    &lt;div id=&quot;app2&quot;&gt;
+        &lt;my-component&gt;&lt;/my-component&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;app3&quot;&gt;
+        &lt;!--该组件不会被渲染--&gt;
+        &lt;my-component&gt;&lt;/my-component&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;script src=&quot;js/vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    var myComponent = Vue.extend({
+        template: &apos;&lt;div&gt;This is a component!&lt;/div&gt;&apos;
+    })
+
+    Vue.component(&apos;my-component&apos;, myComponent)
+
+    var app1 = new Vue({
+        el: &apos;#app1&apos;
+    });
+
+    var app2 = new Vue({
+        el: &apos;#app2&apos;
+    })
+&lt;/script&gt;
+</code></pre><p><br>```</p>
+<p>上面代码中，我们创建了一个名叫myComponent的vue组件，然后注册了一个名叫my-component的组件来当做HTML标签使用，最后我们实例化时，只在id=”app1”和id=”app2”中挂载了这个vue组件，而在实际使用的时候，我们在id=”app3”中也使用了这个<my-component></my-component>组件，所以最后，只有id=”app1”和id=”app2”的div中组件成功地被替换成了“This is a component!”，而id=”app3”中的<my-component></my-component>标签将不会被渲染。</p>
+<p>好了，一个基本的vue组件的一整套流程基本就完全是这样了，any problems else？我知道，现在还有很多的问题没有解决，比如创建组件，注册组件和实例化挂载到某个节点下，整体步骤比较繁琐；注册组件的时候可以局部注册吗；组件可以嵌套吗？如果可以，如何嵌套；vue组件怎么怎么做成可扩展的？又怎样变为自定义配置呢？</p>
+<p>我下一篇博客再细细道来。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-09-03T08:25:56.000Z"><a href="/2016/09/03/node express实现/">2016-09-03</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/09/03/node express实现/"></a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <hr>
+<h2 id="express实现"><a href="#express实现" class="headerlink" title="express实现"></a>express实现</h2><p>express是node里面一个十分常用的库，用它来搭建服务器，事半功倍，且小巧灵活，有足够多的特性，用来进行各种网页开发。</p>
+<p>我们先来看下express的使用的，毕竟知己知彼，百战不殆。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">//引入express，确保你的项目依赖了express库，否则的话先npm install一下</div><div class="line">var express = require(&apos;express&apos;);</div><div class="line">//执行express函数，</div><div class="line">var app = express();</div><div class="line">// 使用get方法，当请求的路由是hello时，返回hello</div><div class="line">app.get(&apos;/hello&apos;, function (req, res) &#123;</div><div class="line">  res.send(&apos;hello&apos;);</div><div class="line">&#125;);</div><div class="line">// 当请求的路由是world时，返回world</div><div class="line">app.get(&apos;/world&apos;, function (req, res) &#123;</div><div class="line">  res.send(&apos;world&apos;);</div><div class="line">&#125;);</div><div class="line">// 当请求的路由是其它时，返回“没有找到匹配的路径”</div><div class="line">app.get(&apos;*&apos;, function (req, res) &#123;</div><div class="line">	res.setHeader(&apos;content-type&apos;,&apos;text/plain;charset=utf8&apos;);</div><div class="line">	res.end(&apos;没有找到匹配的路径&apos;);</div><div class="line">&#125;);</div><div class="line">// 最后监听端口</div><div class="line">var server = app.listen(3000, function () &#123;</div><div class="line">  console.log(&apos;正在监听3000端口&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>上面或许就是express最常见，也是最基本的使用吧，启动了一个服务器并且监听3000端口，对/hello的路由返回“hello”，对/world的路由返回“world”，对其他的路由返回“没有找到匹配的路径”。</p>
+<p>示例看完了，下面我们来看看具体的实现吧，在这之前，我想说一下http这个模块，毕竟express就是对http进行了一下封装，既然想看看express的内部，当然就离不开http了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var http = require(&apos;http&apos;);</div><div class="line">http.createServer(function (request, response) &#123;</div><div class="line">  response.writeHead(200, &#123;&apos;Content-Type&apos;: &apos;text/plain&apos;&#125;);</div><div class="line">  response.end(&apos;Hello World\n&apos;);</div><div class="line">&#125;).listen(3000, &apos;127.0.0.1&apos;);</div><div class="line">console.log(&apos;正在监听3000端口。&apos;);</div></pre></td></tr></table></figure>
+<p>就上面这几行，就已经成功地实现了一个简单的服务器了，我们可以分拆一下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http.createServer(function(...)&#123;...&#125;).listen(3000);</div></pre></td></tr></table></figure></p>
+<p>现在，我们再回过头来看看express。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">// 首先，声明express函数</div><div class="line">var express = function () &#123;&#125;;</div><div class="line">// 它的内部应该有一个app函数，用来作为实例。</div><div class="line">var express = function () &#123;</div><div class="line">	var app = function(...)&#123;...&#125;</div><div class="line">&#125;;</div><div class="line">// 这个实例还应该有很多的方法，比如get，listen等。（本来我是想用es5的方式写的，后来发现好久没用那种方法，写function写得太累了。。。）</div><div class="line">var express = ()=&gt; &#123;</div><div class="line">	var app = (req,res)=&gt;&#123;...&#125;;</div><div class="line">	app.listen = (...)=&gt;&#123;...&#125;;</div><div class="line">	app.get = (...)=&gt;&#123;...&#125;;</div><div class="line">&#125;;</div><div class="line">// 最后，为了能够完成链式调用，所以我们返回这个实例app，然后exports一下，就完成了。</div><div class="line">var express = ()=&gt; &#123;</div><div class="line">	var app = (...)=&gt;&#123;...&#125;;</div><div class="line">	app.listen = (...)=&gt;&#123;...&#125;;</div><div class="line">	app.get = (...)=&gt;&#123;...&#125;;</div><div class="line">	return app;</div><div class="line">&#125;;</div><div class="line">module.exports = exports = express;</div></pre></td></tr></table></figure>
+<p>这就是express基本的框架，如果后续有什么扩展的，也可以直接在里面增加一个函数就好了，<figure class="highlight plain"><figcaption><span>= (...)=>&#123;...&#125; ```，接下来，我们来慢慢分析里面的构造。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">先看一个最简单的吧，listen方法。</div></pre></td></tr></table></figure></p>
+<p>app.listen = function (port) {<br>    require(‘http’).createServer(app).listen(port);<br>};<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">是不是发现了什么？再上去看一眼http，是不是很相似啊。。。没错，就是这样的。</div></pre></td></tr></table></figure></p>
+<p>http.createServer(function(…){…}).listen(3000);<br>```</p>
+<p>而中间的app函数，对应的就是http.createServer的参数了。<br>好了，感觉这个listen函数应该不需要多讲。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-08-21T09:03:14.000Z"><a href="/2016/08/21/vue todo/">2016-08-21</a></time>
       
       
@@ -153,7 +279,8 @@
     </header>
     <div class="entry">
       
-        <h2 id="redux-example"><a href="#redux-example" class="headerlink" title="redux example"></a>redux example</h2><p>前几天巧姐做了一个redux入门的分享，她写的这个demo我觉得很好，也不复杂，我感觉比redux官网上的示例还要清晰一点，所以我把她的demo要了过来，想简单来分析一下。<br><br>我先上图吧。<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex1.png" alt=""><br>图1<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex2.png" alt=""><br>图2<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex3.png" alt=""><br>图3<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex4.png" alt=""><br>图4<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex5.png" alt=""><br>图5<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex6.png" alt=""><br>图6<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex7.png" alt=""><br>图7<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex8.png" alt=""><br>图8<br><br>好吧，这图截的也是够大的，将就看看吧。。。由图1可以看到，页面一共分为四部分：左，中上，中下，右，也就是氛围四个组件：Left，Top，Center，Right。接下来我说一下交互，如图2所示；我在左边的输入框中输入东西，然后点击增加，可以看到，刚刚新增的数据立马在右边下面部分显示了出来，展示的是刚才新增的数据和一个删除按钮，如图3所示；若你点击展示的数据，那么在右边，也就是编辑组件中会出现一个输入框和编辑按钮，你可以在这里对刚刚点击的数据进行修改然后保存，如图4，图5所示；保存过后就可以看到中间的显示模块对数据进行了更新，如图6所示；接下来是中间上方的保存模块，你点击保存按钮，这个模块同样也能取到当前的数据，这里就用一个弹窗代替好了，如图7所示；最后就是删除按钮，点击后删掉当前这一行的数据，如图8所示。<br><br>好累，说了这么多，口都干了。其实吧，一两句话就可以说完的：在这四个组件中，每个组件都可以取到state，并且可以对state进行操作。说完了，是不是很简单啊。。。<br><br>我们先来看看index.js吧，也就是入口文件。</p>
+        <h2 id="redux-example"><a href="#redux-example" class="headerlink" title="redux example"></a>redux example</h2><p>最近在做店铺装修，很很很麻烦的一个项目，刚好里面用到了redux，我发现店铺装修简化一下的话，简直是redux的十分好的一个示例啊，比官网上简单的示例要难，又比难的简单，而且条理结构什么的又很清楚，挺不错的啊。</p>
+<p>我先上图吧。<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex1.png" alt=""><br>图1<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex2.png" alt=""><br>图2<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex3.png" alt=""><br>图3<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex4.png" alt=""><br>图4<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex5.png" alt=""><br>图5<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex6.png" alt=""><br>图6<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex7.png" alt=""><br>图7<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex8.png" alt=""><br>图8<br><br>好吧，这图截的也是够大的，将就看看吧。。。由图1可以看到，页面一共分为四部分：左，中上，中下，右，也就是氛围四个组件：Left，Top，Center，Right。接下来我说一下交互，如图2所示；我在左边的输入框中输入东西，然后点击增加，可以看到，刚刚新增的数据立马在右边下面部分显示了出来，展示的是刚才新增的数据和一个删除按钮，如图3所示；若你点击展示的数据，那么在右边，也就是编辑组件中会出现一个输入框和编辑按钮，你可以在这里对刚刚点击的数据进行修改然后保存，如图4，图5所示；保存过后就可以看到中间的显示模块对数据进行了更新，如图6所示；接下来是中间上方的保存模块，你点击保存按钮，这个模块同样也能取到当前的数据，这里就用一个弹窗代替好了，如图7所示；最后就是删除按钮，点击后删掉当前这一行的数据，如图8所示。<br><br>好累，说了这么多，口都干了。其实吧，一两句话就可以说完的：在这四个组件中，每个组件都可以取到state，并且可以对state进行操作。说完了，是不是很简单啊。。。<br><br>我们先来看看index.js吧，也就是入口文件。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var App = React.createClass(&#123;</div><div class="line">    render: function()&#123;</div><div class="line">        return (</div><div class="line">            &lt;div className=&quot;row&quot;&gt;</div><div class="line">                &lt;div className=&quot;col-sm-4&quot; style=&#123;&#123; textAlign: &apos;center&apos; &#125;&#125;&gt;</div><div class="line">                    &lt;LeftComponent /&gt;</div><div class="line">                &lt;/div&gt;</div><div class="line">                &lt;div className=&quot;col-sm-4&quot; style=&#123;&#123; borderRight: &apos;1px solid #999&apos;, minHeight: &apos;600px&apos;, textAlign: &apos;center&apos; &#125;&#125;&gt;</div><div class="line">                    &lt;TopComponent/&gt;</div><div class="line">                    &lt;CenterComponent/&gt;</div><div class="line">                &lt;/div&gt;</div><div class="line">                &lt;div className=&quot;col-sm-4&quot; style=&#123;&#123; textAlign: &apos;center&apos; &#125;&#125;&gt;</div><div class="line">                    &lt;RightComponent /&gt;</div><div class="line">                &lt;/div&gt;</div><div class="line">            &lt;/div&gt;            </div><div class="line">            );</div></pre></td></tr></table></figure>
 <p>很简单吧，就是分别放了四个Component组件而已，我们也不用管这些组件是父子关系还是兄弟关系，因为redux不用考虑这些。然后我们去看看action吧。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">// action </div><div class="line">module.exports = &#123;</div><div class="line">	addModelAction: function(name)&#123;</div><div class="line">	    return &#123;</div><div class="line">	        type: &apos;ADD_MODEL&apos;,</div><div class="line">	        name: name</div><div class="line">	    &#125;</div><div class="line">	&#125;,</div><div class="line">	editModelAction: function(index, name) &#123;</div><div class="line">		return &#123;</div><div class="line">			type: &apos;EDIT_MODEL&apos;,</div><div class="line">			index: index,</div><div class="line">			name: name</div><div class="line">		&#125;</div><div class="line">	&#125;,</div><div class="line">	deleteModelAction: function(index) &#123;</div><div class="line">		return &#123;</div><div class="line">			type: &apos;DELETE_MODEL&apos;,</div><div class="line">			index: index</div><div class="line">		&#125;</div><div class="line">	&#125;,</div><div class="line">	activeModelAction: function(index) &#123;</div><div class="line">		return &#123;</div><div class="line">			type: &apos;ACTIVE_MODEL&apos;,</div><div class="line">			index: index</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>

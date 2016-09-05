@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Wisdommm</title>
+  <meta name="author" content="Wisdommm">
+  
+  <meta name="description" content="programmer,front to end">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Wisdommm"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Wisdommm" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Wisdommm</a></h1>
+  <h2><a href="/">Welcome to my blog</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-09-03T08:25:56.000Z"><a href="/2016/09/03/node express实现/">2016-09-03</a></time>
+      
+      
+  
+    <h1 class="title"></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <hr>
+<h2 id="express实现"><a href="#express实现" class="headerlink" title="express实现"></a>express实现</h2><p>express是node里面一个十分常用的库，用它来搭建服务器，事半功倍，且小巧灵活，有足够多的特性，用来进行各种网页开发。</p>
+<p>我们先来看下express的使用的，毕竟知己知彼，百战不殆。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">//引入express，确保你的项目依赖了express库，否则的话先npm install一下</div><div class="line">var express = require(&apos;express&apos;);</div><div class="line">//执行express函数，</div><div class="line">var app = express();</div><div class="line">// 使用get方法，当请求的路由是hello时，返回hello</div><div class="line">app.get(&apos;/hello&apos;, function (req, res) &#123;</div><div class="line">  res.send(&apos;hello&apos;);</div><div class="line">&#125;);</div><div class="line">// 当请求的路由是world时，返回world</div><div class="line">app.get(&apos;/world&apos;, function (req, res) &#123;</div><div class="line">  res.send(&apos;world&apos;);</div><div class="line">&#125;);</div><div class="line">// 当请求的路由是其它时，返回“没有找到匹配的路径”</div><div class="line">app.get(&apos;*&apos;, function (req, res) &#123;</div><div class="line">	res.setHeader(&apos;content-type&apos;,&apos;text/plain;charset=utf8&apos;);</div><div class="line">	res.end(&apos;没有找到匹配的路径&apos;);</div><div class="line">&#125;);</div><div class="line">// 最后监听端口</div><div class="line">var server = app.listen(3000, function () &#123;</div><div class="line">  console.log(&apos;正在监听3000端口&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>上面或许就是express最常见，也是最基本的使用吧，启动了一个服务器并且监听3000端口，对/hello的路由返回“hello”，对/world的路由返回“world”，对其他的路由返回“没有找到匹配的路径”。</p>
+<p>示例看完了，下面我们来看看具体的实现吧，在这之前，我想说一下http这个模块，毕竟express就是对http进行了一下封装，既然想看看express的内部，当然就离不开http了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var http = require(&apos;http&apos;);</div><div class="line">http.createServer(function (request, response) &#123;</div><div class="line">  response.writeHead(200, &#123;&apos;Content-Type&apos;: &apos;text/plain&apos;&#125;);</div><div class="line">  response.end(&apos;Hello World\n&apos;);</div><div class="line">&#125;).listen(3000, &apos;127.0.0.1&apos;);</div><div class="line">console.log(&apos;正在监听3000端口。&apos;);</div></pre></td></tr></table></figure>
+<p>就上面这几行，就已经成功地实现了一个简单的服务器了，我们可以分拆一下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http.createServer(function(...)&#123;...&#125;).listen(3000);</div></pre></td></tr></table></figure></p>
+<p>现在，我们再回过头来看看express。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">// 首先，声明express函数</div><div class="line">var express = function () &#123;&#125;;</div><div class="line">// 它的内部应该有一个app函数，用来作为实例。</div><div class="line">var express = function () &#123;</div><div class="line">	var app = function(...)&#123;...&#125;</div><div class="line">&#125;;</div><div class="line">// 这个实例还应该有很多的方法，比如get，listen等。（本来我是想用es5的方式写的，后来发现好久没用那种方法，写function写得太累了。。。）</div><div class="line">var express = ()=&gt; &#123;</div><div class="line">	var app = (req,res)=&gt;&#123;...&#125;;</div><div class="line">	app.listen = (...)=&gt;&#123;...&#125;;</div><div class="line">	app.get = (...)=&gt;&#123;...&#125;;</div><div class="line">&#125;;</div><div class="line">// 最后，为了能够完成链式调用，所以我们返回这个实例app，然后exports一下，就完成了。</div><div class="line">var express = ()=&gt; &#123;</div><div class="line">	var app = (...)=&gt;&#123;...&#125;;</div><div class="line">	app.listen = (...)=&gt;&#123;...&#125;;</div><div class="line">	app.get = (...)=&gt;&#123;...&#125;;</div><div class="line">	return app;</div><div class="line">&#125;;</div><div class="line">module.exports = exports = express;</div></pre></td></tr></table></figure>
+<p>这就是express基本的框架，如果后续有什么扩展的，也可以直接在里面增加一个函数就好了，<figure class="highlight plain"><figcaption><span>= (...)=>&#123;...&#125; ```，接下来，我们来慢慢分析里面的构造。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">先看一个最简单的吧，listen方法。</div></pre></td></tr></table></figure></p>
+<p>app.listen = function (port) {<br>    require(‘http’).createServer(app).listen(port);<br>};<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">是不是发现了什么？再上去看一眼http，是不是很相似啊。。。没错，就是这样的。</div></pre></td></tr></table></figure></p>
+<p>http.createServer(function(…){…}).listen(3000);<br>```</p>
+<p>而中间的app函数，对应的就是http.createServer的参数了。<br>好了，感觉这个listen函数应该不需要多讲。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://wisdommm.github.io/2016/09/03/node express实现/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:wisdommm.github.io">
+  </form>
+</div>
+
+  
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 Wisdommm
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
