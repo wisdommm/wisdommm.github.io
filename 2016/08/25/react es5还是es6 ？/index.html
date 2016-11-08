@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Wisdommm</title>
+  <meta name="author" content="Wisdommm">
+  
+  <meta name="description" content="programmer,front to end">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Wisdommm"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Wisdommm" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Wisdommm</a></h1>
+  <h2><a href="/">Welcome to my blog</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-08-25T08:07:53.000Z"><a href="/2016/08/25/react es5还是es6 ？/">2016-08-25</a></time>
+      
+      
+  
+    <h1 class="title"></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="react-es5-or-es6"><a href="#react-es5-or-es6" class="headerlink" title="react, es5 or es6 ?"></a>react, es5 or es6 ?</h1><p>随着es6的逐渐普及，新的语法糖，对我们以前写js的习惯也有着不小的冲击，比如说我好久都没写过function这个词语了，取而代之的是“=&gt;”箭头函数，var也基本不用了，现在用let，以及其他等等。</p>
+<p>但是对于写react，es5和es6的变化，还是稍微有一些不同的，“talk is cheap,show the code”。</p>
+<p>这是es5的写法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> InputControlES5 = React.createClass(&#123;</div><div class="line">  defaultProps：&#123;</div><div class="line">    initialValue：<span class="string">''</span></div><div class="line">  &#125;,</div><div class="line">  propTypes：&#123;</div><div class="line">    initialValue：React.PropTypes.string</div><div class="line">  &#125;, </div><div class="line">  <span class="comment">// Set up initial state</span></div><div class="line">  getInitialState：<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      text：<span class="keyword">this</span>.props.initialValue || <span class="string">'placeholder'</span> </div><div class="line">    &#125;;</div><div class="line">  &#125;,</div><div class="line">  handleChange：<span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.setState(&#123;</div><div class="line">      text：event.target.value</div><div class="line">    &#125;);</div><div class="line">  &#125;,</div><div class="line">  render：<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div&gt;</div><div class="line">        Type something：        </div><div class="line">        &lt;input onChange=&#123;this.handleChange&#125; </div><div class="line">          value=&#123;this.state.text&#125; /&gt;</div><div class="line">        &lt;/div&gt; </div><div class="line">      );</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">下面是es6的写法：</div><div class="line"></div><div class="line">```javascript</div><div class="line">class InputControlES6 extends React.Component &#123; </div><div class="line">  constructor(props) &#123;</div><div class="line">    super(props); </div><div class="line">    // Set up initial state</div><div class="line">    this.state = &#123;</div><div class="line">      text：props.initialValue || 'placeholder' </div><div class="line">    &#125;;</div><div class="line">    // Functions must be bound manually with ES6 classes</div><div class="line">    this.handleChange = this.handleChange.bind(this); </div><div class="line">  &#125; </div><div class="line">  handleChange(event) &#123;</div><div class="line">    this.setState(&#123; </div><div class="line">      text：event.target.value</div><div class="line">    &#125;);</div><div class="line">  &#125; </div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;div&gt;</div><div class="line">        Type something：        &lt;input onChange=&#123;this.handleChange&#125;</div><div class="line">          value=&#123;this.state.text&#125; /&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">InputControlES6.propTypes = &#123; </div><div class="line">  initialValue：React.PropTypes.string</div><div class="line">&#125;;</div><div class="line"></div><div class="line">InputControlES6.defaultProps = &#123;</div><div class="line">  initialValue：''</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>一下是一些关键的不同点：</p>
+<h2 id="创建方式不同"><a href="#创建方式不同" class="headerlink" title="创建方式不同"></a>创建方式不同</h2><p>es5是通过creatClass来创建的react组件，而es6是通过class extends来创建的，或许这是最直接的嫩个发现的差异吧，毕竟这在第一行。</p>
+<h2 id="函数的绑定"><a href="#函数的绑定" class="headerlink" title="函数的绑定"></a>函数的绑定</h2><p>话说以前，我修改过别人用es6写的react代码，我习惯在每个函数后面加上一个逗号，然后我在render函数中增加了一个事件，对应执行的函数是this.xxx，结果呢？报了一堆的错（包括之前的逗号），“this.xxx is undefined.”，当时我还不知道es6与es5的差异，当时就一脸无辜的表情，然后没办法，我把别人的代码全部用es5重写了一遍，并且当时表示以后都会一直使用es5的方式来写react。唉，人的一生，自身的努力很重要，但是也要考虑到历史的进程。。。于是我也就做了一点微小的工作，也开始采用es6的方式来写react了。</p>
+<p>好了，说回正题，es5使用的是creatClass的方式来创建react组件，每一个函数都会自动被react绑定，所以就不会有“this.xxx is undefined.”这样的报错了。但是es6的class就不同了，你在<strong>render函数里使用到的this.xxx函数</strong>，都需要自己手动去构造函数中绑定它们，当然，你也可以通过插件来自动绑定，还有一种方式就是你可以在调用这个函数的地方，直接增加bind(this)来进行绑定，比如<figure class="highlight plain"><figcaption><span>onChange=&#123;this.handleChange.bind(this)&#125;</span><a href="/>```这样来绑定this。">link</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">上面的几种方式都可以绑定this，不过在性能上来说，却还是有一定差距的。首先是引入第三方库来自动绑定，如果是一个比较大型的项目，引入一个比较小的库，来解决比较多比较繁琐的bind的问题，还是可以的，不过前提是项目比较大，需要在引入第三方库和人为绑定之间权衡利弊。剩下的方法就是在构造函数里绑定this还是在render函数里绑定this，工作量其实是差不多的，但是这里涉及到一个生命周期的问题，构造函数，在整个react声明周期里，只会调用一次，但是render就不一样了，任何组件的任何属性改变或者状态改变，都可能处罚render函数来重新渲染，所以render函数一般是会执行多次的，既然执行多次，那么里面的bind(this)自然也是会执行多次，这与在构造函数里只执行一次来比，当然就会慢一些。</div><div class="line">有没有更好的办法呢？我在文章开始就说过了，es6有一个比较明显的特性就是箭头函数，它是会自动绑定this的，你可以在定义函数的地方直接使用箭头函数，代码如下：</div></pre></td></tr></table></figure></p>
+<p>handleChange = (event) =&gt; {<br>  this.setState({<br>    text: event.target.value<br>  });<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">这样的话，也就不用考虑绑定this的事情了，是不是很方便啊。</div><div class="line"></div><div class="line">构造函数中的super</div><div class="line">---</div><div class="line">es6的constructor需要接收props，并且调用super(props)，这是相对于es5所改变的一点，这个记住就行了。</div><div class="line"></div><div class="line">初始化state</div><div class="line">---</div><div class="line">在es5中，react组件初始化的时候会执行一个getinitialState函数，而es6中却不是这样，在调用super之后，会直接设置一个this.state的对象来初始化，this.state = &#123;...&#125;。</div><div class="line"></div><div class="line"></div><div class="line">getdefaultProps和propTypes</div><div class="line">---</div><div class="line">和初始化state一样，在es5中，也有一个函数来单独初始化props，就是getdefaultProps，而es6就是用上面的那个super方法，es5中可以直接在这个函数下面接着写propTypes来限定接收的参数的类型，而es6就不一样了，它将propTypes直接放在了react组件之外，因为这些将会是类本身的属性，所以需要放在类的外部来单独定义。es7易经又将定义属性改回了类的内部，不过这个还没普及。</div></pre></td></tr></table></figure></p>
+<p>class Person extends React.Component {<br>  static propTypes = {<br>    name: React.PropTypes.string,<br>    age: React.PropTypes.string<br>  };<br>  static defaultProps = {<br>    name: ‘’,<br>    age: -1<br>  };<br>  …<br>}<br>```</p>
+<h2 id="用哪个方法才好？"><a href="#用哪个方法才好？" class="headerlink" title="用哪个方法才好？"></a>用哪个方法才好？</h2><p>Facebook已经声明了React.createClass将最终会被ES6的classes替代，但是他们也说“在我们找到当前mixin所使用的例子的替代者以及在语言上支持类属性的初始化器前，我们不打算废弃React.createClass”。</p>
+<p>在任何可以使用无状态函数式组件的地方使用它。简单而且会强制性地简化你的组件。</p>
+<p>对于一些需要state，生命周期方法或是通过ref来操作潜在的DOM节点的复杂组件来讲，请使用class。</p>
+<p>尽管知道这三种写法风格很棒，但在StackOverflow或者其他地方查找解决方案时可能仍会看到一些混杂着ES5和ES6写法的答案。ES6风格已经非常流行了，但这不会是你看到的唯一一种写法。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://wisdommm.github.io/2016/08/25/react es5还是es6 ？/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:wisdommm.github.io">
+  </form>
+</div>
+
+  
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 Wisdommm
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
