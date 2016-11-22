@@ -1,171 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
-<!-- Head tag -->
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="programmer,front to end">
-    <meta name="keyword" content="undefined">
-    <meta name="theme-color" content="#600090">
-    <meta name="msapplication-navbutton-color" content="#600090">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
-    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
-    <link rel="alternate" type="application/atom+xml" title="Wisdommm" href="/atom.xml">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
-    <title>
-        
-        hexo博客增加搜索功能｜undefined
-        
-    </title>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>hexo博客增加搜索功能 | Wisdommm</title>
+  <meta name="description" content="Welcome to my blog" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="canonical" href="http://wisdommm.github.io/2016/08/19/hexo-search/">
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
 
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <meta name="generator" content="Wisdommm">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/blog-style.css">
+  
+  
+  
 
-    <!-- Pygments Github CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+  
 </head>
 
-<style>
 
-    header.intro-header {
-        background-image: url('undefined')
-    }
-</style>
-<!-- hack iOS CSS :active style -->
-<body ontouchstart="" class="animated fadeIn">
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
-" data-ishome = "false" >
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand animated pulse" href="/">
-                <span class="brand-logo">
-                    Wisdommm
-                </span>
-                's Blog
-            </a>
+<body class="post-template">
+
+  <header class="site-head"  style="background-image: url(//blog.ghost.org/content/images/2013/Nov/cover.png)" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="//blog.ghost.org/content/images/2013/Nov/bloglogo_1-1.png" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Wisdommm</h1>
+            <h2 class="blog-description">Welcome to my blog</h2>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <!-- Known Issue, found by Hux:
-            <nav>'s height woule be hold on by its content.
-            so, when navbar scale out, the <nav> will cover tags.
-            also mask any touch event of tags, unfortunately.
-        -->
-        <!-- /.navbar-collapse -->
-        <div id="huxblog_navbar">
-            <div class="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/">Home</a>
-                    </li>
-					
-                    
-					
-					
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- /.container -->
-</nav>
-<script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-//    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
-
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
-        // CLOSE
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        }else{
-        // OPEN
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
-        }
-    }
-</script>
-
-<!-- Main Content -->
-
-<!--only post-->
-
-
-<img class="wechat-title-img"
-     src="">
-
-
-<style>
-    
-    header.intro-header {
-        background-image: url('')
-    }
-
-    
-</style>
-
-<header class="intro-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
-                <div class="post-heading">
-                    <h1>hexo博客增加搜索功能</h1>
-                    
-                    <span class="meta">
-                         作者 Wisdommm
-                        <span>
-                          日期 2016-08-19
-                         </span>
-                    </span>
-                    <div class="tags text-center">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="post-title-haojen">
-        <span>
-            hexo博客增加搜索功能
-        </span>
     </div>
 </header>
+  
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-            <!-- Post Container -->
-            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <p>最近在用在某个项目上增加一个搜索框，后端用node＋mongodb实现，本来以为挺简单的，就用node爬一下页面title和href，然后放进mongodb中，再通过前端发请求传数据过来查找，然后node再在mongodb中查找，将数据返回前端。</p>
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2016-08-19T13:42:59.000Z" itemprop="datePublished">
+          2016-08-19
+      </time>
+    
+</span>
+    <h1 class="post-title">hexo博客增加搜索功能</h1>
+    <section class="post-content">
+      <p>最近在用在某个项目上增加一个搜索框，后端用node＋mongodb实现，本来以为挺简单的，就用node爬一下页面title和href，然后放进mongodb中，再通过前端发请求传数据过来查找，然后node再在mongodb中查找，将数据返回前端。</p>
 <p>这是理想情况下的做法，可是现实往往充满了曲折,下面我来简单介绍下这个项目，然后说一下问题吧。</p>
 <ol>
 <li>这是个内网项目，所以爬虫爬不进去，好在有一个目录页，将所有页面的title和href整理了起来，不过读取这个文件也不是简单的事，因为这个是类似于json格式的文件，但是却没有任何的符号，全是汉字，而我们存储的时候是需要分层次的，这样利于查找，采用node的FS模块可以很容易地读取到文件的内容，但是仅仅是读取，直接存储的话会导致没有层次感，所以我就把这个文件复制了一份出来，通过人工维护的方式将其变为json格式，然后就很好操作了，不过需要人工维护与更新，不算是最好的办法，但是那个文件之前也是人工维护的（虽然我不知道是谁维护，否则可以叫他一起维护下）。</li>
@@ -174,159 +55,68 @@
 <li>接下来是mongodb的事情。之前使用百度搜索还是谷歌搜索，我都没发现什么大的问题（可能是我搜索的问题太傻了），这次查询mongodb和mongoose的相关资料，发现百度搜索出来的都是以一些博客，百度知道的回答为主，且各个博客之间相互抄袭也是够无聊的，仅仅只是做到了制造而不是创造。然后我就去谷歌采用英文搜索，stackoverflow，官方网站等都是排在很前面的（不知道百度为什么把人家官网排在很后面），算了，不吐槽了。mongodb这种非关系型轻量级数据库，使用起来是很方便的，增删查改的api都是比较简单的，根据所示范的例子动手稍微写一下就会用了，不过对于第一次使用的我来说，还是遇到了一些问题：存储的时候，mongodb会自动给你加上下划线id，我估计是为了区分存储空间，可是这就会存在一个问题，当我存储了一条数据过后，再储存一条相同的数据进去，是可以存储进去的，因为它们的下划线id不同，这显然不对啊，我否则我一查找，却找到很多条数据，仔细一看却发现这么多条数据都是一样的，不是很搞笑吗，所以我选择了给每条数据加上一个index作为唯一标志符，然后再在每次启动的时候，去读取文件存储进数据库里，存进去之前会先去数据库里通过这个index唯一标志符查找一遍，如果查询结果为空，我才会把这条数据存进去，否则就不存。其实吧，每次存储的时候会人为的自动查找，相当于遍历了一遍数据库，如果是在正常的稍微大一点的项目来说，这是十分十分十分影响性能的，由于我这里是个很小的项目，所以才可以进行这种方式查询；其次是mongo查找的时候，默认的方式是精确匹配，不支持模糊查询，这怎么办呢，难道需要我在查询的时候再遍历一遍数据库，使用indexOf来查询？我感到很可笑，因为你这么傻的方法在实际中是肯定行不通的，再说了，就算可以，那么大小写的模糊查询怎么办？难道要我判断下有没有英文字母然后分别用用大写和小写都来遍历一下？这个时候就可以使用正则了，将查询的字符串改变为正则表达式，这样的话在数据库里它会自动的去匹配所有适合的结果。</li>
 </ol>
 
-                <hr>
-                
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Wisdommm</h4>
+    <p>A designer, developer and entrepreneur. Spends his time travelling the world with a bag of kites. Likes journalism and publishing platforms.</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://wisdommm.github.io/2016/08/19/hexo-search/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://wisdommm.github.io/2016/08/19/hexo-search/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://wisdommm.github.io/2016/08/19/hexo-search/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/2016/08/21/vue todo/">
+        ← vue todo示例
+    </a>
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2016/07/28/react demo/">
+        redux example →
+    </a>
+    
+</nav>
+  <div id="comment" class="comments-area">
+    <h1 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h1>
 
-                <ul class="pager">
-                    
-                    <li class="previous">
-                        <a href="/2016/08/21/vue todo/" data-toggle="tooltip" data-placement="top"
-                           title="vue todo示例">&larr; Previous Post</a>
-                    </li>
-                    
-                    
-                    <li class="next">
-                        <a href="/2016/07/28/react demo/" data-toggle="tooltip" data-placement="top"
-                           title="redux example">Next Post &rarr;</a>
-                    </li>
-                    
-                </ul>
-
-                
-
-                
-
-            </div>
-
-            <div class="hidden-xs col-sm-3 toc-col">
-                <div class="toc-wrap">
-                    
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <!-- Sidebar Container -->
-
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                
-
-                <!-- Friends Blog -->
-                
-            </div>
-        </div>
-
-    </div>
-</article>
+    
+</div>
+</main>
 
 
-
-
-
-
-<!-- Footer -->
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
-                <br>
-                <ul class="list-inline text-center">
-                
-                
-                
-
-                
-
-                
-
-                
-
-                
-
-                </ul>
-                <p class="copyright text-muted">
-                    Copyright &copy; Wisdommm 2016
-                    <br>
-                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
-                    <br>
-                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
-                </p>
-
-            </div>
-        </div>
-    </div>
+  
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Wisdommm</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
 </footer>
 
-<!-- jQuery -->
-<script src="/js/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="/js/blog.js"></script>
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-
-<!-- jquery.tagcloud.js -->
-<script>
-    // only load tagcloud.js in tag.html
-    if($('#tag_cloud').length !== 0){
-        async("http://wisdommm.github.io/js/jquery.tagcloud.js",function(){
-            $.fn.tagcloud.defaults = {
-                //size: {start: 1, end: 1, unit: 'em'},
-                color: {start: '#bbbbee', end: '#0085a1'},
-            };
-            $('#tag_cloud a').tagcloud();
-        })
-    }
-</script>
-
-<!--fastClick.js -->
-<script>
-    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
-        var $nav = document.querySelector("nav");
-        if($nav) FastClick.attach($nav);
-    })
-</script>
-
-<!-- Google Analytics -->
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
 
 
 
-<!-- Baidu Tongji -->
 
 
-<!-- swiftype -->
-<script type="text/javascript">
-  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
 
-  _st('install','undefined','2.0.0');
-</script>
-
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<!--wechat title img-->
-<img class="wechat-title-img" src="undefined">
 </body>
-
 </html>
