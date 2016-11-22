@@ -1,66 +1,52 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
   <title>Wisdommm</title>
-  <meta name="author" content="Wisdommm">
-  
-  <meta name="description" content="programmer,front to end">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Welcome to my blog" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+
+  <meta name="generator" content="Wisdommm">
 
   
-  <meta property="og:site_name" content="Wisdommm"/>
-
   
-    <meta property="og:image" content="undefined"/>
   
 
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Wisdommm" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
-
 </head>
 
 
-<body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Wisdommm</a></h1>
-  <h2><a href="/">Welcome to my blog</a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/">Home</a></li>
-    
-      <li><a href="/archives">Archives</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-11-08T04:22:04.000Z"><a href="/2016/11/08/react生命周期源码解读/">2016-11-08</a></time>
-      
-      
-  
-    <h1 class="title"></h1>
+<body class="post-template">
+
+  <header class="site-head"  style="background-image: url(//blog.ghost.org/content/images/2013/Nov/cover.png)" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="//blog.ghost.org/content/images/2013/Nov/bloglogo_1-1.png" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Wisdommm</h1>
+            <h2 class="blog-description">Welcome to my blog</h2>
+        </div>
+    </div>
+</header>
   
 
-    </header>
-    <div class="entry">
-      
-        <h1 id="从源码看react生命周期"><a href="#从源码看react生命周期" class="headerlink" title="从源码看react生命周期"></a>从源码看react生命周期</h1><p>React的主要思想，就是通过构建可复用的组件来构建页面，而每一个组件，就是一个有限的状态机，通过状态控制组件不同的渲染，从而得到不同的界面效果。每个组件都有生命周期，它规定了组件的一些自带方法需要在哪个阶段进行执行以及输出对应的结果。</p>
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2016-11-08T04:22:04.000Z" itemprop="datePublished">
+          2016-11-08
+      </time>
+    
+</span>
+    <h1 class="post-title"></h1>
+    <section class="post-content">
+      <h1 id="从源码看react生命周期"><a href="#从源码看react生命周期" class="headerlink" title="从源码看react生命周期"></a>从源码看react生命周期</h1><p>React的主要思想，就是通过构建可复用的组件来构建页面，而每一个组件，就是一个有限的状态机，通过状态控制组件不同的渲染，从而得到不同的界面效果。每个组件都有生命周期，它规定了组件的一些自带方法需要在哪个阶段进行执行以及输出对应的结果。</p>
 <p>有限状态机，表示有限个状态，以及在这些状态之间的数据转移和动作方法的执行的行为模型，一般通过状态、事件、转换和动作来描述有限状态机。例如页面上的都个东西有显示和隐藏两种情况，那么一般情况下我们会设计两个方法：show()和hide()来实现显示与隐藏的切换，而react只需要设置某一个状态为true或false，就可以实现这个组件的隐藏和显示转换了。<br>同时，react还引入了组件的生命周期这个概念，通过它就可以实现组件的状态机控制，从而达到“生命周期－状态－组件”的和谐画面。</p>
 <h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>之前一篇博客就已经说到了一下生命周期，我在这里再赘述一下吧，react组件自带的一些函数方法，比如getDefaultProps、getInitialState等，会在什么时候执行。</p>
 <ul>
@@ -122,92 +108,64 @@
 </li>
 </ul>
 
-      
-    </div>
-    <footer>
-      
-        
-        
-        
-  <div class="addthis addthis_toolbox addthis_default_style">
-    
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-    
-    
-      <a class="addthis_button_tweet"></a>
-    
-    
-      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-    
-    
-      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
-    
-    <a class="addthis_counter addthis_pill_style"></a>
-  </div>
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
-
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-<section id="comment">
-  <h1 class="title">Kommentare</h1>
-
-  
-      <div id="fb-root"></div>
-<script>
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-</script>
-
-<div class="fb-comments" data-href="http://wisdommm.github.io/2016/11/08/react生命周期源码解读/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
-      
-  
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Wisdommm</h4>
+    <p>A designer, developer and entrepreneur. Spends his time travelling the world with a bag of kites. Likes journalism and publishing platforms.</p>
 </section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://wisdommm.github.io/2016/11/08/react生命周期源码解读/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://wisdommm.github.io/2016/11/08/react生命周期源码解读/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://wisdommm.github.io/2016/11/08/react生命周期源码解读/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2016/10/10/promise/">
+         →
+    </a>
+    
+</nav>
+  <div id="comment" class="comments-area">
+    <h1 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h1>
 
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Suche">
-    <input type="hidden" name="q" value="site:wisdommm.github.io">
-  </form>
+    
 </div>
+</main>
+
 
   
-
+<footer class="site-footer">
   
-</aside>
-    <div class="clearfix"></div>
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Wisdommm</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
-  
-  &copy; 2016 Wisdommm
-  
-</div>
-<div class="clearfix"></div></footer>
+</footer>
+
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
 
 
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
+
 
 </body>
 </html>

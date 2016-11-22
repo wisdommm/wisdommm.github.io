@@ -1,127 +1,147 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  
-  <title>Archiv: 2016/8 | Wisdommm</title>
-  <meta name="author" content="Wisdommm">
-  
-  <meta name="description" content="programmer,front to end">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Archives: 2016/8 | Wisdommm</title>
+  <meta name="description" content="Welcome to my blog" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+
+  <meta name="generator" content="Wisdommm">
 
   
-  <meta property="og:site_name" content="Wisdommm"/>
-
   
-    <meta property="og:image" content="undefined"/>
   
 
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Wisdommm" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
-
 </head>
 
 
-<body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Wisdommm</a></h1>
-  <h2><a href="/">Welcome to my blog</a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
+<body class="home-template">
+
+  <header class="site-head"  style="background-image: url(//blog.ghost.org/content/images/2013/Nov/cover.png)" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="//blog.ghost.org/content/images/2013/Nov/bloglogo_1-1.png" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Wisdommm</h1>
+            <h2 class="blog-description">Welcome to my blog</h2>
+        </div>
+    </div>
+</header>
+  
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2016-08-25T08:07:53.000Z" itemprop="datePublished">
+          2016-08-25
+      </time>
     
-      <li><a href="/">Home</a></li>
+</span>
+      <h2 class="post-title"><a href="/2016/08/25/react es5还是es6 ？/"></a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        react, es5 or es6 ?随着es6的逐渐普及，新的语法糖，对我们以前写js的习惯也有着不小的冲击，比如说我好久都没写过function这个词语了，取而代之的是“=&gt;”箭头函数，var也基本不用了，现在用let，以及其他等等。
+但是对于写react，es5和es6的变化，还是稍微有一些不同的，“talk is cheap,show the code”。
+这是es5的写法：
+12345678910111213141516
+      
+      </p>
+      
+      <p>
+          <a href="/2016/08/25/react es5还是es6 ？/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2016-08-21T09:03:14.000Z" itemprop="datePublished">
+          2016-08-21
+      </time>
     
-      <li><a href="/archives">Archives</a></li>
+</span>
+      <h2 class="post-title"><a href="/2016/08/21/vue todo/"></a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        vue todo示例最近抽空看了下vue，一个轻量级的前端框架（类库），它采用的mvvm模式，且数据双向绑定，刚好官方网站上有一个todo实例，我感觉和redux的todo实例很类似，所以准备将这两个框架的todo实例分别解读一下，来比较一下个中异同。
+这个代码就两部分，先是html：123456789&lt;div id=&quot;app&quot;&gt;  &lt;input v-model=&quot;newTodo&quot
+      
+      </p>
+      
+      <p>
+          <a href="/2016/08/21/vue todo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2016-08-19T13:42:59.000Z" itemprop="datePublished">
+          2016-08-19
+      </time>
     
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">2016/8</h2>
+</span>
+      <h2 class="post-title"><a href="/2016/08/19/hexo-search/"></a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        hexo博客增加搜索功能最近在用在某个项目上增加一个搜索框，后端用node＋mongodb实现，本来以为挺简单的，就用node爬一下页面title和href，然后放进mongodb中，再通过前端发请求传数据过来查找，然后node再在mongodb中查找，将数据返回前端。
+这是理想情况下的做法，可是现实往往充满了曲折,下面我来简单介绍下这个项目，然后说一下问题吧。
+
+这是个内网项目，所以爬虫爬不进去，好在有一个目录页，将所有页面的titl
+      
+      </p>
+      
+      <p>
+          <a href="/2016/08/19/hexo-search/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    
+    <span class="page-number">Page 1 of 1</span>
+    
+  </nav>
+</main>
 
 
-  <div class="archive">
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-08-25T08:07:53.000Z"><a href="/2016/08/25/react es5还是es6 ？/">2016-08-25</a></time>
-            
-              <h1 class="title"><a href="/2016/08/25/react es5还是es6 ？/"></a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-08-21T09:03:14.000Z"><a href="/2016/08/21/vue todo/">2016-08-21</a></time>
-            
-              <h1 class="title"><a href="/2016/08/21/vue todo/"></a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-08-19T13:42:59.000Z"><a href="/2016/08/19/hexo-search/">2016-08-19</a></time>
-            
-              <h1 class="title"><a href="/2016/08/19/hexo-search/"></a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
+  
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Wisdommm</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Suche">
-    <input type="hidden" name="q" value="site:wisdommm.github.io">
-  </form>
-</div>
+</footer>
 
-  
-
-  
-</aside>
-    <div class="clearfix"></div>
-  </div>
-  <footer id="footer" class="inner"><div class="alignleft">
-  
-  &copy; 2016 Wisdommm
-  
-</div>
-<div class="clearfix"></div></footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
 
 
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
+
 
 </body>
 </html>

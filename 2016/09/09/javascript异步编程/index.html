@@ -1,66 +1,52 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
   <title>Wisdommm</title>
-  <meta name="author" content="Wisdommm">
-  
-  <meta name="description" content="programmer,front to end">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Welcome to my blog" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+
+  <meta name="generator" content="Wisdommm">
 
   
-  <meta property="og:site_name" content="Wisdommm"/>
-
   
-    <meta property="og:image" content="undefined"/>
   
 
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Wisdommm" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
-
 </head>
 
 
-<body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Wisdommm</a></h1>
-  <h2><a href="/">Welcome to my blog</a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/">Home</a></li>
-    
-      <li><a href="/archives">Archives</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-09-09T12:29:36.000Z"><a href="/2016/09/09/javascript异步编程/">2016-09-09</a></time>
-      
-      
-  
-    <h1 class="title"></h1>
+<body class="post-template">
+
+  <header class="site-head"  style="background-image: url(//blog.ghost.org/content/images/2013/Nov/cover.png)" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="//blog.ghost.org/content/images/2013/Nov/bloglogo_1-1.png" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Wisdommm</h1>
+            <h2 class="blog-description">Welcome to my blog</h2>
+        </div>
+    </div>
+</header>
   
 
-    </header>
-    <div class="entry">
-      
-        <h2 id="javascript异步编程"><a href="#javascript异步编程" class="headerlink" title="javascript异步编程"></a>javascript异步编程</h2><p>最近nodejs看得有点多，感觉满脑子都是文件处理，异步编程，buffer等，发现学node学多了，前端用到的javascript也会更加豁然开朗，特别是廖雪峰和阮一峰老师的博客，给了我不小的帮助。我想从nodejs开始说起，毕竟这才是编程的核心，现在发现前端用的js只是熟练运用onclick事件等，自己以前还是只接触到了皮毛啊。</p>
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2016-09-09T12:29:36.000Z" itemprop="datePublished">
+          2016-09-09
+      </time>
+    
+</span>
+    <h1 class="post-title"></h1>
+    <section class="post-content">
+      <h2 id="javascript异步编程"><a href="#javascript异步编程" class="headerlink" title="javascript异步编程"></a>javascript异步编程</h2><p>最近nodejs看得有点多，感觉满脑子都是文件处理，异步编程，buffer等，发现学node学多了，前端用到的javascript也会更加豁然开朗，特别是廖雪峰和阮一峰老师的博客，给了我不小的帮助。我想从nodejs开始说起，毕竟这才是编程的核心，现在发现前端用的js只是熟练运用onclick事件等，自己以前还是只接触到了皮毛啊。</p>
 <p>回到主题，据传当初Ryan Dahl选择js来作为后台语言时，主要就是看重了js的单线程，同步运行，适合一些高并发的场景，这就从侧面说明了js这门语言的特性：同步，单线程。那么可以多线程异步编程吗？答案当然是肯定，那么，js异步编程有哪几种方法，这几种方法各自的优缺点又如何呢？</p>
 <p>说到这里，我又想解释一下同步与异步，第一次听到这两个词语，就要得追溯到大学的操作系统课堂了，OS的运行机制（运行模式）分为<strong>同步（Synchronous）</strong>和<strong>异步（Asynchronous）</strong>。</p>
 <p>“同步模式”就是上一段的模式，后一个任务等待前一个任务结束，然后再执行，程序的执行顺序与任务的排列顺序是一致的、同步的；”异步模式”则完全不同，每一个任务有一个或多个回调函数（callback），前一个任务结束后，不是执行后一个任务，而是执行回调函数，后一个任务则是不等前一个任务结束就执行，所以程序的执行顺序与任务的排列顺序是不一致的、异步的。”异步模式”非常重要。在浏览器端，耗时很长的操作都应该异步执行，避免浏览器失去响应，最好的例子就是Ajax操作。在服务器端，”异步模式”甚至是唯一的模式，因为执行环境是单线程的，如果允许同步执行所有http请求，服务器性能会急剧下降，很快就会失去响应。</p>
@@ -100,92 +86,68 @@
 <p>可以看到，虽然 Generator 函数将异步操作表示得很简洁，但是流程管理却不方便（即何时执行第一阶段、何时执行第二阶段）。</p>
 <p>发现已经写了好多了，看来一次性写完确实太累啊，留下一个acync函数下次再写吧。</p>
 
-      
-    </div>
-    <footer>
-      
-        
-        
-        
-  <div class="addthis addthis_toolbox addthis_default_style">
-    
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-    
-    
-      <a class="addthis_button_tweet"></a>
-    
-    
-      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-    
-    
-      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
-    
-    <a class="addthis_counter addthis_pill_style"></a>
-  </div>
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
-
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-<section id="comment">
-  <h1 class="title">Kommentare</h1>
-
-  
-      <div id="fb-root"></div>
-<script>
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-</script>
-
-<div class="fb-comments" data-href="http://wisdommm.github.io/2016/09/09/javascript异步编程/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
-      
-  
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Wisdommm</h4>
+    <p>A designer, developer and entrepreneur. Spends his time travelling the world with a bag of kites. Likes journalism and publishing platforms.</p>
 </section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://wisdommm.github.io/2016/09/09/javascript异步编程/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://wisdommm.github.io/2016/09/09/javascript异步编程/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://wisdommm.github.io/2016/09/09/javascript异步编程/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/2016/09/20/javascript异步编程（续）/">
+        ← 
+    </a>
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2016/09/05/vue.js 组件入门（一）/">
+         →
+    </a>
+    
+</nav>
+  <div id="comment" class="comments-area">
+    <h1 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h1>
 
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Suche">
-    <input type="hidden" name="q" value="site:wisdommm.github.io">
-  </form>
+    
 </div>
+</main>
+
 
   
-
+<footer class="site-footer">
   
-</aside>
-    <div class="clearfix"></div>
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Wisdommm</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
-  
-  &copy; 2016 Wisdommm
-  
-</div>
-<div class="clearfix"></div></footer>
+</footer>
+
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
 
 
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
+
 
 </body>
 </html>
