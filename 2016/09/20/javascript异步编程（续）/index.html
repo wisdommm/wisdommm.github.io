@@ -1,52 +1,101 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta charset="utf-8">
+  
   <title>javascript异步编程（续） | Wisdommm</title>
-  <meta name="description" content="Welcome to my blog" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
-
-  <meta name="generator" content="Wisdommm">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="之前那篇文章讲解了javascript异步式编程的几个方法，比如有回调函数，promise，发布／订阅模式，generator函数等，每一种方式，在其广泛使用的时期，都是很完善的一种方式，不过由于时代的进步，技术的发展，缺点总会暴露出来，更好更完善的方法也会被创造出来。
+这篇文章，我就想来说说async函数。
+ES7意见征集稿中提供了async函数，这是什么？其实可以用一句话来概括，async函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript异步编程（续）">
+<meta property="og:url" content="http://wisdommm.github.io/2016/09/20/javascript异步编程（续）/index.html">
+<meta property="og:site_name" content="Wisdommm">
+<meta property="og:description" content="之前那篇文章讲解了javascript异步式编程的几个方法，比如有回调函数，promise，发布／订阅模式，generator函数等，每一种方式，在其广泛使用的时期，都是很完善的一种方式，不过由于时代的进步，技术的发展，缺点总会暴露出来，更好更完善的方法也会被创造出来。
+这篇文章，我就想来说说async函数。
+ES7意见征集稿中提供了async函数，这是什么？其实可以用一句话来概括，async函数">
+<meta property="og:updated_time" content="2016-11-22T11:32:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript异步编程（续）">
+<meta name="twitter:description" content="之前那篇文章讲解了javascript异步式编程的几个方法，比如有回调函数，promise，发布／订阅模式，generator函数等，每一种方式，在其广泛使用的时期，都是很完善的一种方式，不过由于时代的进步，技术的发展，缺点总会暴露出来，更好更完善的方法也会被创造出来。
+这篇文章，我就想来说说async函数。
+ES7意见征集稿中提供了async函数，这是什么？其实可以用一句话来概括，async函数">
+  
+    <link rel="alternate" href="/atom.xml" title="Wisdommm" type="application/atom+xml">
   
   
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
   
 
-  
 </head>
 
-
-<body class="post-template">
-
-  <header class="site-head"  style="background-image: url(//blog.ghost.org/content/images/2013/Nov/cover.png)" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="//blog.ghost.org/content/images/2013/Nov/bloglogo_1-1.png" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Wisdommm</h1>
-            <h2 class="blog-description">Welcome to my blog</h2>
-        </div>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Wisdommm</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Welcome to my blog</a>
+        </h2>
+      
     </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wisdommm.github.io"></form>
+      </div>
+    </div>
+  </div>
 </header>
+      <div class="outer">
+        <section id="main"><article id="post-javascript异步编程（续）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/20/javascript异步编程（续）/" class="article-date">
+  <time datetime="2016-09-20T11:49:07.000Z" itemprop="datePublished">2016-09-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      javascript异步编程（续）
+    </h1>
   
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2016-09-20T11:49:07.000Z" itemprop="datePublished">
-          2016-09-20
-      </time>
+      </header>
     
-</span>
-    <h1 class="post-title">javascript异步编程（续）</h1>
-    <section class="post-content">
-      <p>之前那篇文章讲解了javascript异步式编程的几个方法，比如有回调函数，promise，发布／订阅模式，generator函数等，每一种方式，在其广泛使用的时期，都是很完善的一种方式，不过由于时代的进步，技术的发展，缺点总会暴露出来，更好更完善的方法也会被创造出来。</p>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前那篇文章讲解了javascript异步式编程的几个方法，比如有回调函数，promise，发布／订阅模式，generator函数等，每一种方式，在其广泛使用的时期，都是很完善的一种方式，不过由于时代的进步，技术的发展，缺点总会暴露出来，更好更完善的方法也会被创造出来。</p>
 <p>这篇文章，我就想来说说<code>async</code>函数。</p>
 <p>ES7意见征集稿中提供了<code>async</code>函数，这是什么？其实可以用一句话来概括，<code>async</code>函数就是Generator函数的语法糖。</p>
 <p>我们从Generator函数开始，代码如下。</p>
@@ -84,68 +133,141 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function timeout(ms) &#123;</div><div class="line">  return new Promise((resolve) =&gt; &#123;</div><div class="line">    setTimeout(resolve, ms);</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">async function asyncPrint(value, ms) &#123;</div><div class="line">  await timeout(ms);</div><div class="line">  console.log(value)</div><div class="line">&#125;</div><div class="line"></div><div class="line">asyncPrint(&apos;hello world&apos;, 50);</div></pre></td></tr></table></figure>
 <p>十一国庆节来公司基本没人，后背也感到一阵阵凉风，这篇博客就先讲到这里吧，有什么完善的地方后面我会再继续补充的。</p>
 
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Wisdommm</h4>
-    <p>A designer, developer and entrepreneur. Spends his time travelling the world with a bag of kites. Likes journalism and publishing platforms.</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://wisdommm.github.io/2016/09/20/javascript异步编程（续）/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://wisdommm.github.io/2016/09/20/javascript异步编程（续）/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://wisdommm.github.io/2016/09/20/javascript异步编程（续）/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wisdommm.github.io/2016/09/20/javascript异步编程（续）/" data-id="civxn4nrj0001cc6ipi3yo242" class="article-share-link">Share</a>
+      
+      
     </footer>
-  </article>
-  <nav class="pagination" role="pagination">
+  </div>
+  
     
-    <a class="newer-posts" href="/2016/10/10/promise/">
-        ← promise 详解
+<nav id="article-nav">
+  
+    <a href="/2016/10/10/promise/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          promise 详解
+        
+      </div>
     </a>
-    
-    <span class="page-number">•</span>
-    
-    <a class="older-posts" href="/2016/09/09/javascript异步编程/">
-        javascript异步编程 →
+  
+  
+    <a href="/2016/09/09/javascript异步编程/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">javascript异步编程</div>
     </a>
-    
+  
 </nav>
-  <div id="comment" class="comments-area">
-    <h1 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h1>
 
+  
+</article>
+
+
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-javascript异步编程（续）" data-title="javascript异步编程（续）" data-url="http://wisdommm.github.io/2016/09/20/javascript异步编程（续）/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'wisdommm'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+</section>
+        
+          <aside id="sidebar">
+  
     
-</div>
-</main>
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Arkiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li></ul>
+    </div>
+  </div>
 
 
   
-<footer class="site-footer">
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Siste innlegg</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/11/08/react生命周期源码解读/">从源码看react生命周期</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/10/promise/">promise 详解</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/20/javascript异步编程（续）/">javascript异步编程（续）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/09/javascript异步编程/">javascript异步编程</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/05/vue.js 组件入门（一）/">vue.js 组件快速入门（一）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Wisdommm</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Wisdommm<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
   </div>
 </footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
+<script src="/js/script.js"></script>
 
-
+  </div>
 </body>
 </html>

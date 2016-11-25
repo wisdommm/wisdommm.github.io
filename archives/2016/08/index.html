@@ -1,147 +1,227 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Archives: 2016/8 | Wisdommm</title>
-  <meta name="description" content="Welcome to my blog" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
-
-  <meta name="generator" content="Wisdommm">
-
+  <meta charset="utf-8">
+  
+  <title>Arkiv: 2016/8 | Wisdommm</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="programmer,front to end">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wisdommm">
+<meta property="og:url" content="http://wisdommm.github.io/archives/2016/08/index.html">
+<meta property="og:site_name" content="Wisdommm">
+<meta property="og:description" content="programmer,front to end">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Wisdommm">
+<meta name="twitter:description" content="programmer,front to end">
+  
+    <link rel="alternate" href="/atom.xml" title="Wisdommm" type="application/atom+xml">
   
   
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
   
 
-  
 </head>
 
-
-<body class="home-template">
-
-  <header class="site-head"  style="background-image: url(//blog.ghost.org/content/images/2013/Nov/cover.png)" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="//blog.ghost.org/content/images/2013/Nov/bloglogo_1-1.png" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Wisdommm</h1>
-            <h2 class="blog-description">Welcome to my blog</h2>
-        </div>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Wisdommm</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Welcome to my blog</a>
+        </h2>
+      
     </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wisdommm.github.io"></form>
+      </div>
+    </div>
+  </div>
 </header>
+      <div class="outer">
+        <section id="main">
   
-<main class="content" role="main">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2016-08-25T08:07:53.000Z" itemprop="datePublished">
-          2016-08-25
-      </time>
     
-</span>
-      <h2 class="post-title"><a href="/2016/08/25/react es5还是es6 ？/">react, es5 or es6 ?</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        随着es6的逐渐普及，新的语法糖，对我们以前写js的习惯也有着不小的冲击，比如说我好久都没写过function这个词语了，取而代之的是“=&gt;”箭头函数，var也基本不用了，现在用let，以及其他等等。
-但是对于写react，es5和es6的变化，还是稍微有一些不同的，“talk is cheap,show the code”。
-这是es5的写法：
-123456789101112131415161718192021222324252
-      
-      </p>
-      
-      <p>
-          <a href="/2016/08/25/react es5还是es6 ？/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2016-08-21T09:03:14.000Z" itemprop="datePublished">
-          2016-08-21
-      </time>
     
-</span>
-      <h2 class="post-title"><a href="/2016/08/21/vue todo/">vue todo示例</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
       
-        最近抽空看了下vue，一个轻量级的前端框架（类库），它采用的mvvm模式，且数据双向绑定，刚好官方网站上有一个todo实例，我感觉和redux的todo实例很类似，所以准备将这两个框架的todo实例分别解读一下，来比较一下个中异同。
-这个代码就两部分，先是html：123456789&lt;div id=&quot;app&quot;&gt;  &lt;input v-model=&quot;newTodo&quot; v-on:key
       
-      </p>
-      
-      <p>
-          <a href="/2016/08/21/vue todo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2016-08-19T13:42:59.000Z" itemprop="datePublished">
-          2016-08-19
-      </time>
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
     
-</span>
-      <h2 class="post-title"><a href="/2016/08/19/hexo-search/">hexo博客增加搜索功能</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/08/25/react es5还是es6 ？/" class="archive-article-date">
+  <time datetime="2016-08-25T08:07:53.000Z" itemprop="datePublished">8月 25</time>
+</a>
       
-        最近在用在某个项目上增加一个搜索框，后端用node＋mongodb实现，本来以为挺简单的，就用node爬一下页面title和href，然后放进mongodb中，再通过前端发请求传数据过来查找，然后node再在mongodb中查找，将数据返回前端。
-这是理想情况下的做法，可是现实往往充满了曲折,下面我来简单介绍下这个项目，然后说一下问题吧。
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/08/25/react es5还是es6 ？/">react, es5 or es6 ?</a>
+    </h1>
+  
 
-这是个内网项目，所以爬虫爬不进去，好在有一个目录页，将所有页面的title和href整理了起来，
-      
-      </p>
-      
-      <p>
-          <a href="/2016/08/19/hexo-search/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    </header>
+  </div>
+</article>
   
-  <nav class="pagination" role="pagination">
     
-    <span class="page-number">Page 1 of 1</span>
     
-  </nav>
-</main>
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/08/21/vue todo/" class="archive-article-date">
+  <time datetime="2016-08-21T09:03:14.000Z" itemprop="datePublished">8月 21</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/08/21/vue todo/">vue todo示例</a>
+    </h1>
+  
 
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/08/19/hexo-search/" class="archive-article-date">
+  <time datetime="2016-08-19T13:42:59.000Z" itemprop="datePublished">8月 19</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/08/19/hexo-search/">hexo博客增加搜索功能</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
+  
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
 
   
-<footer class="site-footer">
+    
+
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Wisdommm</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Arkiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Siste innlegg</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/11/08/react生命周期源码解读/">从源码看react生命周期</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/10/promise/">promise 详解</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/20/javascript异步编程（续）/">javascript异步编程（续）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/09/javascript异步编程/">javascript异步编程</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/05/vue.js 组件入门（一）/">vue.js 组件快速入门（一）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Wisdommm<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
   </div>
 </footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
+<script src="/js/script.js"></script>
 
-
+  </div>
 </body>
 </html>
