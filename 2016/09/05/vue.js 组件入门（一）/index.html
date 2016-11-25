@@ -1,101 +1,52 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
   <title>vue.js 组件快速入门（一） | Wisdommm</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前几天读了一篇好文章，vue组件化，这篇算是我自己提炼出来的的归纳与总结吧。
-在前端开发中，以前我们会把常用的公共的方法（函数）提取出来，整合为一个库，最有名的当属jQ了吧，然后到了react出现，这些类库主要都是针对view层进行的操作与封装，我们又可以把view层面上的一些东西抽出来进行封装和整理，比如一个table，一个button，一个div等，也可以像曾经提取函数一样抽出来，写成公用的，">
-<meta property="og:type" content="article">
-<meta property="og:title" content="vue.js 组件快速入门（一）">
-<meta property="og:url" content="http://wisdommm.github.io/2016/09/05/vue.js 组件入门（一）/index.html">
-<meta property="og:site_name" content="Wisdommm">
-<meta property="og:description" content="前几天读了一篇好文章，vue组件化，这篇算是我自己提炼出来的的归纳与总结吧。
-在前端开发中，以前我们会把常用的公共的方法（函数）提取出来，整合为一个库，最有名的当属jQ了吧，然后到了react出现，这些类库主要都是针对view层进行的操作与封装，我们又可以把view层面上的一些东西抽出来进行封装和整理，比如一个table，一个button，一个div等，也可以像曾经提取函数一样抽出来，写成公用的，">
-<meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/vue1.png">
-<meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/vue2.png">
-<meta property="og:updated_time" content="2016-11-22T11:31:47.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vue.js 组件快速入门（一）">
-<meta name="twitter:description" content="前几天读了一篇好文章，vue组件化，这篇算是我自己提炼出来的的归纳与总结吧。
-在前端开发中，以前我们会把常用的公共的方法（函数）提取出来，整合为一个库，最有名的当属jQ了吧，然后到了react出现，这些类库主要都是针对view层进行的操作与封装，我们又可以把view层面上的一些东西抽出来进行封装和整理，比如一个table，一个button，一个div等，也可以像曾经提取函数一样抽出来，写成公用的，">
-<meta name="twitter:image" content="http://oatasl78l.bkt.clouddn.com/vue1.png">
-  
-    <link rel="alternate" href="/atom.xml" title="Wisdommm" type="application/atom+xml">
+  <meta name="description" content="Welcome to my blog" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+
+  <meta name="generator" content="Wisdommm">
+
   
   
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
   
 
+  
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Wisdommm</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">Welcome to my blog</a>
-        </h2>
-      
+
+<body class="post-template">
+
+  <header class="site-head"  style="background-image: url(//blog.ghost.org/content/images/2013/Nov/cover.png)" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="//blog.ghost.org/content/images/2013/Nov/bloglogo_1-1.png" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Wisdommm</h1>
+            <h2 class="blog-description">Welcome to my blog</h2>
+        </div>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wisdommm.github.io"></form>
-      </div>
-    </div>
-  </div>
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-vue.js 组件入门（一）" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/09/05/vue.js 组件入门（一）/" class="article-date">
-  <time datetime="2016-09-05T09:24:12.000Z" itemprop="datePublished">2016-09-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      vue.js 组件快速入门（一）
-    </h1>
   
 
-      </header>
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2016-09-05T09:24:12.000Z" itemprop="datePublished">
+          2016-09-05
+      </time>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前几天读了一篇好文章，<a href="http://www.cnblogs.com/keepfool/p/5625583.html" target="_blank" rel="external">vue组件化</a>，这篇算是我自己提炼出来的的归纳与总结吧。</p>
+</span>
+    <h1 class="post-title">vue.js 组件快速入门（一）</h1>
+    <section class="post-content">
+      <p>前几天读了一篇好文章，<a href="http://www.cnblogs.com/keepfool/p/5625583.html" target="_blank" rel="external">vue组件化</a>，这篇算是我自己提炼出来的的归纳与总结吧。</p>
 <p>在前端开发中，以前我们会把常用的公共的方法（函数）提取出来，整合为一个库，最有名的当属jQ了吧，然后到了react出现，这些类库主要都是针对view层进行的操作与封装，我们又可以把view层面上的一些东西抽出来进行封装和整理，比如一个table，一个button，一个div等，也可以像曾经提取函数一样抽出来，写成公用的，在需要使用的地方直接引入就可以了，当然，也可以根据你实际运用的需要进行适当的自定义配置，而这些被抽出来共用的table，button，div这些，就叫做组件。</p>
 <p>上面是我自己瞎扯的，原文作者讲得比较繁琐，所以我就用自己的语言来概述了一下，虽然这篇文章是我转载的，不过我也参考了其它的文章／博客，知识点的相似度接近80%，但是语言基本上都是我自己重新组织的，所以加了很多自己的想法和思考，下面我们开始进入正题。</p>
 <h1 id="vue组件，创建与注册的基本步骤。"><a href="#vue组件，创建与注册的基本步骤。" class="headerlink" title="vue组件，创建与注册的基本步骤。"></a>vue组件，创建与注册的基本步骤。</h1><p>vue组件的使用，有三个步骤，分别是创建组件，注册组件和使用组件，如下图所示。<br><img src="http://oatasl78l.bkt.clouddn.com/vue1.png" alt=""></p>
@@ -120,141 +71,68 @@
 <p>好了，一个基本的vue组件的一整套流程基本就完全是这样了，any problems else？我知道，现在还有很多的问题没有解决，比如创建组件，注册组件和实例化挂载到某个节点下，整体步骤比较繁琐；注册组件的时候可以局部注册吗；组件可以嵌套吗？如果可以，如何嵌套；vue组件怎么怎么做成可扩展的？又怎样变为自定义配置呢？</p>
 <p>我下一篇博客再细细道来。</p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://wisdommm.github.io/2016/09/05/vue.js 组件入门（一）/" data-id="civxn4ns10008cc6ib1052f61" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2016/09/09/javascript异步编程/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          javascript异步编程
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/09/03/node express实现/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title"></div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-  <section id="comments">
-    <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-vue.js 组件入门（一）" data-title="vue.js 组件快速入门（一）" data-url="http://wisdommm.github.io/2016/09/05/vue.js 组件入门（一）/"></div>
-    <!-- 多说评论框 end -->
-    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-    <script type="text/javascript">
-    var duoshuoQuery = {short_name:'wisdommm'};
-      (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0] 
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-      })();
-      </script>
-    <!-- 多说公共JS代码 end -->
-  </section>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Wisdommm</h4>
+    <p>A designer, developer and entrepreneur. Spends his time travelling the world with a bag of kites. Likes journalism and publishing platforms.</p>
 </section>
-        
-          <aside id="sidebar">
-  
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://wisdommm.github.io/2016/09/05/vue.js 组件入门（一）/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://wisdommm.github.io/2016/09/05/vue.js 组件入门（一）/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://wisdommm.github.io/2016/09/05/vue.js 组件入门（一）/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
     
+    <a class="newer-posts" href="/2016/09/09/javascript异步编程/">
+        ← javascript异步编程
+    </a>
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2016/09/03/node express实现/">
+         →
+    </a>
+    
+</nav>
+  <div id="comment" class="comments-area">
+    <h1 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h1>
+
+    
+</div>
+</main>
+
 
   
-    
-
+<footer class="site-footer">
   
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Arkiv</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Siste innlegg</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2016/11/08/react生命周期源码解读/">从源码看react生命周期</a>
-          </li>
-        
-          <li>
-            <a href="/2016/10/10/promise/">promise 详解</a>
-          </li>
-        
-          <li>
-            <a href="/2016/09/20/javascript异步编程（续）/">javascript异步编程（续）</a>
-          </li>
-        
-          <li>
-            <a href="/2016/09/09/javascript异步编程/">javascript异步编程</a>
-          </li>
-        
-          <li>
-            <a href="/2016/09/05/vue.js 组件入门（一）/">vue.js 组件快速入门（一）</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2016 Wisdommm<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Wisdommm</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
 
-  </div>
+
 </body>
 </html>

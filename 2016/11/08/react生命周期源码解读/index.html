@@ -1,104 +1,52 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
   <title>从源码看react生命周期 | Wisdommm</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="React的主要思想，就是通过构建可复用的组件来构建页面，而每一个组件，就是一个有限的状态机，通过状态控制组件不同的渲染，从而得到不同的界面效果。每个组件都有生命周期，它规定了组件的一些自带方法需要在哪个阶段进行执行以及输出对应的结果。
-有限状态机，表示有限个状态，以及在这些状态之间的数据转移和动作方法的执行的行为模型，一般通过状态、事件、转换和动作来描述有限状态机。例如页面上的都个东西有显示和隐">
-<meta property="og:type" content="article">
-<meta property="og:title" content="从源码看react生命周期">
-<meta property="og:url" content="http://wisdommm.github.io/2016/11/08/react生命周期源码解读/index.html">
-<meta property="og:site_name" content="Wisdommm">
-<meta property="og:description" content="React的主要思想，就是通过构建可复用的组件来构建页面，而每一个组件，就是一个有限的状态机，通过状态控制组件不同的渲染，从而得到不同的界面效果。每个组件都有生命周期，它规定了组件的一些自带方法需要在哪个阶段进行执行以及输出对应的结果。
-有限状态机，表示有限个状态，以及在这些状态之间的数据转移和动作方法的执行的行为模型，一般通过状态、事件、转换和动作来描述有限状态机。例如页面上的都个东西有显示和隐">
-<meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/react%20cycle1.png">
-<meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/react%20cycle2.jpg">
-<meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/mountComponent.jpeg">
-<meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/upCom.jpeg">
-<meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/sta.jpeg">
-<meta property="og:updated_time" content="2016-11-22T11:31:24.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从源码看react生命周期">
-<meta name="twitter:description" content="React的主要思想，就是通过构建可复用的组件来构建页面，而每一个组件，就是一个有限的状态机，通过状态控制组件不同的渲染，从而得到不同的界面效果。每个组件都有生命周期，它规定了组件的一些自带方法需要在哪个阶段进行执行以及输出对应的结果。
-有限状态机，表示有限个状态，以及在这些状态之间的数据转移和动作方法的执行的行为模型，一般通过状态、事件、转换和动作来描述有限状态机。例如页面上的都个东西有显示和隐">
-<meta name="twitter:image" content="http://oatasl78l.bkt.clouddn.com/react%20cycle1.png">
-  
-    <link rel="alternate" href="/atom.xml" title="Wisdommm" type="application/atom+xml">
+  <meta name="description" content="Welcome to my blog" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+
+  <meta name="generator" content="Wisdommm">
+
   
   
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
   
 
+  
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Wisdommm</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">Welcome to my blog</a>
-        </h2>
-      
+
+<body class="post-template">
+
+  <header class="site-head"  style="background-image: url(//blog.ghost.org/content/images/2013/Nov/cover.png)" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="//blog.ghost.org/content/images/2013/Nov/bloglogo_1-1.png" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Wisdommm</h1>
+            <h2 class="blog-description">Welcome to my blog</h2>
+        </div>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wisdommm.github.io"></form>
-      </div>
-    </div>
-  </div>
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-react生命周期源码解读" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/11/08/react生命周期源码解读/" class="article-date">
-  <time datetime="2016-11-08T04:22:04.000Z" itemprop="datePublished">2016-11-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      从源码看react生命周期
-    </h1>
   
 
-      </header>
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2016-11-08T04:22:04.000Z" itemprop="datePublished">
+          2016-11-08
+      </time>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>React的主要思想，就是通过构建可复用的组件来构建页面，而每一个组件，就是一个有限的状态机，通过状态控制组件不同的渲染，从而得到不同的界面效果。每个组件都有生命周期，它规定了组件的一些自带方法需要在哪个阶段进行执行以及输出对应的结果。</p>
+</span>
+    <h1 class="post-title">从源码看react生命周期</h1>
+    <section class="post-content">
+      <p>React的主要思想，就是通过构建可复用的组件来构建页面，而每一个组件，就是一个有限的状态机，通过状态控制组件不同的渲染，从而得到不同的界面效果。每个组件都有生命周期，它规定了组件的一些自带方法需要在哪个阶段进行执行以及输出对应的结果。</p>
 <p>有限状态机，表示有限个状态，以及在这些状态之间的数据转移和动作方法的执行的行为模型，一般通过状态、事件、转换和动作来描述有限状态机。例如页面上的都个东西有显示和隐藏两种情况，那么一般情况下我们会设计两个方法：show()和hide()来实现显示与隐藏的切换，而react只需要设置某一个状态为true或false，就可以实现这个组件的隐藏和显示转换了。<br>同时，react还引入了组件的生命周期这个概念，通过它就可以实现组件的状态机控制，从而达到“生命周期－状态－组件”的和谐画面。</p>
 <h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>之前一篇博客就已经说到了一下生命周期，我在这里再赘述一下吧，react组件自带的一些函数方法，比如getDefaultProps、getInitialState等，会在什么时候执行。</p>
 <ul>
@@ -160,132 +108,64 @@
 </li>
 </ul>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://wisdommm.github.io/2016/11/08/react生命周期源码解读/" data-id="civxn4nrv0006cc6ietbtvjk0" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-  
-    <a href="/2016/10/10/promise/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">promise 详解</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-  <section id="comments">
-    <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-react生命周期源码解读" data-title="从源码看react生命周期" data-url="http://wisdommm.github.io/2016/11/08/react生命周期源码解读/"></div>
-    <!-- 多说评论框 end -->
-    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-    <script type="text/javascript">
-    var duoshuoQuery = {short_name:'wisdommm'};
-      (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0] 
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-      })();
-      </script>
-    <!-- 多说公共JS代码 end -->
-  </section>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Wisdommm</h4>
+    <p>A designer, developer and entrepreneur. Spends his time travelling the world with a bag of kites. Likes journalism and publishing platforms.</p>
 </section>
-        
-          <aside id="sidebar">
-  
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://wisdommm.github.io/2016/11/08/react生命周期源码解读/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://wisdommm.github.io/2016/11/08/react生命周期源码解读/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://wisdommm.github.io/2016/11/08/react生命周期源码解读/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
     
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2016/10/10/promise/">
+        promise 详解 →
+    </a>
+    
+</nav>
+  <div id="comment" class="comments-area">
+    <h1 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h1>
+
+    
+</div>
+</main>
+
 
   
-    
-
+<footer class="site-footer">
   
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Arkiv</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Siste innlegg</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2016/11/08/react生命周期源码解读/">从源码看react生命周期</a>
-          </li>
-        
-          <li>
-            <a href="/2016/10/10/promise/">promise 详解</a>
-          </li>
-        
-          <li>
-            <a href="/2016/09/20/javascript异步编程（续）/">javascript异步编程（续）</a>
-          </li>
-        
-          <li>
-            <a href="/2016/09/09/javascript异步编程/">javascript异步编程</a>
-          </li>
-        
-          <li>
-            <a href="/2016/09/05/vue.js 组件入门（一）/">vue.js 组件快速入门（一）</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2016 Wisdommm<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Wisdommm</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
 
-  </div>
+
 </body>
 </html>

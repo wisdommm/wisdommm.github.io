@@ -1,104 +1,52 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
   <title>vue todo示例 | Wisdommm</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近抽空看了下vue，一个轻量级的前端框架（类库），它采用的mvvm模式，且数据双向绑定，刚好官方网站上有一个todo实例，我感觉和redux的todo实例很类似，所以准备将这两个框架的todo实例分别解读一下，来比较一下个中异同。
-这个代码就两部分，先是html：123456789&amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;  &amp;lt;input v-model=&amp;quot;ne">
-<meta property="og:type" content="article">
-<meta property="og:title" content="vue todo示例">
-<meta property="og:url" content="http://wisdommm.github.io/2016/08/21/vue todo/index.html">
-<meta property="og:site_name" content="Wisdommm">
-<meta property="og:description" content="最近抽空看了下vue，一个轻量级的前端框架（类库），它采用的mvvm模式，且数据双向绑定，刚好官方网站上有一个todo实例，我感觉和redux的todo实例很类似，所以准备将这两个框架的todo实例分别解读一下，来比较一下个中异同。
-这个代码就两部分，先是html：123456789&amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;  &amp;lt;input v-model=&amp;quot;ne">
-<meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/vue%201.png">
-<meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/vue%202.png">
-<meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/vue%203.png">
-<meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/vue%204.png">
-<meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/vue%205.png">
-<meta property="og:updated_time" content="2016-11-22T11:33:16.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vue todo示例">
-<meta name="twitter:description" content="最近抽空看了下vue，一个轻量级的前端框架（类库），它采用的mvvm模式，且数据双向绑定，刚好官方网站上有一个todo实例，我感觉和redux的todo实例很类似，所以准备将这两个框架的todo实例分别解读一下，来比较一下个中异同。
-这个代码就两部分，先是html：123456789&amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;  &amp;lt;input v-model=&amp;quot;ne">
-<meta name="twitter:image" content="http://oatasl78l.bkt.clouddn.com/vue%201.png">
-  
-    <link rel="alternate" href="/atom.xml" title="Wisdommm" type="application/atom+xml">
+  <meta name="description" content="Welcome to my blog" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+
+  <meta name="generator" content="Wisdommm">
+
   
   
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
   
 
+  
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Wisdommm</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">Welcome to my blog</a>
-        </h2>
-      
+
+<body class="post-template">
+
+  <header class="site-head"  style="background-image: url(//blog.ghost.org/content/images/2013/Nov/cover.png)" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="//blog.ghost.org/content/images/2013/Nov/bloglogo_1-1.png" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Wisdommm</h1>
+            <h2 class="blog-description">Welcome to my blog</h2>
+        </div>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wisdommm.github.io"></form>
-      </div>
-    </div>
-  </div>
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-vue todo" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/08/21/vue todo/" class="article-date">
-  <time datetime="2016-08-21T09:03:14.000Z" itemprop="datePublished">2016-08-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      vue todo示例
-    </h1>
   
 
-      </header>
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2016-08-21T09:03:14.000Z" itemprop="datePublished">
+          2016-08-21
+      </time>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近抽空看了下vue，一个轻量级的前端框架（类库），它采用的mvvm模式，且数据双向绑定，刚好官方网站上有一个todo实例，我感觉和redux的todo实例很类似，所以准备将这两个框架的todo实例分别解读一下，来比较一下个中异同。</p>
+</span>
+    <h1 class="post-title">vue todo示例</h1>
+    <section class="post-content">
+      <p>最近抽空看了下vue，一个轻量级的前端框架（类库），它采用的mvvm模式，且数据双向绑定，刚好官方网站上有一个todo实例，我感觉和redux的todo实例很类似，所以准备将这两个框架的todo实例分别解读一下，来比较一下个中异同。</p>
 <p>这个代码就两部分，先是html：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;app&quot;&gt;</div><div class="line">  &lt;input v-model=&quot;newTodo&quot; v-on:keyup.enter=&quot;addTodo&quot;&gt;</div><div class="line">  &lt;ul&gt;</div><div class="line">    &lt;li v-for=&quot;todo in todos&quot;&gt;</div><div class="line">      &lt;span&gt;&#123;&#123; todo.text &#125;&#125;&lt;/span&gt;</div><div class="line">      &lt;button v-on:click=&quot;removeTodo($index)&quot;&gt;X&lt;/button&gt;</div><div class="line">    &lt;/li&gt;</div><div class="line">  &lt;/ul&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
 <p>接下来是js代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">new Vue(&#123;</div><div class="line">  el: &apos;#app&apos;,</div><div class="line">  data: &#123;</div><div class="line">    newTodo: &apos;&apos;,</div><div class="line">    todos: [</div><div class="line">      &#123; text: &apos;Add some todos&apos; &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  methods: &#123;</div><div class="line">    addTodo: function () &#123;</div><div class="line">      var text = this.newTodo.trim()</div><div class="line">      if (text) &#123;</div><div class="line">        this.todos.push(&#123; text: text &#125;)</div><div class="line">        this.newTodo = &apos;&apos;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    removeTodo: function (index) &#123;</div><div class="line">      this.todos.splice(index, 1)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
 <p>我第一次看到这段代码的时候觉得有点诧异，就这么点代码就实现了一个todo list，比react少了好多，如果是redux的todo list，别说代码，文件夹数量就可以让你一双手数不过来，而这vue两个文件夹一共才这么点代码，下面来仔细看看这个代码吧。<br>先看下html代码吧，除了原生的html代码外，这里有几个vue特有的属性，显而易见，所有以<strong>v</strong>开头的属性，都是vue特有的属性，比如这里的v-model=”newTodo”，v-on:keyup.enter=”addTodo”，v-for=”todo in todos”，v-on:click=”removeTodo($index)”，一共就这四个吧，而就是字符串模版了，从js文件的某个对象中获取数据来填充到页面上。<br>js代码也很少，估计一共才十多行，抛去中间的内容不看，就成了new Vue({})了，很显然这就是new了一个Vue实例，算是初始化，然后我们再来对内容一行一行地解读。</p>
@@ -119,141 +67,68 @@
 <p><img src="http://oatasl78l.bkt.clouddn.com/vue%204.png" alt=""><br>图4<br>然后我又输入了几条数据，一共三条。</p>
 <p><img src="http://oatasl78l.bkt.clouddn.com/vue%205.png" alt=""><br>图5<br>最后我删除其中一条，就删除第二条吧，点击右边的那个小叉就可以了，可以看到这条就被删了，其他的数据不变。</p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://wisdommm.github.io/2016/08/21/vue todo/" data-id="civxn4ns40009cc6iiqdlqxir" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2016/08/25/react es5还是es6 ？/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          react, es5 or es6 ?
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/08/19/hexo-search/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">hexo博客增加搜索功能</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-  <section id="comments">
-    <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-vue todo" data-title="vue todo示例" data-url="http://wisdommm.github.io/2016/08/21/vue todo/"></div>
-    <!-- 多说评论框 end -->
-    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-    <script type="text/javascript">
-    var duoshuoQuery = {short_name:'wisdommm'};
-      (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0] 
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-      })();
-      </script>
-    <!-- 多说公共JS代码 end -->
-  </section>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Wisdommm</h4>
+    <p>A designer, developer and entrepreneur. Spends his time travelling the world with a bag of kites. Likes journalism and publishing platforms.</p>
 </section>
-        
-          <aside id="sidebar">
-  
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://wisdommm.github.io/2016/08/21/vue todo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://wisdommm.github.io/2016/08/21/vue todo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://wisdommm.github.io/2016/08/21/vue todo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
     
+    <a class="newer-posts" href="/2016/08/25/react es5还是es6 ？/">
+        ← react, es5 or es6 ?
+    </a>
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2016/08/19/hexo-search/">
+        hexo博客增加搜索功能 →
+    </a>
+    
+</nav>
+  <div id="comment" class="comments-area">
+    <h1 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h1>
+
+    
+</div>
+</main>
+
 
   
-    
-
+<footer class="site-footer">
   
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Arkiv</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Siste innlegg</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2016/11/08/react生命周期源码解读/">从源码看react生命周期</a>
-          </li>
-        
-          <li>
-            <a href="/2016/10/10/promise/">promise 详解</a>
-          </li>
-        
-          <li>
-            <a href="/2016/09/20/javascript异步编程（续）/">javascript异步编程（续）</a>
-          </li>
-        
-          <li>
-            <a href="/2016/09/09/javascript异步编程/">javascript异步编程</a>
-          </li>
-        
-          <li>
-            <a href="/2016/09/05/vue.js 组件入门（一）/">vue.js 组件快速入门（一）</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2016 Wisdommm<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Wisdommm</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
 
-  </div>
+
 </body>
 </html>

@@ -1,98 +1,52 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
   <title>javascript异步编程 | Wisdommm</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近nodejs看得有点多，感觉满脑子都是文件处理，异步编程，buffer等，发现学node学多了，前端用到的javascript也会更加豁然开朗，特别是廖雪峰和阮一峰老师的博客，给了我不小的帮助。我想从nodejs开始说起，毕竟这才是编程的核心，现在发现前端用的js只是熟练运用onclick事件等，自己以前还是只接触到了皮毛啊。
-回到主题，据传当初Ryan Dahl选择js来作为后台语言时，主要">
-<meta property="og:type" content="article">
-<meta property="og:title" content="javascript异步编程">
-<meta property="og:url" content="http://wisdommm.github.io/2016/09/09/javascript异步编程/index.html">
-<meta property="og:site_name" content="Wisdommm">
-<meta property="og:description" content="最近nodejs看得有点多，感觉满脑子都是文件处理，异步编程，buffer等，发现学node学多了，前端用到的javascript也会更加豁然开朗，特别是廖雪峰和阮一峰老师的博客，给了我不小的帮助。我想从nodejs开始说起，毕竟这才是编程的核心，现在发现前端用的js只是熟练运用onclick事件等，自己以前还是只接触到了皮毛啊。
-回到主题，据传当初Ryan Dahl选择js来作为后台语言时，主要">
-<meta property="og:updated_time" content="2016-11-22T11:32:11.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="javascript异步编程">
-<meta name="twitter:description" content="最近nodejs看得有点多，感觉满脑子都是文件处理，异步编程，buffer等，发现学node学多了，前端用到的javascript也会更加豁然开朗，特别是廖雪峰和阮一峰老师的博客，给了我不小的帮助。我想从nodejs开始说起，毕竟这才是编程的核心，现在发现前端用的js只是熟练运用onclick事件等，自己以前还是只接触到了皮毛啊。
-回到主题，据传当初Ryan Dahl选择js来作为后台语言时，主要">
-  
-    <link rel="alternate" href="/atom.xml" title="Wisdommm" type="application/atom+xml">
+  <meta name="description" content="Welcome to my blog" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+
+  <meta name="generator" content="Wisdommm">
+
   
   
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
   
 
+  
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Wisdommm</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">Welcome to my blog</a>
-        </h2>
-      
+
+<body class="post-template">
+
+  <header class="site-head"  style="background-image: url(//blog.ghost.org/content/images/2013/Nov/cover.png)" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="//blog.ghost.org/content/images/2013/Nov/bloglogo_1-1.png" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Wisdommm</h1>
+            <h2 class="blog-description">Welcome to my blog</h2>
+        </div>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wisdommm.github.io"></form>
-      </div>
-    </div>
-  </div>
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-javascript异步编程" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/09/09/javascript异步编程/" class="article-date">
-  <time datetime="2016-09-09T12:29:36.000Z" itemprop="datePublished">2016-09-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      javascript异步编程
-    </h1>
   
 
-      </header>
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2016-09-09T12:29:36.000Z" itemprop="datePublished">
+          2016-09-09
+      </time>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近nodejs看得有点多，感觉满脑子都是文件处理，异步编程，buffer等，发现学node学多了，前端用到的javascript也会更加豁然开朗，特别是廖雪峰和阮一峰老师的博客，给了我不小的帮助。我想从nodejs开始说起，毕竟这才是编程的核心，现在发现前端用的js只是熟练运用onclick事件等，自己以前还是只接触到了皮毛啊。</p>
+</span>
+    <h1 class="post-title">javascript异步编程</h1>
+    <section class="post-content">
+      <p>最近nodejs看得有点多，感觉满脑子都是文件处理，异步编程，buffer等，发现学node学多了，前端用到的javascript也会更加豁然开朗，特别是廖雪峰和阮一峰老师的博客，给了我不小的帮助。我想从nodejs开始说起，毕竟这才是编程的核心，现在发现前端用的js只是熟练运用onclick事件等，自己以前还是只接触到了皮毛啊。</p>
 <p>回到主题，据传当初Ryan Dahl选择js来作为后台语言时，主要就是看重了js的单线程，同步运行，适合一些高并发的场景，这就从侧面说明了js这门语言的特性：同步，单线程。那么可以多线程异步编程吗？答案当然是肯定，那么，js异步编程有哪几种方法，这几种方法各自的优缺点又如何呢？</p>
 <p>说到这里，我又想解释一下同步与异步，第一次听到这两个词语，就要得追溯到大学的操作系统课堂了，OS的运行机制（运行模式）分为<strong>同步（Synchronous）</strong>和<strong>异步（Asynchronous）</strong>。</p>
 <p>“同步模式”就是上一段的模式，后一个任务等待前一个任务结束，然后再执行，程序的执行顺序与任务的排列顺序是一致的、同步的；”异步模式”则完全不同，每一个任务有一个或多个回调函数（callback），前一个任务结束后，不是执行后一个任务，而是执行回调函数，后一个任务则是不等前一个任务结束就执行，所以程序的执行顺序与任务的排列顺序是不一致的、异步的。”异步模式”非常重要。在浏览器端，耗时很长的操作都应该异步执行，避免浏览器失去响应，最好的例子就是Ajax操作。在服务器端，”异步模式”甚至是唯一的模式，因为执行环境是单线程的，如果允许同步执行所有http请求，服务器性能会急剧下降，很快就会失去响应。</p>
@@ -132,141 +86,68 @@
 <p>可以看到，虽然 Generator 函数将异步操作表示得很简洁，但是流程管理却不方便（即何时执行第一阶段、何时执行第二阶段）。</p>
 <p>发现已经写了好多了，看来一次性写完确实太累啊，留下一个acync函数下次再写吧。</p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://wisdommm.github.io/2016/09/09/javascript异步编程/" data-id="civxn4nre0000cc6issk3hl8g" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2016/09/20/javascript异步编程（续）/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          javascript异步编程（续）
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/09/05/vue.js 组件入门（一）/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">vue.js 组件快速入门（一）</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-  <section id="comments">
-    <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-javascript异步编程" data-title="javascript异步编程" data-url="http://wisdommm.github.io/2016/09/09/javascript异步编程/"></div>
-    <!-- 多说评论框 end -->
-    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-    <script type="text/javascript">
-    var duoshuoQuery = {short_name:'wisdommm'};
-      (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0] 
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-      })();
-      </script>
-    <!-- 多说公共JS代码 end -->
-  </section>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Wisdommm</h4>
+    <p>A designer, developer and entrepreneur. Spends his time travelling the world with a bag of kites. Likes journalism and publishing platforms.</p>
 </section>
-        
-          <aside id="sidebar">
-  
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://wisdommm.github.io/2016/09/09/javascript异步编程/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://wisdommm.github.io/2016/09/09/javascript异步编程/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://wisdommm.github.io/2016/09/09/javascript异步编程/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
     
+    <a class="newer-posts" href="/2016/09/20/javascript异步编程（续）/">
+        ← javascript异步编程（续）
+    </a>
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2016/09/05/vue.js 组件入门（一）/">
+        vue.js 组件快速入门（一） →
+    </a>
+    
+</nav>
+  <div id="comment" class="comments-area">
+    <h1 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h1>
+
+    
+</div>
+</main>
+
 
   
-    
-
+<footer class="site-footer">
   
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Arkiv</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Siste innlegg</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2016/11/08/react生命周期源码解读/">从源码看react生命周期</a>
-          </li>
-        
-          <li>
-            <a href="/2016/10/10/promise/">promise 详解</a>
-          </li>
-        
-          <li>
-            <a href="/2016/09/20/javascript异步编程（续）/">javascript异步编程（续）</a>
-          </li>
-        
-          <li>
-            <a href="/2016/09/09/javascript异步编程/">javascript异步编程</a>
-          </li>
-        
-          <li>
-            <a href="/2016/09/05/vue.js 组件入门（一）/">vue.js 组件快速入门（一）</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2016 Wisdommm<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Wisdommm</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
 
-  </div>
+
 </body>
 </html>

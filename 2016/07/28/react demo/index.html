@@ -1,107 +1,52 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
   <title>redux example | Wisdommm</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近在做店铺装修，很很很麻烦的一个项目，刚好里面用到了redux，我发现店铺装修简化一下的话，简直是redux的十分好的一个示例啊，比官网上简单的示例要难，又比难的简单，而且条理结构什么的又很清楚，挺不错的啊。
-我先上图吧。图1图2图3图4图5图6图7图8好吧，这图截的也是够大的，将就看看吧。。。由图1可以看到，页面一共分为四部分：左，中上，中下，右，也就是氛围四个组件：Left，Top，Cent">
-<meta property="og:type" content="article">
-<meta property="og:title" content="redux example">
-<meta property="og:url" content="http://wisdommm.github.io/2016/07/28/react demo/index.html">
-<meta property="og:site_name" content="Wisdommm">
-<meta property="og:description" content="最近在做店铺装修，很很很麻烦的一个项目，刚好里面用到了redux，我发现店铺装修简化一下的话，简直是redux的十分好的一个示例啊，比官网上简单的示例要难，又比难的简单，而且条理结构什么的又很清楚，挺不错的啊。
-我先上图吧。图1图2图3图4图5图6图7图8好吧，这图截的也是够大的，将就看看吧。。。由图1可以看到，页面一共分为四部分：左，中上，中下，右，也就是氛围四个组件：Left，Top，Cent">
-<meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/redux%20ex1.png">
-<meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/redux%20ex2.png">
-<meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/redux%20ex3.png">
-<meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/redux%20ex4.png">
-<meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/redux%20ex5.png">
-<meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/redux%20ex6.png">
-<meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/redux%20ex7.png">
-<meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/redux%20ex8.png">
-<meta property="og:updated_time" content="2016-11-22T11:32:43.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="redux example">
-<meta name="twitter:description" content="最近在做店铺装修，很很很麻烦的一个项目，刚好里面用到了redux，我发现店铺装修简化一下的话，简直是redux的十分好的一个示例啊，比官网上简单的示例要难，又比难的简单，而且条理结构什么的又很清楚，挺不错的啊。
-我先上图吧。图1图2图3图4图5图6图7图8好吧，这图截的也是够大的，将就看看吧。。。由图1可以看到，页面一共分为四部分：左，中上，中下，右，也就是氛围四个组件：Left，Top，Cent">
-<meta name="twitter:image" content="http://oatasl78l.bkt.clouddn.com/redux%20ex1.png">
-  
-    <link rel="alternate" href="/atom.xml" title="Wisdommm" type="application/atom+xml">
+  <meta name="description" content="Welcome to my blog" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+
+  <meta name="generator" content="Wisdommm">
+
   
   
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
   
 
+  
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Wisdommm</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">Welcome to my blog</a>
-        </h2>
-      
+
+<body class="post-template">
+
+  <header class="site-head"  style="background-image: url(//blog.ghost.org/content/images/2013/Nov/cover.png)" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="//blog.ghost.org/content/images/2013/Nov/bloglogo_1-1.png" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Wisdommm</h1>
+            <h2 class="blog-description">Welcome to my blog</h2>
+        </div>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wisdommm.github.io"></form>
-      </div>
-    </div>
-  </div>
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-react demo" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/28/react demo/" class="article-date">
-  <time datetime="2016-07-28T06:33:08.000Z" itemprop="datePublished">2016-07-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      redux example
-    </h1>
   
 
-      </header>
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2016-07-28T06:33:08.000Z" itemprop="datePublished">
+          2016-07-28
+      </time>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近在做店铺装修，很很很麻烦的一个项目，刚好里面用到了redux，我发现店铺装修简化一下的话，简直是redux的十分好的一个示例啊，比官网上简单的示例要难，又比难的简单，而且条理结构什么的又很清楚，挺不错的啊。</p>
+</span>
+    <h1 class="post-title">redux example</h1>
+    <section class="post-content">
+      <p>最近在做店铺装修，很很很麻烦的一个项目，刚好里面用到了redux，我发现店铺装修简化一下的话，简直是redux的十分好的一个示例啊，比官网上简单的示例要难，又比难的简单，而且条理结构什么的又很清楚，挺不错的啊。</p>
 <p>我先上图吧。<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex1.png" alt=""><br>图1<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex2.png" alt=""><br>图2<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex3.png" alt=""><br>图3<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex4.png" alt=""><br>图4<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex5.png" alt=""><br>图5<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex6.png" alt=""><br>图6<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex7.png" alt=""><br>图7<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex8.png" alt=""><br>图8<br><br>好吧，这图截的也是够大的，将就看看吧。。。由图1可以看到，页面一共分为四部分：左，中上，中下，右，也就是氛围四个组件：Left，Top，Center，Right。接下来我说一下交互，如图2所示；我在左边的输入框中输入东西，然后点击增加，可以看到，刚刚新增的数据立马在右边下面部分显示了出来，展示的是刚才新增的数据和一个删除按钮，如图3所示；若你点击展示的数据，那么在右边，也就是编辑组件中会出现一个输入框和编辑按钮，你可以在这里对刚刚点击的数据进行修改然后保存，如图4，图5所示；保存过后就可以看到中间的显示模块对数据进行了更新，如图6所示；接下来是中间上方的保存模块，你点击保存按钮，这个模块同样也能取到当前的数据，这里就用一个弹窗代替好了，如图7所示；最后就是删除按钮，点击后删掉当前这一行的数据，如图8所示。<br><br>好累，说了这么多，口都干了。其实吧，一两句话就可以说完的：在这四个组件中，每个组件都可以取到state，并且可以对state进行操作。说完了，是不是很简单啊。。。<br><br>我们先来看看index.js吧，也就是入口文件。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var App = React.createClass(&#123;</div><div class="line">    render: function()&#123;</div><div class="line">        return (</div><div class="line">            &lt;div className=&quot;row&quot;&gt;</div><div class="line">                &lt;div className=&quot;col-sm-4&quot; style=&#123;&#123; textAlign: &apos;center&apos; &#125;&#125;&gt;</div><div class="line">                    &lt;LeftComponent /&gt;</div><div class="line">                &lt;/div&gt;</div><div class="line">                &lt;div className=&quot;col-sm-4&quot; style=&#123;&#123; borderRight: &apos;1px solid #999&apos;, minHeight: &apos;600px&apos;, textAlign: &apos;center&apos; &#125;&#125;&gt;</div><div class="line">                    &lt;TopComponent/&gt;</div><div class="line">                    &lt;CenterComponent/&gt;</div><div class="line">                &lt;/div&gt;</div><div class="line">                &lt;div className=&quot;col-sm-4&quot; style=&#123;&#123; textAlign: &apos;center&apos; &#125;&#125;&gt;</div><div class="line">                    &lt;RightComponent /&gt;</div><div class="line">                &lt;/div&gt;</div><div class="line">            &lt;/div&gt;            </div><div class="line">            );</div></pre></td></tr></table></figure>
 <p>很简单吧，就是分别放了四个Component组件而已，我们也不用管这些组件是父子关系还是兄弟关系，因为redux不用考虑这些。然后我们去看看action吧。</p>
@@ -112,141 +57,68 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">import &#123; createStore &#125; from &apos;redux&apos;</div><div class="line">import modelReducer from &apos;./reducer&apos;</div><div class="line">var store = createStore(modelReducer, &#123;items: [], activeIndex: -1 &#125;);</div><div class="line">module.exports = store;</div></pre></td></tr></table></figure>
 <p>对的，一共就这几行，store=createStore(modelReducer, {items: [], activeIndex: -1 })，第一个参数是reducer，必需的，另一个是state初始化的值，非必需，若不传则默认为undefined。<br><br>其实到这里，这个示例就已经到了尾声了；剩下的就是这四个组件的内部布局，还有就是给按钮绑定事件，当点击的时候用dispatch分发一个对应的action函数给reducer，这些我在之前也已经写过了，所以这里就不再赘述了。</p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://wisdommm.github.io/2016/07/28/react demo/" data-id="civxn4nrx0007cc6itln9ey1o" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2016/08/19/hexo-search/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          hexo博客增加搜索功能
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/07/24/react生命周期/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">react生命周期解读</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-  <section id="comments">
-    <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-react demo" data-title="redux example" data-url="http://wisdommm.github.io/2016/07/28/react demo/"></div>
-    <!-- 多说评论框 end -->
-    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-    <script type="text/javascript">
-    var duoshuoQuery = {short_name:'wisdommm'};
-      (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0] 
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-      })();
-      </script>
-    <!-- 多说公共JS代码 end -->
-  </section>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Wisdommm</h4>
+    <p>A designer, developer and entrepreneur. Spends his time travelling the world with a bag of kites. Likes journalism and publishing platforms.</p>
 </section>
-        
-          <aside id="sidebar">
-  
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://wisdommm.github.io/2016/07/28/react demo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://wisdommm.github.io/2016/07/28/react demo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://wisdommm.github.io/2016/07/28/react demo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
     
+    <a class="newer-posts" href="/2016/08/19/hexo-search/">
+        ← hexo博客增加搜索功能
+    </a>
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2016/07/24/react生命周期/">
+        react生命周期解读 →
+    </a>
+    
+</nav>
+  <div id="comment" class="comments-area">
+    <h1 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h1>
+
+    
+</div>
+</main>
+
 
   
-    
-
+<footer class="site-footer">
   
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Arkiv</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Siste innlegg</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2016/11/08/react生命周期源码解读/">从源码看react生命周期</a>
-          </li>
-        
-          <li>
-            <a href="/2016/10/10/promise/">promise 详解</a>
-          </li>
-        
-          <li>
-            <a href="/2016/09/20/javascript异步编程（续）/">javascript异步编程（续）</a>
-          </li>
-        
-          <li>
-            <a href="/2016/09/09/javascript异步编程/">javascript异步编程</a>
-          </li>
-        
-          <li>
-            <a href="/2016/09/05/vue.js 组件入门（一）/">vue.js 组件快速入门（一）</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2016 Wisdommm<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Wisdommm</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
 
-  </div>
+
 </body>
 </html>
