@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>react——无状态组件和高阶组件 | Wisdommm</title>
+  <meta name="description" content="Welcome to my blog" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+
+  <meta name="generator" content="Wisdommm">
+
+  
+  
+  
+
+  
+</head>
+
+
+<body class="post-template">
+
+  <header class="site-head"  style="background-image: url(//blog.ghost.org/content/images/2013/Nov/cover.png)" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="//blog.ghost.org/content/images/2013/Nov/bloglogo_1-1.png" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Wisdommm</h1>
+            <h2 class="blog-description">Welcome to my blog</h2>
+        </div>
+    </div>
+</header>
+  
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2016-12-04T08:25:05.000Z" itemprop="datePublished">
+          2016-12-04
+      </time>
+    
+</span>
+    <h1 class="post-title">react——无状态组件和高阶组件</h1>
+    <section class="post-content">
+      <h1 id="无状态组件"><a href="#无状态组件" class="headerlink" title="无状态组件"></a>无状态组件</h1><p>先来说说无状态组件吧，顾名思义，无状态组件就是指的没有状态的组件，众所周知在react中，状态指的就是state，而没有state，会有什么好处和坏处呢？</p>
+<p>react中所有的数据，都是通过state和props来保存的，state主要是组件内部的数据交流，可以进行各种读写操作，而props主要是组件间的数据交流，一般针对props仅仅执行只读，不会做额外的操作。所以话说回来，无状态组件，没有state，那么内部的逻辑必将大大减少，编写react组件的方便性也将大大提高。</p>
+<p>下面是一个简单的无状态组件：</p>
+<p>—javascript<br>function Hello(props{<br>  return <div>Hello{props.name}</div><br>}<br>ReactDOM.render(<hello name="world">, mountNode)</hello></p>
+<p>// 最后一句也可以这么写</p>
+<h2 id="ReactDOM-render-Hello-“name”-”world”-mountNode"><a href="#ReactDOM-render-Hello-“name”-”world”-mountNode" class="headerlink" title="ReactDOM.render(Hello({“name”:”world”}), mountNode)"></a>ReactDOM.render(Hello({“name”:”world”}), mountNode)</h2><p>通过这个简单的示例可以看到，原本需要写的<code>react</code>类定义（<code>React.createClass</code>或者<code>class Component extends React.Component</code>）来创建自己组件的定义，但是由于这仅仅是一个无状态组件（无状态函数），<code>react</code>在渲染的时候也省掉了奖<code>react</code>组件类实例化的过程。</p>
+<p>所以对于一些纯静态展示的功能模块，可以考虑作为无状态组件，而无状态组件用来实现服务端渲染也是比较方便的，只要避免去获取dom节点就可以了。</p>
+<h1 id="无状态组件的生命周期方法"><a href="#无状态组件的生命周期方法" class="headerlink" title="无状态组件的生命周期方法"></a>无状态组件的生命周期方法</h1><p>我们可以看到，无状态组件就剩了一个<code>render</code>方法，因此也就没有实现组件的生命周期方法，例如<code>componentDidMount</code>, <code>componentWillUnmount</code>等。那应该怎么办呢？这个时候就用到了高阶组件。</p>
+<h1 id="高阶组件"><a href="#高阶组件" class="headerlink" title="高阶组件"></a>高阶组件</h1><p>高阶组件是什么？通过函数，向现有的组件类添加逻辑，就叫做高阶组件。</p>
+<p>之前上面已经说了，无状态组件是没有<code>state</code>的，所以里面基本也就没有什么逻辑，可是如果我现在需要添加逻辑了，且又想继续使用这个无状态组件，怎么办呢？那就可以使用高阶组件。</p>
+<p>先来看看这个示例：</p>
+<p>—javascript<br>function noId() {<br>  return function(Comp) {<br>    return class NoID extends Component {<br>      render() {<br>        const {id, …others} = this.props;<br>        return (<br>          <comp {...others}=""><br>        )<br>      }<br>    }<br>  }<br>}</comp></p>
+<h2 id="const-WithoutID-noId-Comp"><a href="#const-WithoutID-noId-Comp" class="headerlink" title="const WithoutID = noId()(Comp);"></a>const WithoutID = noId()(Comp);</h2><p>这个例子向我们展示了高阶组件的工作方式，通过函数和闭包等方法，改变已有组件的行为，示例里面改变了id属性。</p>
+<p>之所以称之为高阶组件，是因为在react中，这种嵌套的逻辑关系会反映到组件树上，层层嵌套就像高阶函数的function in function一样，如下图所示：</p>
+<p><img src="http://oatasl78l.bkt.clouddn.com/%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6.png" alt=""><br><br>从上图可以看出组件树虽然嵌套了许多层，但是实际渲染的无状态组件中的dom结构并没有发生改变，所以我们可以放心地使用高阶组件，哪怕重复使用，也不必担心影响输出的dom结构。而借助函数的表现能力，高阶组件的用途几乎是无穷尽的。</p>
+<h1 id="适配器"><a href="#适配器" class="headerlink" title="适配器"></a>适配器</h1><p>有时候你需要替换一些已有的组件，而新组件接受的参数和原组件并不完全一样.</p>
+<p>你可以考虑修改所有原组件的代码来保证传入正确的参数——so bad。</p>
+<p>你也可以通过使用高阶组件，把新组件做一层封装：</p>
+<p>—javascript<br>class ListAdapter extends Component {<br>    mapProps(props) {<br>        return {/<em> new props </em>/}<br>    }<br>    render() {<br>        return <newlist {...mapprops(this.props)}=""><br>    }</newlist></p>
+<h2 id=""><a href="#" class="headerlink" title="}"></a>}</h2><p>如果有十个组件需要适配呢？当然，每个组件写十遍也不是不行，不过，高阶组件或许会给你一个更好的答案：</p>
+<p>—javascript<br>function mapProps(mapFn) {<br>    return function(Comp) {<br>        return class extends Component {<br>            render() {<br>                return <comp {...mapfn(this.props)}=""><br>            }<br>        }<br>    }<br>}</comp></p>
+<h2 id="const-ListAdapter-mapProps-mapPropsForNewList-NewList"><a href="#const-ListAdapter-mapProps-mapPropsForNewList-NewList" class="headerlink" title="const ListAdapter = mapProps(mapPropsForNewList)(NewList);"></a>const ListAdapter = mapProps(mapPropsForNewList)(NewList);</h2><p>借助高阶组件，关注点被分离得足够彻底，你不需要考虑组件的渲染，你只需要考虑属性的map就够了。</p>
+<h1 id="处理副作用"><a href="#处理副作用" class="headerlink" title="处理副作用"></a>处理副作用</h1><p>在组件中，往往有很多的状态和副作用要处理，最常见的情况就是异步了。</p>
+<p>假设我们需要异步加载一个用户列表，通常的代码会是这样的：</p>
+<p>—javascript<br>class UserList extends Component {<br>  constructor(props) {<br>    super();<br>    this.state = {<br>      list: []<br>    }<br>  }<br>  componentDidMount() {<br>    loadUsers()<br>      .then(data=&gt;<br>        this.setState({list: data.userList})<br>      )<br>  }<br>  render() {<br>    return (<br>      <list list="{this.state.list}"><br>    )<br>  }<br>  /<em> other bussiness logics </em>/</list></p>
+<h2 id="-1"><a href="#-1" class="headerlink" title="}"></a>}</h2><p>在实际情况中，以上代码往往还会和其他一些业务函数混杂在一起，如果再来一个或多个其他的列表呢，不仅代码会重复，大量有状态和副作用的组件也使得组件难以测试。或许你会考虑使用一些数据管理工具，比如flux或redux，是的，当然可以，可是这就像大炮打蚊子，杀鸡用牛刀。所以回到这个问题上来，我们只是想做一个异步的列表，仅此而已。</p>
+<p>使用高阶函数试试：</p>
+<p>—javascript<br>function connectPromise({promiseLoader, mapResultToProps}) {<br>  return Comp=&gt; {<br>    return class AsyncComponent extends Component {<br>      constructor(props) {<br>        super();<br>        this.state = {<br>          result: undefined<br>        }<br>      }<br>      componentDidMount() {<br>        promiseLoader()<br>          .then(result=&gt; this.setState({result}))<br>      }<br>      render() {<br>        return (<br>          <comp {...mapresulttoprops(props)}="" {...this.props}=""><br>        )<br>      }<br>    }<br>  }<br>}</comp></p>
+<p>const UserList = connectPromise({<br>    promiseLoader: loadUsers,<br>    mapResultToProps: result=&gt; ({list: result.userList})</p>
+<h2 id="List-List-can-be-a-pure-component"><a href="#List-List-can-be-a-pure-component" class="headerlink" title="})(List); //List can be a pure component"></a>})(List); //List can be a pure component</h2><p>可以看到，这样不仅大量减少了重复的代码，还把散落在各处的异步逻辑封装进了可以单独管理和测试的函数中，在实际业务场景中，只需要按照“纯组件＋配置”就可以实现相同的功能，而无论是纯组件还是配置，都是对单元测试友好的，至少比异步组件友好多了吧。</p>
+
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Wisdommm</h4>
+    <p>A designer, developer and entrepreneur. Spends his time travelling the world with a bag of kites. Likes journalism and publishing platforms.</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://wisdommm.github.io/2016/12/04/react无状态组件和高阶组件/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://wisdommm.github.io/2016/12/04/react无状态组件和高阶组件/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://wisdommm.github.io/2016/12/04/react无状态组件和高阶组件/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/2016/12/04/总结/">
+        ← 
+    </a>
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2016/11/08/react生命周期源码解读/">
+        从源码看react生命周期 →
+    </a>
+    
+</nav>
+  <div id="comment" class="comments-area">
+    <h1 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h1>
+
+    
+</div>
+</main>
+
+
+  
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Wisdommm</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+
+
+
+
+
+
+</body>
+</html>
