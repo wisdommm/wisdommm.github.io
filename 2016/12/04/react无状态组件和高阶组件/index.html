@@ -58,7 +58,8 @@
 <h1 id="高阶组件"><a href="#高阶组件" class="headerlink" title="高阶组件"></a>高阶组件</h1><p>高阶组件是什么？通过函数，向现有的组件类添加逻辑，就叫做高阶组件。</p>
 <p>之前上面已经说了，无状态组件是没有<code>state</code>的，所以里面基本也就没有什么逻辑，可是如果我现在需要添加逻辑了，且又想继续使用这个无状态组件，怎么办呢？那就可以使用高阶组件。</p>
 <p>先来看看这个示例：</p>
-<p>—javascript<br>function noId() {<br>  return function(Comp) {<br>    return class NoID extends Component {<br>      render() {<br>        const {id, …others} = this.props;<br>        return (<br>          <comp {...others}=""><br>        )<br>      }<br>    }<br>  }<br>}</comp></p>
+<hr>
+<p>function noId() {<br>  return function(Comp) {<br>    return class NoID extends Component {<br>      render() {<br>        const {id, …others} = this.props;<br>        return (<br>          <comp {...others}=""><br>        )<br>      }<br>    }<br>  }<br>}</comp></p>
 <h2 id="const-WithoutID-noId-Comp"><a href="#const-WithoutID-noId-Comp" class="headerlink" title="const WithoutID = noId()(Comp);"></a>const WithoutID = noId()(Comp);</h2><p>这个例子向我们展示了高阶组件的工作方式，通过函数和闭包等方法，改变已有组件的行为，示例里面改变了id属性。</p>
 <p>之所以称之为高阶组件，是因为在react中，这种嵌套的逻辑关系会反映到组件树上，层层嵌套就像高阶函数的function in function一样，如下图所示：</p>
 <p><img src="http://oatasl78l.bkt.clouddn.com/%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6.png" alt=""><br><br>从上图可以看出组件树虽然嵌套了许多层，但是实际渲染的无状态组件中的dom结构并没有发生改变，所以我们可以放心地使用高阶组件，哪怕重复使用，也不必担心影响输出的dom结构。而借助函数的表现能力，高阶组件的用途几乎是无穷尽的。</p>
