@@ -49,7 +49,8 @@
       <h1 id="无状态组件"><a href="#无状态组件" class="headerlink" title="无状态组件"></a>无状态组件</h1><p>先来说说无状态组件吧，顾名思义，无状态组件就是指的没有状态的组件，众所周知在react中，状态指的就是state，而没有state，会有什么好处和坏处呢？</p>
 <p>react中所有的数据，都是通过state和props来保存的，state主要是组件内部的数据交流，可以进行各种读写操作，而props主要是组件间的数据交流，一般针对props仅仅执行只读，不会做额外的操作。所以话说回来，无状态组件，没有state，那么内部的逻辑必将大大减少，编写react组件的方便性也将大大提高。</p>
 <p>下面是一个简单的无状态组件：</p>
-<p>—javascript<br>function Hello(props{<br>  return <div>Hello{props.name}</div><br>}<br>ReactDOM.render(<hello name="world">, mountNode)</hello></p>
+<hr>
+<p>function Hello(props{<br>  return <div>Hello{props.name}</div><br>}<br>ReactDOM.render(<hello name="world">, mountNode)</hello></p>
 <p>// 最后一句也可以这么写</p>
 <h2 id="ReactDOM-render-Hello-“name”-”world”-mountNode"><a href="#ReactDOM-render-Hello-“name”-”world”-mountNode" class="headerlink" title="ReactDOM.render(Hello({“name”:”world”}), mountNode)"></a>ReactDOM.render(Hello({“name”:”world”}), mountNode)</h2><p>通过这个简单的示例可以看到，原本需要写的<code>react</code>类定义（<code>React.createClass</code>或者<code>class Component extends React.Component</code>）来创建自己组件的定义，但是由于这仅仅是一个无状态组件（无状态函数），<code>react</code>在渲染的时候也省掉了奖<code>react</code>组件类实例化的过程。</p>
 <p>所以对于一些纯静态展示的功能模块，可以考虑作为无状态组件，而无状态组件用来实现服务端渲染也是比较方便的，只要避免去获取dom节点就可以了。</p>
