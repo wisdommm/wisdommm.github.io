@@ -9,24 +9,18 @@
   <title>hexo博客增加搜索功能 | Wisdommm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="最近在用在某个项目上增加一个搜索框，后端用node＋mongodb实现，本来以为挺简单的，就用node爬一下页面title和href，然后放进mongodb中，再通过前端发请求传数据过来查找，然后node再在mongodb中查找，将数据返回前端。
-这是理想情况下的做法，可是现实往往充满了曲折,下面我来简单介绍下这个项目，然后说一下问题吧。
-
-这是个内网项目，所以爬虫爬不进去，好在有一个目录页，将所">
+这是理想情况下的做法，可是现实往往充满了曲折,下面我来简单介绍下这个项目，然后说一下问题吧。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo博客增加搜索功能">
 <meta property="og:url" content="http://wisdommm.github.io/2016/08/19/hexo-search/index.html">
 <meta property="og:site_name" content="Wisdommm">
 <meta property="og:description" content="最近在用在某个项目上增加一个搜索框，后端用node＋mongodb实现，本来以为挺简单的，就用node爬一下页面title和href，然后放进mongodb中，再通过前端发请求传数据过来查找，然后node再在mongodb中查找，将数据返回前端。
-这是理想情况下的做法，可是现实往往充满了曲折,下面我来简单介绍下这个项目，然后说一下问题吧。
-
-这是个内网项目，所以爬虫爬不进去，好在有一个目录页，将所">
-<meta property="og:updated_time" content="2017-01-16T10:10:22.000Z">
+这是理想情况下的做法，可是现实往往充满了曲折,下面我来简单介绍下这个项目，然后说一下问题吧。">
+<meta property="og:updated_time" content="2017-01-24T09:10:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo博客增加搜索功能">
 <meta name="twitter:description" content="最近在用在某个项目上增加一个搜索框，后端用node＋mongodb实现，本来以为挺简单的，就用node爬一下页面title和href，然后放进mongodb中，再通过前端发请求传数据过来查找，然后node再在mongodb中查找，将数据返回前端。
-这是理想情况下的做法，可是现实往往充满了曲折,下面我来简单介绍下这个项目，然后说一下问题吧。
-
-这是个内网项目，所以爬虫爬不进去，好在有一个目录页，将所">
+这是理想情况下的做法，可是现实往往充满了曲折,下面我来简单介绍下这个项目，然后说一下问题吧。">
   
     <link rel="alternative" href="/atom.xml" title="Wisdommm" type="application/atom+xml">
   
@@ -192,6 +186,7 @@
       
         <p>最近在用在某个项目上增加一个搜索框，后端用node＋mongodb实现，本来以为挺简单的，就用node爬一下页面title和href，然后放进mongodb中，再通过前端发请求传数据过来查找，然后node再在mongodb中查找，将数据返回前端。</p>
 <p>这是理想情况下的做法，可是现实往往充满了曲折,下面我来简单介绍下这个项目，然后说一下问题吧。</p>
+<a id="more"></a>
 <ol>
 <li><p>这是个内网项目，所以爬虫爬不进去，好在有一个目录页，将所有页面的title和href整理了起来，不过读取这个文件也不是简单的事，因为这个是类似于json格式的文件，但是却没有任何的符号，全是汉字，而我们存储的时候是需要分层次的，这样利于查找，采用node的FS模块可以很容易地读取到文件的内容，但是仅仅是读取，直接存储的话会导致没有层次感，所以我就把这个文件复制了一份出来，通过人工维护的方式将其变为json格式，然后就很好操作了，不过需要人工维护与更新，不算是最好的办法，但是那个文件之前也是人工维护的（虽然我不知道是谁维护，否则可以叫他一起维护下）。</p>
 </li>

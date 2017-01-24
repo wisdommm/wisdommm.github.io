@@ -16,7 +16,7 @@ redux其实我工作项目中接触的redux并不多，应该说只有一两个�
 <meta property="og:site_name" content="Wisdommm">
 <meta property="og:description" content="这是2017年的第一篇博客，上周参加完各种年会聚会，本来准备周末写的，可是周末又突然有事，所以一直拖到现在，而且这是2017的第一篇技术博客，所谓好的开始是成功的一半，希望新的一年，自己可以继续坚持，变得更好。
 redux其实我工作项目中接触的redux并不多，应该说只有一两个项目用到了redux，要求也是基本的redux的使用，dispatch一个action这种程度，react-redux也还">
-<meta property="og:updated_time" content="2017-01-19T03:37:42.000Z">
+<meta property="og:updated_time" content="2017-01-24T09:06:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redux源码解读">
 <meta name="twitter:description" content="这是2017年的第一篇博客，上周参加完各种年会聚会，本来准备周末写的，可是周末又突然有事，所以一直拖到现在，而且这是2017的第一篇技术博客，所谓好的开始是成功的一半，希望新的一年，自己可以继续坚持，变得更好。
@@ -189,6 +189,7 @@ redux其实我工作项目中接触的redux并不多，应该说只有一两个�
 <p>吐槽完毕，回到正题上来吧，学习一个库和框架最好的方法就是直接看源码，看源码好处有很多，不仅仅是学习API，还可以学习别人编写这个库（框架）的思想，这才是最为重要的，所以这次来写一篇redux源码相关的博客。</p>
 <h3 id="redux源码解读"><a href="#redux源码解读" class="headerlink" title="redux源码解读"></a>redux源码解读</h3><p>先把redux下载下来，发现很小，且没有依赖其他第三方库，简直是短小精悍啊，下面就让我好好见识下里面的思想。</p>
 <p>我们直接看到src文件夹下，发现下面一共有七个文件或文件夹，分别是utils，applyMiddleware.js，bindActionCreators.js，combineReducers.js，compose.js，createStore.js，index.js。我们分别来看看。</p>
+<a id="more"></a>
 <h4 id="utils"><a href="#utils" class="headerlink" title="utils"></a>utils</h4><p>这个是公用的工具方法，里面就warning.js一个文件，打开文件可以看到，里面就一个warning函数。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">export default function warning(message) &#123;</div><div class="line">  if (typeof console !== &apos;undefined&apos; &amp;&amp; typeof console.error === &apos;function&apos;) &#123;</div><div class="line">    console.error(message)</div><div class="line">  &#125;</div><div class="line">  try &#123;</div><div class="line">    throw new Error(message)</div><div class="line">  &#125; catch (e) &#123; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这个函数的主要目的就是抛出异常（错误），这个应该没什么好说的。</p>

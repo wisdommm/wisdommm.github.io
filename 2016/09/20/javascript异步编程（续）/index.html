@@ -18,7 +18,7 @@ ES7意见征集稿中提供了async函数，这是什么？其实可以用一句
 <meta property="og:description" content="之前那篇文章讲解了javascript异步式编程的几个方法，比如有回调函数，promise，发布／订阅模式，generator函数等，每一种方式，在其广泛使用的时期，都是很完善的一种方式，不过由于时代的进步，技术的发展，缺点总会暴露出来，更好更完善的方法也会被创造出来。
 这篇文章，我就想来说说async函数。
 ES7意见征集稿中提供了async函数，这是什么？其实可以用一句话来概括，async函数">
-<meta property="og:updated_time" content="2017-01-11T07:10:36.000Z">
+<meta property="og:updated_time" content="2017-01-24T09:10:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript异步编程（续）">
 <meta name="twitter:description" content="之前那篇文章讲解了javascript异步式编程的几个方法，比如有回调函数，promise，发布／订阅模式，generator函数等，每一种方式，在其广泛使用的时期，都是很完善的一种方式，不过由于时代的进步，技术的发展，缺点总会暴露出来，更好更完善的方法也会被创造出来。
@@ -191,6 +191,7 @@ ES7意见征集稿中提供了async函数，这是什么？其实可以用一句
 <p>这篇文章，我就想来说说<code>async</code>函数。</p>
 <p>ES7意见征集稿中提供了<code>async</code>函数，这是什么？其实可以用一句话来概括，<code>async</code>函数就是Generator函数的语法糖。</p>
 <p>我们从Generator函数开始，代码如下。</p>
+<a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">// 这是采用fs模块来异步读取文件</div><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line"></div><div class="line">var readFile = function (fileName) &#123;</div><div class="line">  return new Promise(function (resolve, reject) &#123;</div><div class="line">    fs.readFile(fileName, function(error, data) &#123;</div><div class="line">      if (error) reject(error);</div><div class="line">      resolve(data);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">// 这是使用generator函数的方法，依次读取两个文件</div><div class="line">var gen = function* ()&#123;</div><div class="line">  var f1 = yield readFile(&apos;/etc/fstab&apos;);</div><div class="line">  var f2 = yield readFile(&apos;/etc/shells&apos;);</div><div class="line">  console.log(f1.toString());</div><div class="line">  console.log(f2.toString());</div><div class="line">&#125;;</div><div class="line"></div><div class="line">// 下面是async函数的写法</div><div class="line">var asyncReadFile = async function ()&#123;</div><div class="line">  var f1 = await readFile(&apos;/etc/fstab&apos;);</div><div class="line">  var f2 = await readFile(&apos;/etc/shells&apos;);</div><div class="line">  console.log(f1.toString());</div><div class="line">  console.log(f2.toString());</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>其实一比较，差异很明显，<code>async</code>函数就是将generator函数的星号替换成了<code>async</code>，将<code>yield</code>替换成了<code>await</code>。</p>
 <p>仅此而已！仅此而已？</p>

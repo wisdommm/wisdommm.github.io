@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Wisdommm">
 <meta property="og:description" content="最近nodejs看得有点多，感觉满脑子都是文件处理，异步编程，buffer等，发现学node学多了，前端用到的javascript也会更加豁然开朗，特别是廖雪峰和阮一峰老师的博客，给了我不小的帮助。我想从nodejs开始说起，毕竟这才是编程的核心，现在发现前端用的js只是熟练运用onclick事件等，自己以前还是只接触到了皮毛啊。
 回到主题，据传当初Ryan Dahl选择js来作为后台语言时，主要">
-<meta property="og:updated_time" content="2017-01-11T07:24:03.000Z">
+<meta property="og:updated_time" content="2017-01-24T09:10:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript异步编程">
 <meta name="twitter:description" content="最近nodejs看得有点多，感觉满脑子都是文件处理，异步编程，buffer等，发现学node学多了，前端用到的javascript也会更加豁然开朗，特别是廖雪峰和阮一峰老师的博客，给了我不小的帮助。我想从nodejs开始说起，毕竟这才是编程的核心，现在发现前端用的js只是熟练运用onclick事件等，自己以前还是只接触到了皮毛啊。
@@ -189,6 +189,7 @@
 <p>说到这里，我又想解释一下同步与异步，第一次听到这两个词语，就要得追溯到大学的操作系统课堂了，OS的运行机制（运行模式）分为<strong>同步（Synchronous）</strong>和<strong>异步（Asynchronous）</strong>。</p>
 <p>“同步模式”就是上一段的模式，后一个任务等待前一个任务结束，然后再执行，程序的执行顺序与任务的排列顺序是一致的、同步的；”异步模式”则完全不同，每一个任务有一个或多个回调函数（callback），前一个任务结束后，不是执行后一个任务，而是执行回调函数，后一个任务则是不等前一个任务结束就执行，所以程序的执行顺序与任务的排列顺序是不一致的、异步的。”异步模式”非常重要。在浏览器端，耗时很长的操作都应该异步执行，避免浏览器失去响应，最好的例子就是Ajax操作。在服务器端，”异步模式”甚至是唯一的模式，因为执行环境是单线程的，如果允许同步执行所有http请求，服务器性能会急剧下降，很快就会失去响应。</p>
 <p>所以针对js的异步编程方法，我准备讲解如下几个方法：</p>
+<a id="more"></a>
 <h5 id="一，回调函数"><a href="#一，回调函数" class="headerlink" title="一，回调函数"></a>一，回调函数</h5><p>这是异步编程最最最基本的方法，几乎所有能异步编程的语言都可以用到这个方法。<br><br>回调函数的具体意思是，假设有两个函数，a和b，函数a在前b在后，正常情况的话，程序运行到了函数a，会等待其执行完毕，然后拿到函数a的运行结果，才会继续执行函数b；那么这时，问题就来了，如果函数a运行一秒，我可以等，运行十秒，就难以忍受了，万一函数a卡住了，永远成功不了，你会等到海枯石烂吗？哈哈哈，那怎么办，我下面还有千千万万行的代码啊，辛辛苦苦写了那么久，还没运行到这里，就结束了，逗我啊。。。这个时候，就该回调函数上场了，把函数b写成函数a的回调函数，像这样：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">// 原来的代码</div><div class="line"></div><div class="line">a();</div><div class="line">b();</div><div class="line"></div><div class="line">// 采用回调函数</div><div class="line"></div><div class="line">function a(b)&#123;</div><div class="line">	setTimeout(function()&#123;</div><div class="line">		// a的代码</div><div class="line"></div><div class="line">		b()</div><div class="line">	&#125;,1000);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>采用这种方式，我们把同步操作变成了异步操作，a不会堵塞程序运行，相当于先执行程序的主要逻辑，将耗时的操作推迟执行。</p>
