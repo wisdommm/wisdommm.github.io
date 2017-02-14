@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/tdz.jpeg">
 <meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/2728034159022278457.jpg">
 <meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/let.png">
-<meta property="og:updated_time" content="2017-02-14T02:16:02.000Z">
+<meta property="og:updated_time" content="2017-02-14T04:19:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6中的暂时性死区（TDZ）">
 <meta name="twitter:description" content="起因故事要从阮一峰老师的一条微博开始说起。。。
@@ -208,10 +208,19 @@
 <p><img src="http://oatasl78l.bkt.clouddn.com/2728034159022278457.jpg" alt=""></p>
 <p>所以照现在看来，const和let都是没有变量提升的，对吧。</p>
 <p>然后我们来看下面一段代码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">let e = 12;</div><div class="line">function foo()&#123;</div><div class="line">console.log(e);</div><div class="line">let e = 123;</div><div class="line">&#125;</div><div class="line">foo();</div><div class="line">// 如果说let真的没有变量提升的话，那么这里应该打印出12，OK？实际上如何呢，还是把代码放进浏览器中运行看看吧。</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">let e = 12;</div><div class="line">(function()&#123;</div><div class="line">console.log(e);</div><div class="line">let e = 123;</div><div class="line">&#125;)()</div><div class="line">// 如果说let真的没有变量提升的话，那么这里应该打印出12，OK？实际上如何呢，还是把代码放进浏览器中运行看看吧。</div></pre></td></tr></table></figure>
 <p><img src="http://oatasl78l.bkt.clouddn.com/let.png" alt=""></p>
 <p>怎么会是这样呢，不是说好的没有变量提升吗，怎么会报错啊？下面我们来细细分析。</p>
-<h3 id="let-const-详解"><a href="#let-const-详解" class="headerlink" title="let const 详解"></a>let const 详解</h3><p>在ES6中，最常见的TDZ就是在let/const的使用上，</p>
+<h3 id="let-const-详解"><a href="#let-const-详解" class="headerlink" title="let const 详解"></a>let const 详解</h3><p>在ES6中，最常见的TDZ就是在let/const的使用上，根据ES6中对let/const声明的<a href="http://www.ecma-international.org/ecma-262/6.0/#sec-let-and-const-declarations" target="_blank" rel="external">章节</a>，原文是这样说的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">The variables are created when their containing Lexical Environment is instantiated but may not be accessed in any way until the variable’s LexicalBinding is evaluated.</div></pre></td></tr></table></figure>
+<p>这段话的意思是说，由let/const声明的变量，当它们包含的词法环境实例化时，才会被创建；且只有在变量的词法绑定已经被赋值后，才能被访问（使用）。</p>
+<p>这段话详细地说，就是在程序在其词法环境（也就是其对应的作用域，比如模块，函数，块级作用域等）就行实例化的时候，（let/const声明的）变量就已经被创建了，但是这个时候还不能被访问（此时访问会出现not defined），只有当这个变量的词法绑定被赋值后，才能进行访问这个变量，也就是说当这个变量被赋值后，才能正常访问。所以在变量创建到变量赋值这一段时间内，访问时会报错，这段时间就叫做TDZ（暂时死区）。</p>
+<p>因此，从上面看来，似乎let/const声明的变量，还是有变量提升（hoist）的作用的，所以这里也是会让很多人误解的地方，实际上，JS中的变量都有变量提升，这是JS语言中，变量的基本特性，but，因为TDZ的作用，所以let/const的变量提升并没有像var那样明显地得到undefined，而是会直接报错：not defined；而且这很明显是一个运行期间才会出现的问题。</p>
+<p>所以上面提到的那个例子就已经说明了let也有变量提升，我们再来分析一下这个例子。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">let e = 12;</div><div class="line">(function()&#123;</div><div class="line">// TDZ start</div><div class="line">console.log(e);</div><div class="line">let e = 123; // TDZ end</div><div class="line">&#125;)()</div></pre></td></tr></table></figure>
+<p>在这个IIFE函数中，本来console.log的时候，应该现在函数内部找，找不到的话再往外面找；可是由于下面，e又被在这个函数内重新定义赋值了，虽然是在console.log下面，但是由于是有变量提升的，所以在对应的作用域顶端（也就是这个IIFE函数的顶端），是TDZ start，然后直到这个变量被赋值，才是TDZ end，这中间的区域就叫做TDZ；因此，在console的时候由于内部又声明了变量e，所以在内部找到了变量e于是就不用继续往外面找了，因此不会输出12，又因为console的区域刚好处在TDZ的区域内，所以就算变量e被声明了，可是由于TDZ的存在，在变量被赋值之前暂时还不能访问，所以此时访问会出现报错“not defined”。</p>
+<p>在ES6中的let与const声明章节的后面几句，说明了有关变量是如何进行初始化的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">A variable defined by a LexicalBinding with an Initializer is assigned the value of its Initializer’s AssignmentExpression when the LexicalBinding is evaluated, not when the variable is created. If a LexicalBinding in a let declaration does not have an Initializer the variable is assigned the value undefined when the LexicalBinding is evaluated.</div></pre></td></tr></table></figure>
 
       
 
