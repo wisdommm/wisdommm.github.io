@@ -162,6 +162,59 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-node express实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/03/node express实现/">express实现</a>
+    </h1>
+  
+
+        
+        <a href="/2016/09/03/node express实现/" class="archive-article-date">
+  	<time datetime="2016-09-03T08:25:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>express是node里面一个十分常用的库，用它来搭建服务器，事半功倍，且小巧灵活，有足够多的特性，用来进行各种网页开发。</p>
+<p>我们先来看下express的使用的，毕竟知己知彼，百战不殆。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">//引入express，确保你的项目依赖了express库，否则的话先npm install一下</div><div class="line">var express = require(&apos;express&apos;);</div><div class="line">//执行express函数，</div><div class="line">var app = express();</div><div class="line">// 使用get方法，当请求的路由是hello时，返回hello</div><div class="line">app.get(&apos;/hello&apos;, function (req, res) &#123;</div><div class="line">  res.send(&apos;hello&apos;);</div><div class="line">&#125;);</div><div class="line">// 当请求的路由是world时，返回world</div><div class="line">app.get(&apos;/world&apos;, function (req, res) &#123;</div><div class="line">  res.send(&apos;world&apos;);</div><div class="line">&#125;);</div><div class="line">// 当请求的路由是其它时，返回“没有找到匹配的路径”</div><div class="line">app.get(&apos;*&apos;, function (req, res) &#123;</div><div class="line">	res.setHeader(&apos;content-type&apos;,&apos;text/plain;charset=utf8&apos;);</div><div class="line">	res.end(&apos;没有找到匹配的路径&apos;);</div><div class="line">&#125;);</div><div class="line">// 最后监听端口</div><div class="line">var server = app.listen(3000, function () &#123;</div><div class="line">  console.log(&apos;正在监听3000端口&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>上面或许就是express最常见，也是最基本的使用吧，启动了一个服务器并且监听3000端口，对/hello的路由返回“hello”，对/world的路由返回“world”，对其他的路由返回“没有找到匹配的路径”。</p>
+<p>示例看完了，下面我们来看看具体的实现吧，在这之前，我想说一下http这个模块，毕竟express就是对http进行了一下封装，既然想看看express的内部，当然就离不开http了。</p>
+        
+          <a class="article-more-a" href="/2016/09/03/node express实现/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-react es5还是es6 ？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
