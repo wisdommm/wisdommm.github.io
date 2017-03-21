@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Wisdommm">
 <meta property="og:description" content="fast click诞生背景与使用做过移动端前端的同学，应该都知道“点击延迟”，意思就是原生js的click事件在移动浏览器上会有300毫秒的延迟，这样就会让用户觉得卡顿，影响用户体验。为什么会有延迟呢？因为移动浏览器都是支持双击的，比如双击缩放或双击滚动，所以当用户第一次点击屏幕后，浏览器并不知道你是单击还是双击，因此所有的浏览器都效仿了Safari的做法，那就是等待300毫秒。
 现在移动端大行">
-<meta property="og:updated_time" content="2017-03-21T12:35:14.000Z">
+<meta property="og:updated_time" content="2017-03-21T12:38:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="fastClick 基本解读">
 <meta name="twitter:description" content="fast click诞生背景与使用做过移动端前端的同学，应该都知道“点击延迟”，意思就是原生js的click事件在移动浏览器上会有300毫秒的延迟，这样就会让用户觉得卡顿，影响用户体验。为什么会有延迟呢？因为移动浏览器都是支持双击的，比如双击缩放或双击滚动，所以当用户第一次点击屏幕后，浏览器并不知道你是单击还是双击，因此所有的浏览器都效仿了Safari的做法，那就是等待300毫秒。
@@ -187,6 +187,7 @@
         <h3 id="fast-click诞生背景与使用"><a href="#fast-click诞生背景与使用" class="headerlink" title="fast click诞生背景与使用"></a>fast click诞生背景与使用</h3><p>做过移动端前端的同学，应该都知道“点击延迟”，意思就是原生js的click事件在移动浏览器上会有300毫秒的延迟，这样就会让用户觉得卡顿，影响用户体验。为什么会有延迟呢？因为移动浏览器都是支持双击的，比如双击缩放或双击滚动，所以当用户第一次点击屏幕后，浏览器并不知道你是单击还是双击，因此所有的浏览器都效仿了Safari的做法，那就是等待300毫秒。</p>
 <p>现在移动端大行其道，已经占据了主流。最显著的一个例子就是，天猫双十一的时候，超过百分之八十的订单都来自于移动端，这也就说明了移动端现在的火热程度。在这个前提下，你移动端的每个点击事件都有300毫秒的延迟，那是绝对不允许的。</p>
 <p>后面也出现了很多的解决办法，比如Zepto的tab事件(会引发击穿tab的bug)，fastClick.js等等，所以现在我就准备来好好讲解一下fastClick。</p>
+<a id="more"></a>
 <h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><h5 id="引入fastClick"><a href="#引入fastClick" class="headerlink" title="引入fastClick"></a>引入fastClick</h5><p>源码的第829行：选择引入fastClick的方式，具体代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">if (typeof define === &apos;function&apos; &amp;&amp; typeof define.amd === &apos;object&apos; &amp;&amp; define.amd) &#123;</div><div class="line"></div><div class="line">	// 优先兼容AMD的方式</div><div class="line">	define(function() &#123;</div><div class="line">		return FastClick;</div><div class="line">	&#125;);</div><div class="line">&#125; else if (typeof module !== &apos;undefined&apos; &amp;&amp; module.exports) &#123;</div><div class="line">	// 其次是commonJs</div><div class="line">	module.exports = FastClick.attach;</div><div class="line">	module.exports.FastClick = FastClick;</div><div class="line">&#125; else &#123;</div><div class="line">	// 最后兼容原生js</div><div class="line">	window.FastClick = FastClick;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h5 id="入口"><a href="#入口" class="headerlink" title="入口"></a>入口</h5><p>源码第824行：fastClick入口方法 attach</p>
