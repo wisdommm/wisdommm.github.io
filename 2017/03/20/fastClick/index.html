@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Wisdommm">
 <meta property="og:description" content="fast click诞生背景与使用做过移动端前端的同学，应该都知道“点击延迟”，意思就是原生js的click事件在移动浏览器上会有300毫秒的延迟，这样就会让用户觉得卡顿，影响用户体验。为什么会有延迟呢？因为移动浏览器都是支持双击的，比如双击缩放或双击滚动，所以当用户第一次点击屏幕后，浏览器并不知道你是单击还是双击，因此所有的浏览器都效仿了Safari的做法，那就是等待300毫秒。
 现在移动端大行">
-<meta property="og:updated_time" content="2017-03-23T04:22:09.000Z">
+<meta property="og:updated_time" content="2017-03-23T06:50:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="fastClick 基本解读">
 <meta name="twitter:description" content="fast click诞生背景与使用做过移动端前端的同学，应该都知道“点击延迟”，意思就是原生js的click事件在移动浏览器上会有300毫秒的延迟，这样就会让用户觉得卡顿，影响用户体验。为什么会有延迟呢？因为移动浏览器都是支持双击的，比如双击缩放或双击滚动，所以当用户第一次点击屏幕后，浏览器并不知道你是单击还是双击，因此所有的浏览器都效仿了Safari的做法，那就是等待300毫秒。
@@ -219,176 +219,35 @@
 <h5 id="needsClick函数，needsFocus函数"><a href="#needsClick函数，needsFocus函数" class="headerlink" title="needsClick函数，needsFocus函数"></a>needsClick函数，needsFocus函数</h5><p>227-254</p>
 <p>判断哪些元素需要原生的click事件，哪些需要原生的focus事件。具体代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">FastClick.prototype.needsClick = function(target) &#123;</div><div class="line">	switch (target.nodeName.toLowerCase()) &#123;</div><div class="line"></div><div class="line">	// Don&apos;t send a synthetic click to disabled inputs (issue #62)</div><div class="line">	case &apos;button&apos;:</div><div class="line">	case &apos;select&apos;:</div><div class="line">	case &apos;textarea&apos;:</div><div class="line">		if (target.disabled) &#123;</div><div class="line">			return true;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		break;</div><div class="line">	case &apos;input&apos;:</div><div class="line">		// File inputs need real clicks on iOS 6 due to a browser bug (issue #68)</div><div class="line">		if ((deviceIsIOS &amp;&amp; target.type === &apos;file&apos;) || target.disabled) &#123;</div><div class="line">			return true;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		break;</div><div class="line">	case &apos;label&apos;:</div><div class="line">	case &apos;iframe&apos;: // iOS8 homescreen apps can prevent events bubbling into frames</div><div class="line">	case &apos;video&apos;:</div><div class="line">		return true;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	return (/\bneedsclick\b/).test(target.className);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">FastClick.prototype.needsFocus = function(target) &#123;</div><div class="line">	switch (target.nodeName.toLowerCase()) &#123;</div><div class="line">	case &apos;textarea&apos;:</div><div class="line">		return true;</div><div class="line">	case &apos;select&apos;:</div><div class="line">		return !deviceIsAndroid;</div><div class="line">	case &apos;input&apos;:</div><div class="line">		switch (target.type) &#123;</div><div class="line">		case &apos;button&apos;:</div><div class="line">		case &apos;checkbox&apos;:</div><div class="line">		case &apos;file&apos;:</div><div class="line">		case &apos;image&apos;:</div><div class="line">		case &apos;radio&apos;:</div><div class="line">		case &apos;submit&apos;:</div><div class="line">			return false;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		// No point in attempting to focus disabled inputs</div><div class="line">		return !target.disabled &amp;&amp; !target.readOnly;</div><div class="line">	default:</div><div class="line">		return (/\bneedsfocus\b/).test(target.className);</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>上面这些就是哪些要原生click，原生focus的元素。如果需要，只需要在dom元素的class中加上“needsClick”或者“needsFocus”。像这样：<figure class="highlight plain"><figcaption><span>class="needsclick">aaaa```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">##### 各种判断</div><div class="line"></div><div class="line">311-319行：determineEventType 兼容安卓chrome中的select框事件从click改为mousedown</div></pre></td></tr></table></figure></p>
-<p>FastClick.prototype.determineEventType = function(targetElement) {<br>    //Issue #159: Android Chrome Select Box does not open with a synthetic click event<br>    if (deviceIsAndroid &amp;&amp; targetElement.tagName.toLowerCase() === ‘select’) {<br>        return ‘mousedown’;<br>    }</p>
-<pre><code>return &apos;click&apos;;
-</code></pre><p>};<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">327-337行：focus函数 兼容苹果手机(iOS7)setSelectionRange不能正确获取焦点的bug</div></pre></td></tr></table></figure></p>
-<p>FastClick.prototype.focus = function(targetElement) {<br>    var length;</p>
-<pre><code>// Issue #160: on iOS 7, some input elements (e.g. date datetime month) throw a vague TypeError on setSelectionRange. These elements don&apos;t have an integer value for the selectionStart and selectionEnd properties, but unfortunately that can&apos;t be used for detection because accessing the properties also throws a TypeError. Just check the type instead. Filed as Apple bug #15122724.
-
-if (deviceIsIOS &amp;&amp; targetElement.setSelectionRange &amp;&amp; targetElement.type.indexOf(&apos;date&apos;) !== 0 &amp;&amp; targetElement.type !== &apos;time&apos; &amp;&amp; targetElement.type !== &apos;month&apos;) {
-    length = targetElement.value.length;
-    targetElement.setSelectionRange(length, length);
-} else {
-    targetElement.focus();
-}
-</code></pre><p>};<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">376-384行：getTargetElementFromEventTarget函数，兼容获取点击元素，iOS 4.1中会获取文字作为焦点，取它的父元素dom</div></pre></td></tr></table></figure></p>
-<p>FastClick.prototype.getTargetElementFromEventTarget = function(eventTarget) {<br>    // On some older browsers (notably Safari on iOS 4.1 - see issue #56) the event target may be a text node.<br>    if (eventTarget.nodeType === Node.TEXT_NODE) {<br>        return eventTarget.parentNode;<br>    }<br>    return eventTarget;<br>};<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">497-512行：findControl函数，为了点击label元素的时候能改找到其所对应的表单元素的焦点</div></pre></td></tr></table></figure></p>
-<p>FastClick.prototype.findControl = function(labelElement) {<br>    // Fast path for newer browsers supporting the HTML5 control attribute<br>    if (labelElement.control !== undefined) {<br>        return labelElement.control;<br>    }</p>
-<pre><code>// All browsers under test that support touch events also support the HTML5 htmlFor attribute
-if (labelElement.htmlFor) {
-    return document.getElementById(labelElement.htmlFor);
-}
-
-// If no for attribute exists, attempt to retrieve the first labellable descendant element
-// the list of which is defined here: http://www.w3.org/TR/html5/forms.html#category-label
-return labelElement.querySelector(&apos;button, input:not([type=hidden]), keygen, meter, output, progress, select, textarea&apos;);
-</code></pre><p>};<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">461-469：touchHasMoved 手指点击时移动间距大于10px，返回true</div></pre></td></tr></table></figure></p>
-<p>FastClick.prototype.touchHasMoved = function(event) {<br>    var touch = event.changedTouches[0], boundary = this.touchBoundary;</p>
-<pre><code>if (Math.abs(touch.pageX - this.touchStartX) &gt; boundary || Math.abs(touch.pageY - this.touchStartY) &gt; boundary) {
-    return true;
-}
-
-return false;
-</code></pre><p>};<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">478-490：onTouchMove 手指点击时移动间距大于10px，即视为touchmove，不触发模拟click事件</div></pre></td></tr></table></figure></p>
-<p>FastClick.prototype.onTouchMove = function(event) {<br>    if (!this.trackingClick) {<br>        return true;<br>    }</p>
-<pre><code>// If the touch has moved, cancel the click tracking
-if (this.targetElement !== this.getTargetElementFromEventTarget(event.target) || this.touchHasMoved(event)) {
-    this.trackingClick = false;
-    this.targetElement = null;
-}
-
-return true;
-</code></pre><p>};<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### 核心方法</div><div class="line"></div><div class="line">393-452：onTouchStart函数，tapDelay默认300毫秒，点击时间差小于300毫秒，则阻止事件再次触发，阻止短时间内双击的问题</div></pre></td></tr></table></figure></p>
-<p>FastClick.prototype.onTouchStart = function(event) {<br>    var targetElement, touch, selection;<br>    if (event.targetTouches.length &gt; 1) {<br>        return true;<br>    }</p>
-<pre><code>targetElement = this.getTargetElementFromEventTarget(event.target);
-touch = event.targetTouches[0];
-
-if (deviceIsIOS) {
-    selection = window.getSelection();
-    if (selection.rangeCount &amp;&amp; !selection.isCollapsed) {
-        return true;
-    }
-
-    if (!deviceIsIOS4) {
-        if (touch.identifier &amp;&amp; touch.identifier === this.lastTouchIdentifier) {
-            event.preventDefault();
-            return false;
-        }
-
-        this.lastTouchIdentifier = touch.identifier;
-        this.updateScrollParent(targetElement);
-    }
-}
-
-this.trackingClick = true;
-this.trackingClickStart = event.timeStamp;
-this.targetElement = targetElement;
-
-this.touchStartX = touch.pageX;
-this.touchStartY = touch.pageY;
-
-if ((event.timeStamp - this.lastClickTime) &lt; this.tapDelay) {
-    event.preventDefault();
-}
-
-return true;
-</code></pre><p>};<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">523-612：onTouchEnd函数</div></pre></td></tr></table></figure></p>
-<p>FastClick.prototype.onTouchEnd = function(event) {<br>    var forElement, trackingClickStart, targetTagName, scrollParent, touch, targetElement = this.targetElement;</p>
-<pre><code>if (!this.trackingClick) {
-    return true;
-}
-
-if ((event.timeStamp - this.lastClickTime) &lt; this.tapDelay) {
-    this.cancelNextClick = true;
-    return true;
-}
-
-if ((event.timeStamp - this.trackingClickStart) &gt; this.tapTimeout) {
-    return true;
-}
-
-this.cancelNextClick = false;
-
-this.lastClickTime = event.timeStamp;
-
-trackingClickStart = this.trackingClickStart;
-this.trackingClick = false;
-this.trackingClickStart = 0;
-
-if (deviceIsIOSWithBadTarget) {
-    touch = event.changedTouches[0];
-
-    targetElement = document.elementFromPoint(touch.pageX - window.pageXOffset, touch.pageY - window.pageYOffset) || targetElement;
-    targetElement.fastClickScrollParent = this.targetElement.fastClickScrollParent;
-}
-
-targetTagName = targetElement.tagName.toLowerCase();
-if (targetTagName === &apos;label&apos;) {
-    forElement = this.findControl(targetElement);
-    if (forElement) {
-        this.focus(targetElement);
-        if (deviceIsAndroid) {
-            return false;
-        }
-
-        targetElement = forElement;
-    }
-} else if (this.needsFocus(targetElement)) {
-    if ((event.timeStamp - trackingClickStart) &gt; 100 || (deviceIsIOS &amp;&amp; window.top !== window &amp;&amp; targetTagName === &apos;input&apos;)) {
-        this.targetElement = null;
-        return false;
-    }
-
-    this.focus(targetElement);
-    this.sendClick(targetElement, event);
-
-    // Also this breaks opening selects when VoiceOver is active on iOS6, iOS7 (and possibly others)
-    if (!deviceIsIOS || targetTagName !== &apos;select&apos;) {
-        this.targetElement = null;
-        event.preventDefault();
-    }
-
-    return false;
-}
-
-if (deviceIsIOS &amp;&amp; !deviceIsIOS4) {
-
-    if (scrollParent &amp;&amp; scrollParent.fastClickLastScrollTop !== scrollParent.scrollTop) {
-        return true;
-    }
-}
-
-if (!this.needsClick(targetElement)) {
-    // 如果这不是一个需要使用原生click的元素，则屏蔽原生事件，避免触发两次click
-    // 触发一次模拟的click
-    event.preventDefault();
-    this.sendClick(targetElement, event);
-}
-
-return false;
-</code></pre><p>};<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">##### 296-311 sendClick（核心方法）</div></pre></td></tr></table></figure></p>
-<p>FastClick.prototype.sendClick = function(targetElement, event) {<br>    var clickEvent, touch;</p>
-<pre><code>if (document.activeElement &amp;&amp; document.activeElement !== targetElement) {
-    document.activeElement.blur();
-}
-
-touch = event.changedTouches[0];
-
-// 合并成一个点击事件，通过一个额外的属性，确保事件能够被跟踪
-// 最后再通过模拟一个点击事件来执行，事件触发器dispatchEvent参考这篇文章 http://blog.csdn.net/magic__man/article/details/51831227
-clickEvent = document.createEvent(&apos;MouseEvents&apos;);
-clickEvent.initMouseEvent(this.determineEventType(targetElement), true, true, window, 1, touch.screenX, touch.screenY, touch.clientX, touch.clientY, false, false, false, false, 0, null);
-clickEvent.forwardedTouchEvent = true;
-targetElement.dispatchEvent(clickEvent);
-</code></pre><p>};<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### Zepto 点击穿透与 FastClick</div><div class="line"></div><div class="line">移动端点击事件中，Zepto中也解决了移动浏览器中300毫秒的事情，但是就出现了各种击穿现象。</div><div class="line"></div><div class="line">1，同页面tap点击弹出弹层，弹层中也有一个button，正好重叠的时候，会出现击穿。</div><div class="line"></div><div class="line">2，tap事件点击，页面跳转，新页面中同位置也有一个按钮，会出现击穿。</div><div class="line"></div><div class="line">#### 解释击穿</div><div class="line"></div><div class="line">zepto中的 tap 通过兼听绑定在 document 上的 touch 事件来完成 tap 事件的模拟的，是通过事件冒泡实现的。在点击完成时（touchstart / touchend）的 tap 事件需要冒泡到 document 上才会触发。而在冒泡到 document 之前，手指接触和离开屏幕（touchstart / touchend）是会触发 click 事件的。</div><div class="line"></div><div class="line">因为 click 事件有延迟（大概是300ms，为了实现safari的双击事件的设计），所以在执行完 tap 事件之后，弹出层立马就隐藏了，此时 click 事件还在延迟的 300ms 之中。当 300ms 到来的时候，click 到的其实是隐藏元素下方的元素。</div><div class="line"></div><div class="line">如果正下方的元素有绑定 click 事件，此时便会触发，如果没有绑定 click 事件的话就当没发生。如果正下方的是 input 输入框（或是 select / radio / checkbox），点击默认 focus 而弹出输入键盘，也就出现了上面的“点透”现象。</div><div class="line"></div><div class="line">### 击穿的解决办法</div><div class="line"></div><div class="line">#### 遮挡</div><div class="line"></div><div class="line">由于移动端点击click事件的延后性，导致原本想点击的元素消失了，直接点击到了下面的元素，于是便有了穿透。于是最简单的办法就是在你点击的下方增加一层遮挡的元素，让其300毫秒后自动消失就行了；或者不用延时动画，改为增加一个透明的元素来隔离，也是可以的；这样就从dom方面对其进行了隔离，解决了穿透的问题。</div><div class="line"></div><div class="line">#### pointer-events</div><div class="line"></div><div class="line">pointer-events是CSS3中的属性，它有很多取值，有用的主要是auto和none，其他属性值为SVG服务。</div><div class="line"></div><div class="line">如果pointer-events的属性值为none，元素不再是鼠标事件的目标，鼠标不再监听当前层而去监听下面的层中的元素。但是如果它的子元素设置了pointer-events为其它值，比如auto，鼠标还是会监听这个子元素的。具体实现代码如下：</div></pre></td></tr></table></figure></p>
-<p>$(‘#closePopup’).on(‘tap’, function(e){<br>    $(‘#popupLayer’).hide();<br>    $(‘#bgMask’).hide();</p>
-<pre><code>$(&apos;#underLayer&apos;).css(&apos;pointer-events&apos;, &apos;none&apos;);
-
-setTimeout(function(){
-    $(&apos;#underLayer&apos;).css(&apos;pointer-events&apos;, &apos;auto&apos;);
-}, 400);
-</code></pre><p>});<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### fastClick</div><div class="line"></div><div class="line">使用fastclick库，其实现思路是，取消 click 事件，用 touchend 模拟快速点击行为。只需要一句```FastClick.attach(document.body);</div></pre></td></tr></table></figure></p>
+<p>上面这些就是哪些要原生click，原生focus的元素。如果需要，只需要在dom元素的class中加上“needsClick”或者“needsFocus”。像这样： <code><div class="needsclick">aaaa</div></code></p>
+<h5 id="各种判断"><a href="#各种判断" class="headerlink" title="各种判断"></a>各种判断</h5><p>311-319行：determineEventType 兼容安卓chrome中的select框事件从click改为mousedown</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">FastClick.prototype.determineEventType = function(targetElement) &#123;</div><div class="line">	//Issue #159: Android Chrome Select Box does not open with a synthetic click event</div><div class="line">	if (deviceIsAndroid &amp;&amp; targetElement.tagName.toLowerCase() === &apos;select&apos;) &#123;</div><div class="line">		return &apos;mousedown&apos;;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	return &apos;click&apos;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>327-337行：focus函数 兼容苹果手机(iOS7)setSelectionRange不能正确获取焦点的bug</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">FastClick.prototype.focus = function(targetElement) &#123;</div><div class="line">	var length;</div><div class="line"></div><div class="line">	// Issue #160: on iOS 7, some input elements (e.g. date datetime month) throw a vague TypeError on setSelectionRange. These elements don&apos;t have an integer value for the selectionStart and selectionEnd properties, but unfortunately that can&apos;t be used for detection because accessing the properties also throws a TypeError. Just check the type instead. Filed as Apple bug #15122724.</div><div class="line">	</div><div class="line">	if (deviceIsIOS &amp;&amp; targetElement.setSelectionRange &amp;&amp; targetElement.type.indexOf(&apos;date&apos;) !== 0 &amp;&amp; targetElement.type !== &apos;time&apos; &amp;&amp; targetElement.type !== &apos;month&apos;) &#123;</div><div class="line">		length = targetElement.value.length;</div><div class="line">		targetElement.setSelectionRange(length, length);</div><div class="line">	&#125; else &#123;</div><div class="line">		targetElement.focus();</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>376-384行：getTargetElementFromEventTarget函数，兼容获取点击元素，iOS 4.1中会获取文字作为焦点，取它的父元素dom</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">FastClick.prototype.getTargetElementFromEventTarget = function(eventTarget) &#123;</div><div class="line">	// On some older browsers (notably Safari on iOS 4.1 - see issue #56) the event target may be a text node.</div><div class="line">	if (eventTarget.nodeType === Node.TEXT_NODE) &#123;</div><div class="line">		return eventTarget.parentNode;</div><div class="line">	&#125;</div><div class="line">	return eventTarget;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>497-512行：findControl函数，为了点击label元素的时候能改找到其所对应的表单元素的焦点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">FastClick.prototype.findControl = function(labelElement) &#123;</div><div class="line">	// Fast path for newer browsers supporting the HTML5 control attribute</div><div class="line">	if (labelElement.control !== undefined) &#123;</div><div class="line">		return labelElement.control;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	// All browsers under test that support touch events also support the HTML5 htmlFor attribute</div><div class="line">	if (labelElement.htmlFor) &#123;</div><div class="line">		return document.getElementById(labelElement.htmlFor);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	// If no for attribute exists, attempt to retrieve the first labellable descendant element</div><div class="line">	// the list of which is defined here: http://www.w3.org/TR/html5/forms.html#category-label</div><div class="line">	return labelElement.querySelector(&apos;button, input:not([type=hidden]), keygen, meter, output, progress, select, textarea&apos;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>461-469：touchHasMoved 手指点击时移动间距大于10px，返回true</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">FastClick.prototype.touchHasMoved = function(event) &#123;</div><div class="line">	var touch = event.changedTouches[0], boundary = this.touchBoundary;</div><div class="line"></div><div class="line">	if (Math.abs(touch.pageX - this.touchStartX) &gt; boundary || Math.abs(touch.pageY - this.touchStartY) &gt; boundary) &#123;</div><div class="line">		return true;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	return false;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>478-490：onTouchMove 手指点击时移动间距大于10px，即视为touchmove，不触发模拟click事件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">FastClick.prototype.onTouchMove = function(event) &#123;</div><div class="line">	if (!this.trackingClick) &#123;</div><div class="line">		return true;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	// If the touch has moved, cancel the click tracking</div><div class="line">	if (this.targetElement !== this.getTargetElementFromEventTarget(event.target) || this.touchHasMoved(event)) &#123;</div><div class="line">		this.trackingClick = false;</div><div class="line">		this.targetElement = null;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	return true;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h4 id="核心方法"><a href="#核心方法" class="headerlink" title="核心方法"></a>核心方法</h4><p>393-452：onTouchStart函数，tapDelay默认300毫秒，点击时间差小于300毫秒，则阻止事件再次触发，阻止短时间内双击的问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">FastClick.prototype.onTouchStart = function(event) &#123;</div><div class="line">	var targetElement, touch, selection;</div><div class="line">	if (event.targetTouches.length &gt; 1) &#123;</div><div class="line">		return true;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	targetElement = this.getTargetElementFromEventTarget(event.target);</div><div class="line">	touch = event.targetTouches[0];</div><div class="line"></div><div class="line">	if (deviceIsIOS) &#123;</div><div class="line">		selection = window.getSelection();</div><div class="line">		if (selection.rangeCount &amp;&amp; !selection.isCollapsed) &#123;</div><div class="line">			return true;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		if (!deviceIsIOS4) &#123;</div><div class="line">			if (touch.identifier &amp;&amp; touch.identifier === this.lastTouchIdentifier) &#123;</div><div class="line">				event.preventDefault();</div><div class="line">				return false;</div><div class="line">			&#125;</div><div class="line"></div><div class="line">			this.lastTouchIdentifier = touch.identifier;</div><div class="line">			this.updateScrollParent(targetElement);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	this.trackingClick = true;</div><div class="line">	this.trackingClickStart = event.timeStamp;</div><div class="line">	this.targetElement = targetElement;</div><div class="line"></div><div class="line">	this.touchStartX = touch.pageX;</div><div class="line">	this.touchStartY = touch.pageY;</div><div class="line"></div><div class="line">	if ((event.timeStamp - this.lastClickTime) &lt; this.tapDelay) &#123;</div><div class="line">		event.preventDefault();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	return true;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>523-612：onTouchEnd函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line">FastClick.prototype.onTouchEnd = function(event) &#123;</div><div class="line">	var forElement, trackingClickStart, targetTagName, scrollParent, touch, targetElement = this.targetElement;</div><div class="line"></div><div class="line">	if (!this.trackingClick) &#123;</div><div class="line">		return true;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	if ((event.timeStamp - this.lastClickTime) &lt; this.tapDelay) &#123;</div><div class="line">		this.cancelNextClick = true;</div><div class="line">		return true;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	if ((event.timeStamp - this.trackingClickStart) &gt; this.tapTimeout) &#123;</div><div class="line">		return true;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	this.cancelNextClick = false;</div><div class="line"></div><div class="line">	this.lastClickTime = event.timeStamp;</div><div class="line"></div><div class="line">	trackingClickStart = this.trackingClickStart;</div><div class="line">	this.trackingClick = false;</div><div class="line">	this.trackingClickStart = 0;</div><div class="line"></div><div class="line">	if (deviceIsIOSWithBadTarget) &#123;</div><div class="line">		touch = event.changedTouches[0];</div><div class="line"></div><div class="line">		targetElement = document.elementFromPoint(touch.pageX - window.pageXOffset, touch.pageY - window.pageYOffset) || targetElement;</div><div class="line">		targetElement.fastClickScrollParent = this.targetElement.fastClickScrollParent;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	targetTagName = targetElement.tagName.toLowerCase();</div><div class="line">	if (targetTagName === &apos;label&apos;) &#123;</div><div class="line">		forElement = this.findControl(targetElement);</div><div class="line">		if (forElement) &#123;</div><div class="line">			this.focus(targetElement);</div><div class="line">			if (deviceIsAndroid) &#123;</div><div class="line">				return false;</div><div class="line">			&#125;</div><div class="line"></div><div class="line">			targetElement = forElement;</div><div class="line">		&#125;</div><div class="line">	&#125; else if (this.needsFocus(targetElement)) &#123;</div><div class="line">		if ((event.timeStamp - trackingClickStart) &gt; 100 || (deviceIsIOS &amp;&amp; window.top !== window &amp;&amp; targetTagName === &apos;input&apos;)) &#123;</div><div class="line">			this.targetElement = null;</div><div class="line">			return false;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		this.focus(targetElement);</div><div class="line">		this.sendClick(targetElement, event);</div><div class="line"></div><div class="line">		// Also this breaks opening selects when VoiceOver is active on iOS6, iOS7 (and possibly others)</div><div class="line">		if (!deviceIsIOS || targetTagName !== &apos;select&apos;) &#123;</div><div class="line">			this.targetElement = null;</div><div class="line">			event.preventDefault();</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		return false;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	if (deviceIsIOS &amp;&amp; !deviceIsIOS4) &#123;</div><div class="line"></div><div class="line">		if (scrollParent &amp;&amp; scrollParent.fastClickLastScrollTop !== scrollParent.scrollTop) &#123;</div><div class="line">			return true;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	if (!this.needsClick(targetElement)) &#123;</div><div class="line">		// 如果这不是一个需要使用原生click的元素，则屏蔽原生事件，避免触发两次click</div><div class="line">		// 触发一次模拟的click</div><div class="line">		event.preventDefault();</div><div class="line">		this.sendClick(targetElement, event);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	return false;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h5 id="296-311-sendClick（核心方法）"><a href="#296-311-sendClick（核心方法）" class="headerlink" title="296-311 sendClick（核心方法）"></a>296-311 sendClick（核心方法）</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">FastClick.prototype.sendClick = function(targetElement, event) &#123;</div><div class="line">	var clickEvent, touch;</div><div class="line"></div><div class="line">	if (document.activeElement &amp;&amp; document.activeElement !== targetElement) &#123;</div><div class="line">		document.activeElement.blur();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	touch = event.changedTouches[0];</div><div class="line"></div><div class="line">	// 合并成一个点击事件，通过一个额外的属性，确保事件能够被跟踪</div><div class="line">	// 最后再通过模拟一个点击事件来执行，事件触发器dispatchEvent参考这篇文章 http://blog.csdn.net/magic__man/article/details/51831227</div><div class="line">	clickEvent = document.createEvent(&apos;MouseEvents&apos;);</div><div class="line">	clickEvent.initMouseEvent(this.determineEventType(targetElement), true, true, window, 1, touch.screenX, touch.screenY, touch.clientX, touch.clientY, false, false, false, false, 0, null);</div><div class="line">	clickEvent.forwardedTouchEvent = true;</div><div class="line">	targetElement.dispatchEvent(clickEvent);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="Zepto-点击穿透与-FastClick"><a href="#Zepto-点击穿透与-FastClick" class="headerlink" title="Zepto 点击穿透与 FastClick"></a>Zepto 点击穿透与 FastClick</h3><p>移动端点击事件中，Zepto中也解决了移动浏览器中300毫秒的事情，但是就出现了各种击穿现象。</p>
+<p>1，同页面tap点击弹出弹层，弹层中也有一个button，正好重叠的时候，会出现击穿。</p>
+<p>2，tap事件点击，页面跳转，新页面中同位置也有一个按钮，会出现击穿。</p>
+<h4 id="解释击穿"><a href="#解释击穿" class="headerlink" title="解释击穿"></a>解释击穿</h4><p>zepto中的 tap 通过兼听绑定在 document 上的 touch 事件来完成 tap 事件的模拟的，是通过事件冒泡实现的。在点击完成时（touchstart / touchend）的 tap 事件需要冒泡到 document 上才会触发。而在冒泡到 document 之前，手指接触和离开屏幕（touchstart / touchend）是会触发 click 事件的。</p>
+<p>因为 click 事件有延迟（大概是300ms，为了实现safari的双击事件的设计），所以在执行完 tap 事件之后，弹出层立马就隐藏了，此时 click 事件还在延迟的 300ms 之中。当 300ms 到来的时候，click 到的其实是隐藏元素下方的元素。</p>
+<p>如果正下方的元素有绑定 click 事件，此时便会触发，如果没有绑定 click 事件的话就当没发生。如果正下方的是 input 输入框（或是 select / radio / checkbox），点击默认 focus 而弹出输入键盘，也就出现了上面的“点透”现象。</p>
+<h3 id="击穿的解决办法"><a href="#击穿的解决办法" class="headerlink" title="击穿的解决办法"></a>击穿的解决办法</h3><h4 id="遮挡"><a href="#遮挡" class="headerlink" title="遮挡"></a>遮挡</h4><p>由于移动端点击click事件的延后性，导致原本想点击的元素消失了，直接点击到了下面的元素，于是便有了穿透。于是最简单的办法就是在你点击的下方增加一层遮挡的元素，让其300毫秒后自动消失就行了；或者不用延时动画，改为增加一个透明的元素来隔离，也是可以的；这样就从dom方面对其进行了隔离，解决了穿透的问题。</p>
+<h4 id="pointer-events"><a href="#pointer-events" class="headerlink" title="pointer-events"></a>pointer-events</h4><p>pointer-events是CSS3中的属性，它有很多取值，有用的主要是auto和none，其他属性值为SVG服务。</p>
+<p>如果pointer-events的属性值为none，元素不再是鼠标事件的目标，鼠标不再监听当前层而去监听下面的层中的元素。但是如果它的子元素设置了pointer-events为其它值，比如auto，鼠标还是会监听这个子元素的。具体实现代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$(&apos;#closePopup&apos;).on(&apos;tap&apos;, function(e)&#123;</div><div class="line">    $(&apos;#popupLayer&apos;).hide();</div><div class="line">    $(&apos;#bgMask&apos;).hide();</div><div class="line"></div><div class="line">    $(&apos;#underLayer&apos;).css(&apos;pointer-events&apos;, &apos;none&apos;);</div><div class="line"></div><div class="line">    setTimeout(function()&#123;</div><div class="line">        $(&apos;#underLayer&apos;).css(&apos;pointer-events&apos;, &apos;auto&apos;);</div><div class="line">    &#125;, 400);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="fastClick"><a href="#fastClick" class="headerlink" title="fastClick"></a>fastClick</h4><p>使用fastclick库，其实现思路是，取消 click 事件，用 touchend 模拟快速点击行为。只需要一句<code>FastClick.attach(document.body);</code></p>
 <p>从此所有的点击事件，都是用click且不会出现穿透问题，并且没有300毫秒的延迟。</p>
 <p>下一篇博客，我会对js的事件机制做一个详细的分析，包括移动端的。</p>
 
