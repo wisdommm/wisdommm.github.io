@@ -8,14 +8,12 @@
   <link rel="dns-prefetch" href="http://wisdommm.github.io">
   <title>页面表单后台配置化方案 | Wisdommm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="写在前面又是好久没有写博客了，之前写了太多纯技术相关的文章，后来吧，发现技术是技术，可是学习技术的最终点，是要在业务中实现落地，会的技能再多，不能在具体的业务场景下得到结果得到产出，都是不是好的技术，毕竟，公司也好社会也罢，都是结果导向的。
-页面表单配置化方案开始这个解决方案要从我所在的业务场景说起，我主要做的是crm和商家相关的，大多数都是对内的一些后台系统，其业务特点是：轻样式（基本不会用到什">
+  <meta name="description" content="写在前面又是好久没有写博客了，之前写了太多纯技术相关的文章，后来吧，发现技术是技术，可是学习技术的最终点，是要在业务中实现落地，会的技能再多，不能在具体的业务场景下得到结果得到产出，都是不是好的技术，毕竟，公司也好社会也罢，都是结果导向的。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="页面表单后台配置化方案">
 <meta property="og:url" content="http://wisdommm.github.io/2017/04/28/页面Field配置化方案/index.html">
 <meta property="og:site_name" content="Wisdommm">
-<meta property="og:description" content="写在前面又是好久没有写博客了，之前写了太多纯技术相关的文章，后来吧，发现技术是技术，可是学习技术的最终点，是要在业务中实现落地，会的技能再多，不能在具体的业务场景下得到结果得到产出，都是不是好的技术，毕竟，公司也好社会也罢，都是结果导向的。
-页面表单配置化方案开始这个解决方案要从我所在的业务场景说起，我主要做的是crm和商家相关的，大多数都是对内的一些后台系统，其业务特点是：轻样式（基本不会用到什">
+<meta property="og:description" content="写在前面又是好久没有写博客了，之前写了太多纯技术相关的文章，后来吧，发现技术是技术，可是学习技术的最终点，是要在业务中实现落地，会的技能再多，不能在具体的业务场景下得到结果得到产出，都是不是好的技术，毕竟，公司也好社会也罢，都是结果导向的。">
 <meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/complaint%E5%88%9D%E5%A7%8B%E5%8C%96.jpg">
 <meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/complaint%E5%85%AC%E5%85%B1%E5%BF%85%E5%A1%AB%E6%9D%A1%E4%BB%B6.jpg">
 <meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/complaint%E5%85%AC%E5%85%B1%E5%BF%85%E5%A1%AB.jpg">
@@ -26,11 +24,10 @@
 <meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/complaint%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0.jpg">
 <meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/%E5%95%86%E5%93%81%E9%93%BE%E6%8E%A5%20%E9%A9%AC%E8%B5%9B%E5%85%8B.png">
 <meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/complaint%E5%B1%82%E7%BA%A7%20%E5%87%BA%E7%8E%B0%E6%9D%A1%E4%BB%B6.jpg">
-<meta property="og:updated_time" content="2017-05-31T13:14:49.000Z">
+<meta property="og:updated_time" content="2017-05-31T13:16:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="页面表单后台配置化方案">
-<meta name="twitter:description" content="写在前面又是好久没有写博客了，之前写了太多纯技术相关的文章，后来吧，发现技术是技术，可是学习技术的最终点，是要在业务中实现落地，会的技能再多，不能在具体的业务场景下得到结果得到产出，都是不是好的技术，毕竟，公司也好社会也罢，都是结果导向的。
-页面表单配置化方案开始这个解决方案要从我所在的业务场景说起，我主要做的是crm和商家相关的，大多数都是对内的一些后台系统，其业务特点是：轻样式（基本不会用到什">
+<meta name="twitter:description" content="写在前面又是好久没有写博客了，之前写了太多纯技术相关的文章，后来吧，发现技术是技术，可是学习技术的最终点，是要在业务中实现落地，会的技能再多，不能在具体的业务场景下得到结果得到产出，都是不是好的技术，毕竟，公司也好社会也罢，都是结果导向的。">
 <meta name="twitter:image" content="http://oatasl78l.bkt.clouddn.com/complaint%E5%88%9D%E5%A7%8B%E5%8C%96.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Wisdommm" type="application/atom+xml">
@@ -196,6 +193,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>又是好久没有写博客了，之前写了太多纯技术相关的文章，后来吧，发现技术是技术，可是学习技术的最终点，是要在业务中实现落地，会的技能再多，不能在具体的业务场景下得到结果得到产出，都是不是好的技术，毕竟，公司也好社会也罢，都是结果导向的。</p>
+<a id="more"></a>
 <h3 id="页面表单配置化方案"><a href="#页面表单配置化方案" class="headerlink" title="页面表单配置化方案"></a>页面表单配置化方案</h3><h4 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h4><p>这个解决方案要从我所在的业务场景说起，我主要做的是crm和商家相关的，大多数都是对内的一些后台系统，其业务特点是：轻样式（基本不会用到什么绚丽的，高难度的效果），重交互（各种逻辑交叉纵横，剪不断，理还乱）。而又会涉及到各个系统之间的交流，比如面向买家的，面向商家的，面向客服的，这之间都会有联系，一个纠纷单（申诉，维权或举报），首先从买家端发起，经过处理，然后流到商家端，商家也会处理（或不处理，等到时间终止），最后流向客服端，客服来进行最终的判定，一个维权单才会算作结束。且买卖和商家的系统分别会涉及到PC和H5。</p>
 <p>上面是crm的基本业务介绍，然后就开始进入正题，表单配置化。</p>
 <p>这种To B的业务，最最最常用的，就是各种表单，而且逻辑也十分复杂；且由于涉及到的表单比较多，经常会涉及到表单的变动。最基本的方法就是前端在页面上添加一个表单组件，然后后端在接口增加那个组件对应的字段，这样就ok了，但是这会涉及一些问题或麻烦，比如每次只增加一个简单的输入框，却需要前端后端一起来工作，维护成本比较高；其次是组件化（模块）程度不够高，复用基本上靠的是复制加粘贴。</p>
