@@ -162,6 +162,52 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/01/算法/">几种常见的算法</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/01/算法/" class="archive-article-date">
+  	<time datetime="2017-08-01T11:34:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h3><p>前几天和后端@巴里联调的时候，在空闲时间闲聊，不知怎么就聊到了归并排序，然后就瞎扯了一通时间复杂度，空间复杂度什么的，最后说到了归并排序在实际的应用，就是内存有限的情况下，大文件的排序。然后我就觉得，有些东西还是挺有用挺值得牢记的，就算短时间用不到，最好也还是不要忘，虽然大学学的很多东西，好多都因为暂时没用，还给老师了呢，比如计算机组成原理，操作系统，计算机系统结构等，觉得很是惭愧，于是就趁着周末看了下箱底的书，温习了一遍以前的一些基本算法，后来觉得还是要做一个沉淀写成博客会比较好，所以我就写了这篇博客，来提醒自己不要忘记。</p>
+        
+          <a class="article-more-a" href="/2017/08/01/算法/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-crm页面表单field后台配置化方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -564,71 +610,6 @@
 <p>所以对于一些纯静态展示的功能模块，可以考虑作为无状态组件，而无状态组件用来实现服务端渲染也是比较方便的，只要避免去获取dom节点就可以了。</p>
         
           <a class="article-more-a" href="/2016/12/04/react无状态组件和高阶组件/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-react生命周期源码解读" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/08/react生命周期源码解读/">从源码看react生命周期</a>
-    </h1>
-  
-
-        
-        <a href="/2016/11/08/react生命周期源码解读/" class="archive-article-date">
-  	<time datetime="2016-11-08T04:22:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>React的主要思想，就是通过构建可复用的组件来构建页面，而每一个组件，就是一个有限的状态机，通过状态控制组件不同的渲染，从而得到不同的界面效果。每个组件都有生命周期，它规定了组件的一些自带方法需要在哪个阶段进行执行以及输出对应的结果。</p>
-<p>有限状态机，表示有限个状态，以及在这些状态之间的数据转移和动作方法的执行的行为模型，一般通过状态、事件、转换和动作来描述有限状态机。例如页面上的都个东西有显示和隐藏两种情况，那么一般情况下我们会设计两个方法：show()和hide()来实现显示与隐藏的切换，而react只需要设置某一个状态为true或false，就可以实现这个组件的隐藏和显示转换了。<br>同时，react还引入了组件的生命周期这个概念，通过它就可以实现组件的状态机控制，从而达到“生命周期－状态－组件”的和谐画面。</p>
-<h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><p>之前一篇博客就已经说到了一下生命周期，我在这里再赘述一下吧，react组件自带的一些函数方法，比如getDefaultProps、getInitialState等，会在什么时候执行。</p>
-<ul>
-<li><p>当首次装载组件时，按顺序执行 getDefaultProps、getInitialState、componentWillMount、render 和 componentDidMount；</p>
-</li>
-<li><p>当卸载组件时，执行 componentWillUnmount；</p>
-</li>
-<li><p>当重新装载组件时，此时按顺序执行 getInitialState、componentWillMount、render 和 componentDidMount，但并不执行 getDefaultProps；</p>
-</li>
-<li><p>当再次渲染组件时，组件接受到更新状态，此时按顺序执行 componentWillReceiveProps、shouldComponentUpdate、componentWillUpdate、render 和 componentDidUpdate.</p>
-</li>
-</ul>
-<p>然后具体的状态、属性改变，会触发什么方法，可以参考如下两张图，由于这篇博客重点不在于此，所以就不细细讲解了。<br><br><img src="http://oatasl78l.bkt.clouddn.com/react%20cycle1.png" alt=""><br><br><img src="http://oatasl78l.bkt.clouddn.com/react%20cycle2.jpg" alt=""><br></p>
-<p>疑问：</p>
-<ul>
-<li>为什么react会按照这样的方式来，这样的顺序来执行生命周期？</li>
-<li>为什么react多次render时，会执行生命周期的不同阶段。</li>
-<li>为什么getDefaultProps只执行了一次？</li>
-</ul>
-        
-          <a class="article-more-a" href="/2016/11/08/react生命周期源码解读/#more">more >></a>
         
       
 

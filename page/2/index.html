@@ -162,6 +162,71 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-react生命周期源码解读" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/08/react生命周期源码解读/">从源码看react生命周期</a>
+    </h1>
+  
+
+        
+        <a href="/2016/11/08/react生命周期源码解读/" class="archive-article-date">
+  	<time datetime="2016-11-08T04:22:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>React的主要思想，就是通过构建可复用的组件来构建页面，而每一个组件，就是一个有限的状态机，通过状态控制组件不同的渲染，从而得到不同的界面效果。每个组件都有生命周期，它规定了组件的一些自带方法需要在哪个阶段进行执行以及输出对应的结果。</p>
+<p>有限状态机，表示有限个状态，以及在这些状态之间的数据转移和动作方法的执行的行为模型，一般通过状态、事件、转换和动作来描述有限状态机。例如页面上的都个东西有显示和隐藏两种情况，那么一般情况下我们会设计两个方法：show()和hide()来实现显示与隐藏的切换，而react只需要设置某一个状态为true或false，就可以实现这个组件的隐藏和显示转换了。<br>同时，react还引入了组件的生命周期这个概念，通过它就可以实现组件的状态机控制，从而达到“生命周期－状态－组件”的和谐画面。</p>
+<h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><p>之前一篇博客就已经说到了一下生命周期，我在这里再赘述一下吧，react组件自带的一些函数方法，比如getDefaultProps、getInitialState等，会在什么时候执行。</p>
+<ul>
+<li><p>当首次装载组件时，按顺序执行 getDefaultProps、getInitialState、componentWillMount、render 和 componentDidMount；</p>
+</li>
+<li><p>当卸载组件时，执行 componentWillUnmount；</p>
+</li>
+<li><p>当重新装载组件时，此时按顺序执行 getInitialState、componentWillMount、render 和 componentDidMount，但并不执行 getDefaultProps；</p>
+</li>
+<li><p>当再次渲染组件时，组件接受到更新状态，此时按顺序执行 componentWillReceiveProps、shouldComponentUpdate、componentWillUpdate、render 和 componentDidUpdate.</p>
+</li>
+</ul>
+<p>然后具体的状态、属性改变，会触发什么方法，可以参考如下两张图，由于这篇博客重点不在于此，所以就不细细讲解了。<br><br><img src="http://oatasl78l.bkt.clouddn.com/react%20cycle1.png" alt=""><br><br><img src="http://oatasl78l.bkt.clouddn.com/react%20cycle2.jpg" alt=""><br></p>
+<p>疑问：</p>
+<ul>
+<li>为什么react会按照这样的方式来，这样的顺序来执行生命周期？</li>
+<li>为什么react多次render时，会执行生命周期的不同阶段。</li>
+<li>为什么getDefaultProps只执行了一次？</li>
+</ul>
+        
+          <a class="article-more-a" href="/2016/11/08/react生命周期源码解读/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-promise" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -581,55 +646,6 @@
 <p>我先上图吧。<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex1.png" alt=""><br>图1<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex2.png" alt=""><br>图2<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex3.png" alt=""><br>图3<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex4.png" alt=""><br>图4<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex5.png" alt=""><br>图5<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex6.png" alt=""><br>图6<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex7.png" alt=""><br>图7<br><img src="http://oatasl78l.bkt.clouddn.com/redux%20ex8.png" alt=""><br>图8</p>
         
           <a class="article-more-a" href="/2016/07/28/react demo/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-react生命周期" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/24/react生命周期/">react生命周期解读</a>
-    </h1>
-  
-
-        
-        <a href="/2016/07/24/react生命周期/" class="archive-article-date">
-  	<time datetime="2016-07-24T06:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前几天在工作中出现了一个比较怪异的bug，不过还好由于react的单向数据流，从最外层父组件一层一层地往里面找，在每一层都检查一下state和props的值是否正确，总会找到问题，只不过那个组件被前人嵌套了四五层，所以在定位问题的时候比较蛋疼，所以还是最好养成良好的习惯，组件嵌套层级不要太多，而且在开发的时候每一层就别忘了检测props和state，否则后来人会很累的。。。</p>
-<p>经过了long long time，才在某一层组件中找到了问题，具体问题是父组件传入的props改变后子组件通过props来渲染的页面没有发生改变，有疑问吗？父组件传入的props改变，子组件的props不是会自动接收变化并且render吗？嗯，是的，为什么这里没有呢。。。原来有人在开发的时候在getInitialState函数中加了这么一句：this.state.xxx = this.props.xxx，通过这样，他就把props和state关联了起来，心中顿时有无数草泥马狂奔。。。怎么改呢？难道要我把和state关联了的props都取消关联？这个工作量不小。。。还好，react里有个监测props变化的函数：componentWillReceiveProps，然后我再在里面把更新后的props和state关联起来，让state等于新的props就好了，大功告成，这个怪异的问题就解决了。</p>
-<p>有人会觉得奇怪吗？为什么在getInitialState函数中使用了this.state.xxx = this.props.xxx，而在当props更新后传进来时，state依然等于原来的props，这就说到了本片文章的主要，就是react的生命周期。</p>
-<h4 id="react组件的详细说明和生命周期"><a href="#react组件的详细说明和生命周期" class="headerlink" title="react组件的详细说明和生命周期"></a>react组件的详细说明和生命周期</h4><p>先来说一下react场见的函数吧。</p>
-        
-          <a class="article-more-a" href="/2016/07/24/react生命周期/#more">more >></a>
         
       
 
