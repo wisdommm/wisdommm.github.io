@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wisdommm.github.io">
-  <title>Archives | Wisdommm</title>
+  <title>react, es5 or es6 ? | Wisdommm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在梦想的道路上一路狂奔">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wisdommm">
-<meta property="og:url" content="http://wisdommm.github.io/archives/index.html">
+  <meta name="description" content="随着es6的逐渐普及，新的语法糖，对我们以前写js的习惯也有着不小的冲击，比如说我好久都没写过function这个词语了，取而代之的是“=&amp;gt;”箭头函数，var也基本不用了，现在用let，以及其他等等。
+但是对于写react，es5和es6的变化，还是稍微有一些不同的，“talk is cheap,show the code”。
+这是es5的写法：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react, es5 or es6 ?">
+<meta property="og:url" content="http://wisdommm.github.io/2017/01/24/react es5还是es6 ？/index.html">
 <meta property="og:site_name" content="Wisdommm">
-<meta property="og:description" content="在梦想的道路上一路狂奔">
+<meta property="og:description" content="随着es6的逐渐普及，新的语法糖，对我们以前写js的习惯也有着不小的冲击，比如说我好久都没写过function这个词语了，取而代之的是“=&amp;gt;”箭头函数，var也基本不用了，现在用let，以及其他等等。
+但是对于写react，es5和es6的变化，还是稍微有一些不同的，“talk is cheap,show the code”。
+这是es5的写法：">
+<meta property="og:updated_time" content="2017-01-24T09:07:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wisdommm">
-<meta name="twitter:description" content="在梦想的道路上一路狂奔">
+<meta name="twitter:title" content="react, es5 or es6 ?">
+<meta name="twitter:description" content="随着es6的逐渐普及，新的语法糖，对我们以前写js的习惯也有着不小的冲击，比如说我好久都没写过function这个词语了，取而代之的是“=&amp;gt;”箭头函数，var也基本不用了，现在用let，以及其他等等。
+但是对于写react，es5和es6的变化，还是稍微有一些不同的，“talk is cheap,show the code”。
+这是es5的写法：">
   
     <link rel="alternative" href="/atom.xml" title="Wisdommm" type="application/atom+xml">
   
@@ -160,295 +167,189 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-react es5还是es6 ？" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      react, es5 or es6 ?
+    </h1>
+  
+
+        
+        <a href="/2017/01/24/react es5还是es6 ？/" class="archive-article-date">
+  	<time datetime="2017-01-24T09:07:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-24</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>随着es6的逐渐普及，新的语法糖，对我们以前写js的习惯也有着不小的冲击，比如说我好久都没写过function这个词语了，取而代之的是“=&gt;”箭头函数，var也基本不用了，现在用let，以及其他等等。</p>
+<p>但是对于写react，es5和es6的变化，还是稍微有一些不同的，“talk is cheap,show the code”。</p>
+<p>这是es5的写法：</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">var InputControlES5 = React.createClass(&#123;</div><div class="line">  defaultProps：&#123;</div><div class="line">    initialValue：&apos;&apos;</div><div class="line">  &#125;,</div><div class="line">  propTypes：&#123;</div><div class="line">    initialValue：React.PropTypes.string</div><div class="line">  &#125;, </div><div class="line">  // Set up initial state</div><div class="line">  getInitialState：function() &#123;</div><div class="line">    return &#123;</div><div class="line">      text：this.props.initialValue || &apos;placeholder&apos; </div><div class="line">    &#125;;</div><div class="line">  &#125;,</div><div class="line">  handleChange：function(event) &#123;</div><div class="line">    this.setState(&#123;</div><div class="line">      text：event.target.value</div><div class="line">    &#125;);</div><div class="line">  &#125;,</div><div class="line">  render：function() &#123;</div><div class="line">    return (</div><div class="line">      &lt;div&gt;</div><div class="line">        Type something：        </div><div class="line">        &lt;input onChange=&#123;this.handleChange&#125; </div><div class="line">          value=&#123;this.state.text&#125; /&gt;</div><div class="line">        &lt;/div&gt; </div><div class="line">      );</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>下面是es6的写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">class InputControlES6 extends React.Component &#123; </div><div class="line">  constructor(props) &#123;</div><div class="line">    super(props); </div><div class="line">    // Set up initial state</div><div class="line">    this.state = &#123;</div><div class="line">      text：props.initialValue || &apos;placeholder&apos; </div><div class="line">    &#125;;</div><div class="line">    // Functions must be bound manually with ES6 classes</div><div class="line">    this.handleChange = this.handleChange.bind(this); </div><div class="line">  &#125; </div><div class="line">  handleChange(event) &#123;</div><div class="line">    this.setState(&#123; </div><div class="line">      text：event.target.value</div><div class="line">    &#125;);</div><div class="line">  &#125; </div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;div&gt;</div><div class="line">        Type something：</div><div class="line">        &lt;input onChange=&#123;this.handleChange&#125; value=&#123;this.state.text&#125; /&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">InputControlES6.propTypes = &#123; </div><div class="line">  initialValue：React.PropTypes.string</div><div class="line">&#125;;</div><div class="line"></div><div class="line">InputControlES6.defaultProps = &#123;</div><div class="line">  initialValue：&apos;&apos;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>一下是一些关键的不同点：</p>
+<h4 id="创建方式不同"><a href="#创建方式不同" class="headerlink" title="创建方式不同"></a>创建方式不同</h4><p>es5是通过creatClass来创建的react组件，而es6是通过class extends来创建的，或许这是最直接的嫩个发现的差异吧，毕竟这在第一行。</p>
+<h4 id="函数的绑定"><a href="#函数的绑定" class="headerlink" title="函数的绑定"></a>函数的绑定</h4><p>话说以前，我修改过别人用es6写的react代码，我习惯在每个函数后面加上一个逗号，然后我在render函数中增加了一个事件，对应执行的函数是this.xxx，结果呢？报了一堆的错（包括之前的逗号），“this.xxx is undefined.”，当时我还不知道es6与es5的差异，当时就一脸无辜的表情，然后没办法，我把别人的代码全部用es5重写了一遍，并且当时表示以后都会一直使用es5的方式来写react。唉，人的一生，自身的努力很重要，但是也要考虑到历史的进程。。。于是我也就做了一点微小的工作，也开始采用es6的方式来写react了。</p>
+<p>好了，说回正题，es5使用的是creatClass的方式来创建react组件，每一个函数都会自动被react绑定，所以就不会有“this.xxx is undefined.”这样的报错了。但是es6的class就不同了，你在<strong>render函数里使用到的this.xxx函数</strong>，都需要自己手动去构造函数中绑定它们，当然，你也可以通过插件来自动绑定，还有一种方式就是你可以在调用这个函数的地方，直接增加bind(this)来进行绑定，比如<code><input onchange="{this.handleChange.bind(this)}"></code>这样来绑定this。</p>
+<p>上面的几种方式都可以绑定this，不过在性能上来说，却还是有一定差距的。首先是引入第三方库来自动绑定，如果是一个比较大型的项目，引入一个比较小的库，来解决比较多比较繁琐的bind的问题，还是可以的，不过前提是项目比较大，需要在引入第三方库和人为绑定之间权衡利弊。剩下的方法就是在构造函数里绑定this还是在render函数里绑定this，工作量其实是差不多的，但是这里涉及到一个生命周期的问题，构造函数，在整个react声明周期里，只会调用一次，但是render就不一样了，任何组件的任何属性改变或者状态改变，都可能处罚render函数来重新渲染，所以render函数一般是会执行多次的，既然执行多次，那么里面的bind(this)自然也是会执行多次，这与在构造函数里只执行一次来比，当然就会慢一些。<br>有没有更好的办法呢？我在文章开始就说过了，es6有一个比较明显的特性就是箭头函数，它是会自动绑定this的，你可以在定义函数的地方直接使用箭头函数，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">handleChange = (event) =&gt; &#123; </div><div class="line">  this.setState(&#123;</div><div class="line">    text: event.target.value</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样的话，也就不用考虑绑定this的事情了，是不是很方便啊。</p>
+<h4 id="构造函数中的super"><a href="#构造函数中的super" class="headerlink" title="构造函数中的super"></a>构造函数中的super</h4><p>es6的constructor需要接收props，并且调用super(props)，这是相对于es5所改变的一点，这个记住就行了。</p>
+<h4 id="初始化state"><a href="#初始化state" class="headerlink" title="初始化state"></a>初始化state</h4><p>在es5中，react组件初始化的时候会执行一个getinitialState函数，而es6中却不是这样，在调用super之后，会直接设置一个this.state的对象来初始化，this.state = {…}。</p>
+<h4 id="getdefaultProps和propTypes"><a href="#getdefaultProps和propTypes" class="headerlink" title="getdefaultProps和propTypes"></a>getdefaultProps和propTypes</h4><p>和初始化state一样，在es5中，也有一个函数来单独初始化props，就是getdefaultProps，而es6就是用上面的那个super方法，es5中可以直接在这个函数下面接着写propTypes来限定接收的参数的类型，而es6就不一样了，它将propTypes直接放在了react组件之外，因为这些将会是类本身的属性，所以需要放在类的外部来单独定义。es7易经又将定义属性改回了类的内部，不过这个还没普及。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">class Person extends React.Component &#123; </div><div class="line">  static propTypes = &#123; </div><div class="line">    name: React.PropTypes.string, </div><div class="line">    age: React.PropTypes.string </div><div class="line">  &#125;; </div><div class="line">  static defaultProps = &#123; </div><div class="line">    name: &apos;&apos;, </div><div class="line">    age: -1 </div><div class="line">  &#125;; </div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="用哪个方法才好？"><a href="#用哪个方法才好？" class="headerlink" title="用哪个方法才好？"></a>用哪个方法才好？</h4><p>Facebook已经声明了React.createClass将最终会被ES6的classes替代，但是他们也说“在我们找到当前mixin所使用的例子的替代者以及在语言上支持类属性的初始化器前，我们不打算废弃React.createClass”。</p>
+<p>在任何可以使用无状态函数式组件的地方使用它。简单而且会强制性地简化你的组件。</p>
+<p>对于一些需要state，生命周期方法或是通过ref来操作潜在的DOM节点的复杂组件来讲，请使用class。</p>
+<p>尽管知道这三种写法风格很棒，但在StackOverflow或者其他地方查找解决方案时可能仍会看到一些混杂着ES5和ES6写法的答案。ES6风格已经非常流行了，但这不会是你看到的唯一一种写法。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>thanks !<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oatasl78l.bkt.clouddn.com/alipay pic.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oatasl78l.bkt.clouddn.com/wx pic.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/07/页面表单field后台配置化方案/" class="archive-article-date">
-  	<time datetime="2017-08-07T10:25:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/07/页面表单field后台配置化方案/">页面表单后台配置化方案</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://wisdommm.github.io/2017/01/24/react es5还是es6 ？/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/07/算法/" class="archive-article-date">
-  	<time datetime="2017-08-07T10:24:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-07</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/07/算法/">几种常见的算法</a>
-    </h1>
+    <a href="/2017/01/24/react生命周期源码解读/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          从源码看react生命周期
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/01/24/redux源码解读/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">redux源码解读</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://wisdommm.github.io/2017/01/24/react es5还是es6 ？/", 
+    sourceId: "react es5还是es6 ？",
+    productKey: "aafef0c8c11b4e329f06cb387dc8ba7e",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/04/react demo/" class="archive-article-date">
-  	<time datetime="2017-05-04T06:29:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/04/react demo/">redux 店铺装修</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/11/震惊，大多数前端都还不知道这道题的答案/" class="archive-article-date">
-  	<time datetime="2017-04-11T12:56:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/11/震惊，大多数前端都还不知道这道题的答案/">震惊！大多数前端都不知道的知识</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/06/promise/" class="archive-article-date">
-  	<time datetime="2017-04-06T06:41:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/06/promise/">promise 详解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/05/http cache/" class="archive-article-date">
-  	<time datetime="2017-04-05T09:15:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/05/http cache/">http cache</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/31/js事件机制/" class="archive-article-date">
-  	<time datetime="2017-03-31T10:18:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/31/js事件机制/">javascript事件机制</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/23/fastClick/" class="archive-article-date">
-  	<time datetime="2017-03-23T06:57:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/23/fastClick/">fastClick 基本解读</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/20/ES6 TDZ/" class="archive-article-date">
-  	<time datetime="2017-03-20T11:55:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/20/ES6 TDZ/">ES6中的暂时性死区（TDZ）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/14/react生命周期/" class="archive-article-date">
-  	<time datetime="2017-02-14T12:54:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/14/react生命周期/">react生命周期解读</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -472,8 +373,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

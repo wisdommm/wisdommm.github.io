@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wisdommm.github.io">
-  <title>Archives | Wisdommm</title>
+  <title>javascript异步编程（续） | Wisdommm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在梦想的道路上一路狂奔">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wisdommm">
-<meta property="og:url" content="http://wisdommm.github.io/archives/index.html">
+  <meta name="description" content="之前那篇文章讲解了javascript异步式编程的几个方法，比如有回调函数，promise，发布／订阅模式，generator函数等，每一种方式，在其广泛使用的时期，都是很完善的一种方式，不过由于时代的进步，技术的发展，缺点总会暴露出来，更好更完善的方法也会被创造出来。
+这篇文章，我就想来说说async函数。
+ES7意见征集稿中提供了async函数，这是什么？其实可以用一句话来概括，async函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript异步编程（续）">
+<meta property="og:url" content="http://wisdommm.github.io/2017/01/24/javascript异步编程（续）/index.html">
 <meta property="og:site_name" content="Wisdommm">
-<meta property="og:description" content="在梦想的道路上一路狂奔">
+<meta property="og:description" content="之前那篇文章讲解了javascript异步式编程的几个方法，比如有回调函数，promise，发布／订阅模式，generator函数等，每一种方式，在其广泛使用的时期，都是很完善的一种方式，不过由于时代的进步，技术的发展，缺点总会暴露出来，更好更完善的方法也会被创造出来。
+这篇文章，我就想来说说async函数。
+ES7意见征集稿中提供了async函数，这是什么？其实可以用一句话来概括，async函数">
+<meta property="og:updated_time" content="2017-01-24T09:10:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wisdommm">
-<meta name="twitter:description" content="在梦想的道路上一路狂奔">
+<meta name="twitter:title" content="javascript异步编程（续）">
+<meta name="twitter:description" content="之前那篇文章讲解了javascript异步式编程的几个方法，比如有回调函数，promise，发布／订阅模式，generator函数等，每一种方式，在其广泛使用的时期，都是很完善的一种方式，不过由于时代的进步，技术的发展，缺点总会暴露出来，更好更完善的方法也会被创造出来。
+这篇文章，我就想来说说async函数。
+ES7意见征集稿中提供了async函数，这是什么？其实可以用一句话来概括，async函数">
   
     <link rel="alternative" href="/atom.xml" title="Wisdommm" type="application/atom+xml">
   
@@ -160,295 +167,205 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-javascript异步编程（续）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      javascript异步编程（续）
+    </h1>
+  
+
+        
+        <a href="/2017/01/24/javascript异步编程（续）/" class="archive-article-date">
+  	<time datetime="2017-01-24T09:10:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-24</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前那篇文章讲解了javascript异步式编程的几个方法，比如有回调函数，promise，发布／订阅模式，generator函数等，每一种方式，在其广泛使用的时期，都是很完善的一种方式，不过由于时代的进步，技术的发展，缺点总会暴露出来，更好更完善的方法也会被创造出来。</p>
+<p>这篇文章，我就想来说说<code>async</code>函数。</p>
+<p>ES7意见征集稿中提供了<code>async</code>函数，这是什么？其实可以用一句话来概括，<code>async</code>函数就是Generator函数的语法糖。</p>
+<p>我们从Generator函数开始，代码如下。</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">// 这是采用fs模块来异步读取文件</div><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line"></div><div class="line">var readFile = function (fileName) &#123;</div><div class="line">  return new Promise(function (resolve, reject) &#123;</div><div class="line">    fs.readFile(fileName, function(error, data) &#123;</div><div class="line">      if (error) reject(error);</div><div class="line">      resolve(data);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">// 这是使用generator函数的方法，依次读取两个文件</div><div class="line">var gen = function* ()&#123;</div><div class="line">  var f1 = yield readFile(&apos;/etc/fstab&apos;);</div><div class="line">  var f2 = yield readFile(&apos;/etc/shells&apos;);</div><div class="line">  console.log(f1.toString());</div><div class="line">  console.log(f2.toString());</div><div class="line">&#125;;</div><div class="line"></div><div class="line">// 下面是async函数的写法</div><div class="line">var asyncReadFile = async function ()&#123;</div><div class="line">  var f1 = await readFile(&apos;/etc/fstab&apos;);</div><div class="line">  var f2 = await readFile(&apos;/etc/shells&apos;);</div><div class="line">  console.log(f1.toString());</div><div class="line">  console.log(f2.toString());</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>其实一比较，差异很明显，<code>async</code>函数就是将generator函数的星号替换成了<code>async</code>，将<code>yield</code>替换成了<code>await</code>。</p>
+<p>仅此而已！仅此而已？</p>
+<p>虽然加入了比较好看的语法糖，不过一个新的方法如果只是比老的方法命名好听，有什么意义呢？下面我来说一下<code>async</code>函数和generator函数的主要区别吧。</p>
+<ol>
+<li><p>更好的语义。既然都看出来了，那最明显的当然是标志符换了，也就是更加语义化了，<code>await</code>和<code>async</code>比星号跟yield更加让人好理解。</p>
+</li>
+<li><p>更好的适用性。generator函数的执行必须依靠执行器，或者人为的多次调用next方法才能继续执行下去，而<code>async</code>是自带执行器的，这是什么意思呢？意思就是你再也不用管什么next了，也不用管怎么异步执行了，你完完全全就可以把<code>async</code>函数就当做普通的函数来看来，当你想执行的时候，只需要一句<code>var result = async();</code>就可以了，她会自动调用<code>async</code>函数并且自动执行，输出最后结果，你现在可以将什么next方法啊，co模块这些全部放一边了。</p>
+</li>
+<li><p>返回值是promise。<code>async</code>函数的返回值是promise对象，这比generator函数的返回一个Iterator对象方便多了，你可以使用promise里的then方法来进行下一步的操作。而<code>async</code>函数完全可以看作是多个异步的操作，包装成了一个promise对象，而await就是then方法的语法糖。</p>
+</li>
+</ol>
+<p>下面是一些<code>async</code>函数的具体使用示例。</p>
+<p>1，下面代码中，函数f中return的数据，会被promise的then方法的回调函数获取到，所以then方法回调函数里的参数v就是指代的f函数的return的数据，所以控制台才会打印出hello world</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">async function f() &#123;</div><div class="line">  return &apos;hello world&apos;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">f().then(v =&gt; console.log(v))</div><div class="line">// 打开控制台，你就会看见有一句hello world（前提是你的浏览器支持async）</div></pre></td></tr></table></figure>
+<p>2，<code>async</code>函数内部抛出错误，会导致返回的promise对象变为reject状态，抛出的错误对象，会被catch方法的回调函数捕捉到。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">async function f() &#123;</div><div class="line">  throw new Error(&apos;出错了&apos;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">f().then(</div><div class="line">  v =&gt; console.log(v),</div><div class="line">  e =&gt; console.log(e)</div><div class="line">)</div><div class="line">// Error: 出错了</div></pre></td></tr></table></figure>
+<p>3，<code>async</code>函数返回的promise对象，必须要等到内部await命令的promise对象执行完，才会发生状态的改变，换句话说，也就是<code>async</code>函数内部的await命令执行完了，才会执行then方法的回调函数。如下面的例子。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">async function getTitle(url) &#123;</div><div class="line">  let response = await fetch(url);</div><div class="line">  let html = await response.text();</div><div class="line">  return html.match(/&lt;title&gt;([\s\S]+)&lt;\/title&gt;/i)[1];</div><div class="line">&#125;</div><div class="line">getTitle(&apos;https://tc39.github.io/ecma262/&apos;).then(console.log)</div><div class="line">// &quot;ECMAScript 2017 Language Specification&quot;</div></pre></td></tr></table></figure>
+<p>4，在正常情况下，await后面应该是一个promise对象，如果不是，那么会被转变为一个立即resolve的promise对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">async function f() &#123;</div><div class="line">  return await 123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">f().then(v =&gt; console.log(v))</div><div class="line">// 123，这里await后面的123虽然不是promise对象，不过它会转变为promise对象并立即被resolve，所以在后面的then方法的回调函数里，依然可以正常的运行。</div></pre></td></tr></table></figure>
+<p>5，<code>async</code>函数返回的promise对象，如果变为了reject状态，则reject的参数会被catch方法的回调函数接收到，示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">async function f() &#123;</div><div class="line">  await Promise.reject(&apos;出错了&apos;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">f()</div><div class="line">.then(v =&gt; console.log(v))</div><div class="line">.catch(e =&gt; console.log(e))</div><div class="line">// 出错了。上面的await前面没有return语句，但是reject状态的参数依然传入了catch方法的回调函数里，所以说这里有没有return都是不影响的，不过为了统一与规范，还是建议加上。</div></pre></td></tr></table></figure>
+<p>6，只有程序发现了一个promise函数的状态变为了reject，那么后面的代码将不会执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">async function f() &#123;</div><div class="line">  await Promise.reject(&apos;出错了&apos;);</div><div class="line">  await Promise.resolve(&apos;hello world&apos;); // 这句将不会执行</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 所以为了避免这种情况发生，可以将第一个await放在try...catch...语句中，这样代码的执行就不会被中断。</div><div class="line"></div><div class="line">async function f() &#123;</div><div class="line">  try &#123;</div><div class="line">    await Promise.reject(&apos;出错了&apos;);</div><div class="line">  &#125; catch(e) &#123;</div><div class="line">  &#125;</div><div class="line">  return await Promise.resolve(&apos;hello world&apos;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">f()</div><div class="line">.then(v =&gt; console.log(v))</div><div class="line">// hello world</div><div class="line"></div><div class="line">// 另一种解决办法就是在await后面的promise对象加上一个catch方法，来处理前面可能会出现的错误，代码如下。</div><div class="line"></div><div class="line">async function f() &#123;</div><div class="line">  await Promise.reject(&apos;出错了&apos;)</div><div class="line">    .catch(e =&gt; console.log(e));</div><div class="line">  return await Promise.resolve(&apos;hello world&apos;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">f()</div><div class="line">.then(v =&gt; console.log(v))</div><div class="line">// 出错了</div><div class="line">// hello world</div><div class="line"></div><div class="line">// 当然，我们也可以将多个await命令放进catch方法里，这段代码就省略了。。。</div></pre></td></tr></table></figure>
+<p>7，如果await后面的异步操作出错，那么就等同于promise对象状态变为reject。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">async function f() &#123;</div><div class="line">  await new Promise(function (resolve, reject) &#123;</div><div class="line">    throw new Error(&apos;出错了&apos;);</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">f()</div><div class="line">.then(v =&gt; console.log(v))</div><div class="line">.catch(e =&gt; console.log(e))</div><div class="line">// Error：出错了</div></pre></td></tr></table></figure>
+<p>上面说了那么多的示例，都是比较片面的讲解使用中的注意事项，完整的示例来讲解<code>async</code>函数的使用方法，所以我下面会主要讲<code>async</code>函数的使用。</p>
+<p>1，上面代码是一个获取股票报价的函数，函数前面的async关键字，表明该函数内部有异步操作。调用该函数时，会立即返回一个Promise对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">async function getStockPriceByName(name) &#123;</div><div class="line">  var symbol = await getStockSymbol(name);</div><div class="line">  var stockPrice = await getStockPrice(symbol);</div><div class="line">  return stockPrice;</div><div class="line">&#125;</div><div class="line"></div><div class="line">getStockPriceByName(&apos;goog&apos;).then(function (result) &#123;</div><div class="line">  console.log(result);</div><div class="line">&#125;);</div><div class="line">// 最后打印出的这个result就是getStockPriceByName函数中return的stockPrice。</div></pre></td></tr></table></figure>
+<p>2，下面代码指定50毫秒以后，输出”hello world”。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function timeout(ms) &#123;</div><div class="line">  return new Promise((resolve) =&gt; &#123;</div><div class="line">    setTimeout(resolve, ms);</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">async function asyncPrint(value, ms) &#123;</div><div class="line">  await timeout(ms);</div><div class="line">  console.log(value)</div><div class="line">&#125;</div><div class="line"></div><div class="line">asyncPrint(&apos;hello world&apos;, 50);</div></pre></td></tr></table></figure>
+<p>十一国庆节来公司基本没人，后背也感到一阵阵凉风，这篇博客就先讲到这里吧，有什么完善的地方后面我会再继续补充的。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>thanks !<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oatasl78l.bkt.clouddn.com/alipay pic.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oatasl78l.bkt.clouddn.com/wx pic.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/07/页面表单field后台配置化方案/" class="archive-article-date">
-  	<time datetime="2017-08-07T10:25:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/07/页面表单field后台配置化方案/">页面表单后台配置化方案</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://wisdommm.github.io/2017/01/24/javascript异步编程（续）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/07/算法/" class="archive-article-date">
-  	<time datetime="2017-08-07T10:24:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-07</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/07/算法/">几种常见的算法</a>
-    </h1>
+    <a href="/2017/01/24/hexo-search/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          hexo博客增加搜索功能
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/01/24/javascript异步编程/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">javascript异步编程</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://wisdommm.github.io/2017/01/24/javascript异步编程（续）/", 
+    sourceId: "javascript异步编程（续）",
+    productKey: "aafef0c8c11b4e329f06cb387dc8ba7e",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/04/react demo/" class="archive-article-date">
-  	<time datetime="2017-05-04T06:29:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/04/react demo/">redux 店铺装修</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/11/震惊，大多数前端都还不知道这道题的答案/" class="archive-article-date">
-  	<time datetime="2017-04-11T12:56:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/11/震惊，大多数前端都还不知道这道题的答案/">震惊！大多数前端都不知道的知识</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/06/promise/" class="archive-article-date">
-  	<time datetime="2017-04-06T06:41:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/06/promise/">promise 详解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/05/http cache/" class="archive-article-date">
-  	<time datetime="2017-04-05T09:15:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/05/http cache/">http cache</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/31/js事件机制/" class="archive-article-date">
-  	<time datetime="2017-03-31T10:18:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/31/js事件机制/">javascript事件机制</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/23/fastClick/" class="archive-article-date">
-  	<time datetime="2017-03-23T06:57:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/23/fastClick/">fastClick 基本解读</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/20/ES6 TDZ/" class="archive-article-date">
-  	<time datetime="2017-03-20T11:55:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/20/ES6 TDZ/">ES6中的暂时性死区（TDZ）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/14/react生命周期/" class="archive-article-date">
-  	<time datetime="2017-02-14T12:54:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/14/react生命周期/">react生命周期解读</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -472,8 +389,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

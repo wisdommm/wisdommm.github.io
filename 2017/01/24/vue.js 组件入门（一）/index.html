@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wisdommm.github.io">
-  <title>Archives | Wisdommm</title>
+  <title>vue.js 组件快速入门（一） | Wisdommm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在梦想的道路上一路狂奔">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wisdommm">
-<meta property="og:url" content="http://wisdommm.github.io/archives/index.html">
+  <meta name="description" content="前几天读了一篇好文章，vue组件化，这篇算是我自己提炼出来的的归纳与总结吧。
+在前端开发中，以前我们会把常用的公共的方法（函数）提取出来，整合为一个库，最有名的当属jQ了吧，然后到了react出现，这些类库主要都是针对view层进行的操作与封装，我们又可以把view层面上的一些东西抽出来进行封装和整理，比如一个table，一个button，一个div等，也可以像曾经提取函数一样抽出来，写成公用的，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue.js 组件快速入门（一）">
+<meta property="og:url" content="http://wisdommm.github.io/2017/01/24/vue.js 组件入门（一）/index.html">
 <meta property="og:site_name" content="Wisdommm">
-<meta property="og:description" content="在梦想的道路上一路狂奔">
+<meta property="og:description" content="前几天读了一篇好文章，vue组件化，这篇算是我自己提炼出来的的归纳与总结吧。
+在前端开发中，以前我们会把常用的公共的方法（函数）提取出来，整合为一个库，最有名的当属jQ了吧，然后到了react出现，这些类库主要都是针对view层进行的操作与封装，我们又可以把view层面上的一些东西抽出来进行封装和整理，比如一个table，一个button，一个div等，也可以像曾经提取函数一样抽出来，写成公用的，">
+<meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/vue1.png">
+<meta property="og:image" content="http://oatasl78l.bkt.clouddn.com/vue2.png">
+<meta property="og:updated_time" content="2017-01-24T09:06:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wisdommm">
-<meta name="twitter:description" content="在梦想的道路上一路狂奔">
+<meta name="twitter:title" content="vue.js 组件快速入门（一）">
+<meta name="twitter:description" content="前几天读了一篇好文章，vue组件化，这篇算是我自己提炼出来的的归纳与总结吧。
+在前端开发中，以前我们会把常用的公共的方法（函数）提取出来，整合为一个库，最有名的当属jQ了吧，然后到了react出现，这些类库主要都是针对view层进行的操作与封装，我们又可以把view层面上的一些东西抽出来进行封装和整理，比如一个table，一个button，一个div等，也可以像曾经提取函数一样抽出来，写成公用的，">
+<meta name="twitter:image" content="http://oatasl78l.bkt.clouddn.com/vue1.png">
   
     <link rel="alternative" href="/atom.xml" title="Wisdommm" type="application/atom+xml">
   
@@ -160,295 +167,194 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-vue.js 组件入门（一）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vue.js 组件快速入门（一）
+    </h1>
+  
+
+        
+        <a href="/2017/01/24/vue.js 组件入门（一）/" class="archive-article-date">
+  	<time datetime="2017-01-24T09:06:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-24</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前几天读了一篇好文章，<a href="http://www.cnblogs.com/keepfool/p/5625583.html" target="_blank" rel="external">vue组件化</a>，这篇算是我自己提炼出来的的归纳与总结吧。</p>
+<p>在前端开发中，以前我们会把常用的公共的方法（函数）提取出来，整合为一个库，最有名的当属jQ了吧，然后到了react出现，这些类库主要都是针对view层进行的操作与封装，我们又可以把view层面上的一些东西抽出来进行封装和整理，比如一个table，一个button，一个div等，也可以像曾经提取函数一样抽出来，写成公用的，在需要使用的地方直接引入就可以了，当然，也可以根据你实际运用的需要进行适当的自定义配置，而这些被抽出来共用的table，button，div这些，就叫做组件。</p>
+<p>上面是我自己瞎扯的，原文作者讲得比较繁琐，所以我就用自己的语言来概述了一下，虽然这篇文章是我转载的，不过我也参考了其它的文章／博客，知识点的相似度接近80%，但是语言基本上都是我自己重新组织的，所以加了很多自己的想法和思考，下面我们开始进入正题。</p>
+<a id="more"></a>
+<p>###vue组件，创建与注册的基本步骤。</p>
+<p>vue组件的使用，有三个步骤，分别是创建组件，注册组件和使用组件，如下图所示。<br><img src="http://oatasl78l.bkt.clouddn.com/vue1.png" alt=""></p>
+<p>我们可以用一段代码来演示这三个步骤：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">    &lt;body&gt;</div><div class="line">        &lt;div id=&quot;app&quot;&gt;</div><div class="line">            &lt;!-- 3. #app是Vue实例挂载的元素，应该在挂载元素范围内使用组件--&gt;</div><div class="line">            &lt;my-component&gt;&lt;/my-component&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">    &lt;/body&gt;</div><div class="line">    &lt;script src=&quot;js/vue.js&quot;&gt;&lt;/script&gt;</div><div class="line">    &lt;script&gt;</div><div class="line">    </div><div class="line">        // 1.创建一个组件构造器</div><div class="line">        var myComponent = Vue.extend(&#123;</div><div class="line">            template: &apos;&lt;div&gt;This is my first component!&lt;/div&gt;&apos;</div><div class="line">        &#125;)</div><div class="line">        </div><div class="line">        // 2.注册组件，并指定组件的标签，组件的HTML标签为&lt;my-component&gt;</div><div class="line">        Vue.component(&apos;my-component&apos;, myComponent)</div><div class="line">        </div><div class="line">        new Vue(&#123;</div><div class="line">            el: &apos;#app&apos;</div><div class="line">        &#125;);</div><div class="line">        </div><div class="line">    &lt;/script&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>运行结果很简单，就是一句“This is my first component!”，可以看到，使用组件和使用普通的HTML元素没什么区别，你可以就把组件当做一个HTML元素来使用。</p>
+<p>要理解组件的创建和注册，我们可以用一下几个步骤来详细解释：</p>
+<ol>
+<li>Vue.extend()是Vue构造器的扩展，调用Vue.extend()创建的是一个组件构造器，而不是一个具体的组件实例。</li>
+<li>Vue.extend()构造器有一个选项对象，选项对象的template属性用于定义组件要渲染的HTML。 </li>
+<li>使用Vue.component()注册组件时，需要提供2个参数，第1个参数时组件的标签，第2个参数是组件构造器。 </li>
+<li>Vue.component()方法内部会调用组件构造器，创建一个组件实例。 </li>
+<li>组件应该挂载到某个Vue实例下，否则它不会生效。</li>
+</ol>
+<p>我们一句一句来分析，先是创建一个组件，代码是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">myComponent = Vue.extend(&#123;</div><div class="line">	template: &apos;&lt;div&gt;This is my first component!&lt;/div&gt;&apos;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>创建组件很简单，直接调用vue构造器的扩展方法就行了，里面会传入一个对象，对象里面有个template属性，它指代的是这个组件的view的内容，是不是像react里面的render函数啊，它也是return的view内容，<strong>它们有哪些不同呢？</strong>毕竟学习知识要针对各种不同的但是有类似的知识点来进行归纳，整理和综合，才能进行融会贯通的运用。毕竟古人云：学而时习之，不亦悦乎！</p>
+<p>好了，这是创建，下面是注册了，注册也很简单，一句代码就搞定了：Vue.component(‘my-component’, myComponent);，使用Vue.component方法，传入两个参数，第一个参数是你想注册的组件名，第二个参数是你创建的组件名，是不是有点混淆？先是你通过Vue.extend创建了一个组件，名字叫myComponent，然后为了在HTML中能够当做标签来使用，你需要给你创建的这个组件注册一个组件名，名字叫做my-component，所以你在HTML就可以直接把你注册的组件名当做HTML标签来使用，像这样<my-component></my-component>就可以了。<br><br>现在组件创建好了，也注册好了，可是还不能直接使用，因为还需要new一个Vue实例，才能使用，像这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Vue(&#123;</div><div class="line">    el: &apos;#app&apos;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>一个Vue实例接收一个对象，里面的el属性是你组件的挂载节点，于是我又情不自禁地联想到了react，ReactDOM.render( dom , root)，就像这样，react也是将一个view界面的虚拟dom挂载到一个root节点上，而这里的Vue同样，需要将刚才的组件也挂载到某个节点下，这两者之间的异同后面再说吧，先说一点主要的，vue里的节点指的是vue组件的作用域，这点是和react差异比较大的一点，你将vue组件挂载在了某个节点下，意思是这个组件只有在这个节点范围内才可以使用，至于是使用多次，使用一次，还是一次都不使用，都没问题。而我们这个实例上，就是挂载在了id为app的节点上，所以在这个节点的范围内都可以使用<my-component></my-component>的形式，来调用vue组件myComponent。同理，如果你想在多个节点的作用域内使用某个vue组件的话，那你就得多new几次，把组件的挂载到多个节点下面就好了，而如果在没有实例化的组件中非法调用某个vue组件，它将不起任何作用。<br>详细情况可以看以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">    &lt;body&gt;</div><div class="line">        &lt;div id=&quot;app1&quot;&gt;</div><div class="line">            &lt;my-component&gt;&lt;/my-component&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">        &lt;div id=&quot;app2&quot;&gt;</div><div class="line">            &lt;my-component&gt;&lt;/my-component&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">        &lt;div id=&quot;app3&quot;&gt;</div><div class="line">	        &lt;!--该组件不会被渲染--&gt;</div><div class="line">	        &lt;my-component&gt;&lt;/my-component&gt;</div><div class="line">	    &lt;/div&gt;</div><div class="line">    &lt;/body&gt;</div><div class="line">    &lt;script&gt;</div><div class="line">        var myComponent = Vue.extend(&#123;</div><div class="line">            template: &apos;&lt;div&gt;This is a component!&lt;/div&gt;&apos;</div><div class="line">        &#125;)</div><div class="line">        </div><div class="line">        Vue.component(&apos;my-component&apos;, myComponent)</div><div class="line">        </div><div class="line">        var app1 = new Vue(&#123;</div><div class="line">            el: &apos;#app1&apos;</div><div class="line">        &#125;);</div><div class="line">        </div><div class="line">        var app2 = new Vue(&#123;</div><div class="line">            el: &apos;#app2&apos;</div><div class="line">        &#125;)</div><div class="line">    &lt;/script&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>在上面代码中，我们创建了一个名叫myComponent的vue组件，然后注册了一个名叫my-component的组件来当做HTML标签使用，最后我们实例化时，只在id=”app1”和id=”app2”中挂载了这个vue组件，而在实际使用的时候，我们在id=”app3”中也使用了这个<my-component></my-component>组件，所以最后，只有id=”app1”和id=”app2”的div中组件成功地被替换成了“This is a component!”，而id=”app3”中的<my-component></my-component>标签将不会被渲染。具体效果如下图所示：<br><img src="http://oatasl78l.bkt.clouddn.com/vue2.png" alt=""></p>
+<p>好了，一个基本的vue组件的一整套流程基本就完全是这样了，any problems else？我知道，现在还有很多的问题没有解决，比如创建组件，注册组件和实例化挂载到某个节点下，整体步骤比较繁琐；注册组件的时候可以局部注册吗；组件可以嵌套吗？如果可以，如何嵌套；vue组件怎么怎么做成可扩展的？又怎样变为自定义配置呢？</p>
+<p>我下一篇博客再细细道来。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>thanks !<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oatasl78l.bkt.clouddn.com/alipay pic.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oatasl78l.bkt.clouddn.com/wx pic.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/07/页面表单field后台配置化方案/" class="archive-article-date">
-  	<time datetime="2017-08-07T10:25:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/07/页面表单field后台配置化方案/">页面表单后台配置化方案</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://wisdommm.github.io/2017/01/24/vue.js 组件入门（一）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/07/算法/" class="archive-article-date">
-  	<time datetime="2017-08-07T10:24:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-07</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/07/算法/">几种常见的算法</a>
-    </h1>
+    <a href="/2017/01/24/vue todo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          vue todo示例
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/01/24/D2总结（1）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">D2总结（Fusion Design）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://wisdommm.github.io/2017/01/24/vue.js 组件入门（一）/", 
+    sourceId: "vue.js 组件入门（一）",
+    productKey: "aafef0c8c11b4e329f06cb387dc8ba7e",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/04/react demo/" class="archive-article-date">
-  	<time datetime="2017-05-04T06:29:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/04/react demo/">redux 店铺装修</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/11/震惊，大多数前端都还不知道这道题的答案/" class="archive-article-date">
-  	<time datetime="2017-04-11T12:56:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/11/震惊，大多数前端都还不知道这道题的答案/">震惊！大多数前端都不知道的知识</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/06/promise/" class="archive-article-date">
-  	<time datetime="2017-04-06T06:41:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/06/promise/">promise 详解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/05/http cache/" class="archive-article-date">
-  	<time datetime="2017-04-05T09:15:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/05/http cache/">http cache</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/31/js事件机制/" class="archive-article-date">
-  	<time datetime="2017-03-31T10:18:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/31/js事件机制/">javascript事件机制</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/23/fastClick/" class="archive-article-date">
-  	<time datetime="2017-03-23T06:57:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/23/fastClick/">fastClick 基本解读</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/20/ES6 TDZ/" class="archive-article-date">
-  	<time datetime="2017-03-20T11:55:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/20/ES6 TDZ/">ES6中的暂时性死区（TDZ）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/14/react生命周期/" class="archive-article-date">
-  	<time datetime="2017-02-14T12:54:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/14/react生命周期/">react生命周期解读</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -472,8 +378,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

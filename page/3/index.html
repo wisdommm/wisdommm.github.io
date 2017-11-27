@@ -162,32 +162,31 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-react生命周期" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-vue.js 组件入门（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/24/react生命周期/">react生命周期解读</a>
+      <a class="article-title" href="/2017/01/24/vue.js 组件入门（一）/">vue.js 组件快速入门（一）</a>
     </h1>
   
 
         
-        <a href="/2016/07/24/react生命周期/" class="archive-article-date">
-  	<time datetime="2016-07-24T06:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-24</time>
+        <a href="/2017/01/24/vue.js 组件入门（一）/" class="archive-article-date">
+  	<time datetime="2017-01-24T09:06:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前几天在工作中出现了一个比较怪异的bug，不过还好由于react的单向数据流，从最外层父组件一层一层地往里面找，在每一层都检查一下state和props的值是否正确，总会找到问题，只不过那个组件被前人嵌套了四五层，所以在定位问题的时候比较蛋疼，所以还是最好养成良好的习惯，组件嵌套层级不要太多，而且在开发的时候每一层就别忘了检测props和state，否则后来人会很累的。。。</p>
-<p>经过了long long time，才在某一层组件中找到了问题，具体问题是父组件传入的props改变后子组件通过props来渲染的页面没有发生改变，有疑问吗？父组件传入的props改变，子组件的props不是会自动接收变化并且render吗？嗯，是的，为什么这里没有呢。。。原来有人在开发的时候在getInitialState函数中加了这么一句：this.state.xxx = this.props.xxx，通过这样，他就把props和state关联了起来，心中顿时有无数草泥马狂奔。。。怎么改呢？难道要我把和state关联了的props都取消关联？这个工作量不小。。。还好，react里有个监测props变化的函数：componentWillReceiveProps，然后我再在里面把更新后的props和state关联起来，让state等于新的props就好了，大功告成，这个怪异的问题就解决了。</p>
-<p>有人会觉得奇怪吗？为什么在getInitialState函数中使用了this.state.xxx = this.props.xxx，而在当props更新后传进来时，state依然等于原来的props，这就说到了本片文章的主要，就是react的生命周期。</p>
-<h4 id="react组件的详细说明和生命周期"><a href="#react组件的详细说明和生命周期" class="headerlink" title="react组件的详细说明和生命周期"></a>react组件的详细说明和生命周期</h4><p>先来说一下react场见的函数吧。</p>
+        <p>前几天读了一篇好文章，<a href="http://www.cnblogs.com/keepfool/p/5625583.html">vue组件化</a>，这篇算是我自己提炼出来的的归纳与总结吧。</p>
+<p>在前端开发中，以前我们会把常用的公共的方法（函数）提取出来，整合为一个库，最有名的当属jQ了吧，然后到了react出现，这些类库主要都是针对view层进行的操作与封装，我们又可以把view层面上的一些东西抽出来进行封装和整理，比如一个table，一个button，一个div等，也可以像曾经提取函数一样抽出来，写成公用的，在需要使用的地方直接引入就可以了，当然，也可以根据你实际运用的需要进行适当的自定义配置，而这些被抽出来共用的table，button，div这些，就叫做组件。</p>
+<p>上面是我自己瞎扯的，原文作者讲得比较繁琐，所以我就用自己的语言来概述了一下，虽然这篇文章是我转载的，不过我也参考了其它的文章／博客，知识点的相似度接近80%，但是语言基本上都是我自己重新组织的，所以加了很多自己的想法和思考，下面我们开始进入正题。</p>
         
-          <a class="article-more-a" href="/2016/07/24/react生命周期/#more">more >></a>
+          <a class="article-more-a" href="/2017/01/24/vue.js 组件入门（一）/#more">more >></a>
         
       
 
@@ -211,30 +210,29 @@
 
 
   
-    <article id="post-redux example(1)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-D2总结（1）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/23/redux example(1)/">redux example(1)</a>
+      <a class="article-title" href="/2017/01/24/D2总结（1）/">D2总结（Fusion Design）</a>
     </h1>
   
 
         
-        <a href="/2016/07/23/redux example(1)/" class="archive-article-date">
-  	<time datetime="2016-07-23T08:48:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-23</time>
+        <a href="/2017/01/24/D2总结（1）/" class="archive-article-date">
+  	<time datetime="2017-01-24T09:05:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近在学习redux，看了不少相关的资料，发现这个<a href="http://cn.redux.js.org/docs/introduction/Examples.html">官方教程</a>的一些例子还是很不错的，由浅入深各个档次都有，所以我稍微看了下，准备有时间的话将示例都自己弄懂，然后分别写篇详细的解读出来，由于是临时起意，所以今天先写第一篇吧。</p>
-<h4 id="counter-vanilla"><a href="#counter-vanilla" class="headerlink" title="counter-vanilla"></a>counter-vanilla</h4><p>这是redux中的第一个示例，也就是说是最简单的一个例子，不多说了，先看看代码吧。</p>
+        <p>这周末去参加了D2前端技术论坛，听了这么多分享，发现有不少东西可以总结的，可是由于当天确实太累，所以没能及时整理出总结来，只好现在来慢慢回想，还好听分享时记了笔记的。</p>
         
-          <a class="article-more-a" href="/2016/07/23/redux example(1)/#more">more >></a>
+          <a class="article-more-a" href="/2017/01/24/D2总结（1）/#more">more >></a>
         
       
 

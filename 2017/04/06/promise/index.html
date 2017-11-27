@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wisdommm.github.io">
-  <title>Archives | Wisdommm</title>
+  <title>promise 详解 | Wisdommm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在梦想的道路上一路狂奔">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wisdommm">
-<meta property="og:url" content="http://wisdommm.github.io/archives/index.html">
+  <meta name="description" content="虽然之前写了javascript异步编程，不过我发现周围的部分小伙伴，当然也包括我，对promise的认识还是只停留在基础是使用，类似于ajax这种的使用，或者会用promise.then()，对于原生的Promise对象只了解一点甚至不了解，我也是模模糊糊地了解，所以准备写一篇关于promise的博客，顺便也借此机会一举击破promise，不想再搞得模模糊糊的了，彻底得解决掉这个东西。
+在去年，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="promise 详解">
+<meta property="og:url" content="http://wisdommm.github.io/2017/04/06/promise/index.html">
 <meta property="og:site_name" content="Wisdommm">
-<meta property="og:description" content="在梦想的道路上一路狂奔">
+<meta property="og:description" content="虽然之前写了javascript异步编程，不过我发现周围的部分小伙伴，当然也包括我，对promise的认识还是只停留在基础是使用，类似于ajax这种的使用，或者会用promise.then()，对于原生的Promise对象只了解一点甚至不了解，我也是模模糊糊地了解，所以准备写一篇关于promise的博客，顺便也借此机会一举击破promise，不想再搞得模模糊糊的了，彻底得解决掉这个东西。
+在去年，">
+<meta property="og:updated_time" content="2017-04-06T06:41:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wisdommm">
-<meta name="twitter:description" content="在梦想的道路上一路狂奔">
+<meta name="twitter:title" content="promise 详解">
+<meta name="twitter:description" content="虽然之前写了javascript异步编程，不过我发现周围的部分小伙伴，当然也包括我，对promise的认识还是只停留在基础是使用，类似于ajax这种的使用，或者会用promise.then()，对于原生的Promise对象只了解一点甚至不了解，我也是模模糊糊地了解，所以准备写一篇关于promise的博客，顺便也借此机会一举击破promise，不想再搞得模模糊糊的了，彻底得解决掉这个东西。
+在去年，">
   
     <link rel="alternative" href="/atom.xml" title="Wisdommm" type="application/atom+xml">
   
@@ -160,295 +164,197 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-promise" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/07/页面表单field后台配置化方案/" class="archive-article-date">
-  	<time datetime="2017-08-07T10:25:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-07</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/07/页面表单field后台配置化方案/">页面表单后台配置化方案</a>
+    <h1 class="article-title" itemprop="name">
+      promise 详解
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/07/算法/" class="archive-article-date">
-  	<time datetime="2017-08-07T10:24:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/07/算法/">几种常见的算法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/04/react demo/" class="archive-article-date">
-  	<time datetime="2017-05-04T06:29:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/04/react demo/">redux 店铺装修</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/11/震惊，大多数前端都还不知道这道题的答案/" class="archive-article-date">
-  	<time datetime="2017-04-11T12:56:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/11/震惊，大多数前端都还不知道这道题的答案/">震惊！大多数前端都不知道的知识</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/06/promise/" class="archive-article-date">
+        
+        <a href="/2017/04/06/promise/" class="archive-article-date">
   	<time datetime="2017-04-06T06:41:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-06</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/06/promise/">promise 详解</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>虽然之前写了javascript异步编程，不过我发现周围的部分小伙伴，当然也包括我，对promise的认识还是只停留在基础是使用，类似于ajax这种的使用，或者会用<code>promise.then()</code>，对于原生的Promise对象只了解一点甚至不了解，我也是模模糊糊地了解，所以准备写一篇关于<code>promise</code>的博客，顺便也借此机会一举击破promise，不想再搞得模模糊糊的了，彻底得解决掉这个东西。</p>
+<p>在去年，准确的说是在2015年6月（我专门查了的，肯定没有错），ECMAScript6的正式版发布了。ECMAScript 是 JavaScript 语言的国际标准，JavaScript 是 ECMAScript 的实现。ES6 的目标，是使得 JavaScript 语言可以用来编写大型的复杂的应用程序，成为企业级开发语言。</p>
+<p>ES6的改变还是算不小的，其中就包含了提供Promise对象。</p>
+<p>Promise是什么？首先，它是一个对象，它的作用是用来进行异步操作，代表着某个异步进行的事件的结果。</p>
+<p>Promise对象有以下两个特点：</p>
+<p>（1），对象的状态不受外界的影线。Promise对象代表一个异步的操作，它包含了三种状态，分别是：Pending（进行中），Resolve（已完成），Reject（已失败）。而异步操作的结果，决定了它将会输出哪一种状态，任何其它操作都无法改变这个状态。这也是Promise名字的由来，也就是承诺的意思，代表一定会去做。</p>
+<p>（2），一旦状态改变，就不会再变。虽然Promise不受外界影响状态，不过状态是会在内部进行改变的，它有两种改变状态的可能，一种是从进行中变为已完成（Pending to Resolve），另一种是从进行中变为已失败（Pending to Reject）。除此之外，状态不会再发生其它的变化。</p>
+<p>有了 Promise 对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数。此外，Promise 对象提供统一的接口，使得控制异步操作更加容易。</p>
+<h4 id="CODE"><a href="#CODE" class="headerlink" title="CODE"></a>CODE</h4><p>“talk is cheap,show me the code”.</p>
+<p>这是程序员界比较常见的一句话，上面很多概念啊这些死知识讲解完了，下面才开始进入正题，开始代码演示。</p>
+<p>由于Promise已经是JS原生对象了，所以直接打开浏览器的控制台，输入Promise，就可以看到一个function Promise，如果报错的话，说明你的浏览器该升级了。</p>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (<span class="comment">/* 异步操作成功 */</span>)&#123;</div><div class="line">    resolve(value);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    reject(error);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>如上面的基本代码所示，Promise构造函数接受一个函数作为参数，该函数的两个参数分别是resolve和reject方法，如果异步操作成功了，则调用resolve方法，将Promise对象的状态从Pending改为Resolve，如果异步操作失败，则调用reject方法，将Promise对象的状态从Pending改为Reject。这是promise最基本的使用方法。</p>
+<p>promise的神奇之处在于给了我们return和throw，每个promise都会提供一个then函数和一个catch函数，实际上是then(null,…)函数。基本代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">promiseOne.then(function(value)&#123;</div><div class="line">  alert(value); // 这个value是promiseOne中resolve传递出来的值。</div><div class="line">  // do something</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>在这个then函数里面，我们可以做三件事，1，return 另一个promise；2，return 一个同步的值；3，throw 一个同步异常，‘ throw new Error(‘’) ’。</p>
+<p>下面是一些Promise的基本API。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">1,Promise.resolve()</div><div class="line">2,Promise.reject()</div><div class="line">3,Promise.prototype.then()</div><div class="line">4,Promise.prototype.catch()</div><div class="line">5,Promise.all([functionOne,functionTwo,...]) // 所有的完成</div><div class="line">6,Promise.race([functionOne,functionTwo,...]) // 竞速，完成一个即可</div></pre></td></tr></table></figure>
+<p><code>Promise.resolve</code>和<code>Promise.reject</code>是Promise的静态方法，使用方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Promise.resolve(&quot;value&quot;).then(function(v) &#123;</div><div class="line">  console.log(v,1); </div><div class="line">&#125;, function(v) &#123;</div><div class="line">  // 不会被调用</div><div class="line">console.log(v,2);</div><div class="line">&#125;);</div><div class="line">// 这时控制台会输出 value,1</div><div class="line"></div><div class="line">Promise.resolve(&quot;value&quot;).then(function(v) &#123;</div><div class="line">  console.log(v,1); </div><div class="line">&#125;, function(v) &#123;</div><div class="line">  console.log(v,2);</div><div class="line">&#125;);</div><div class="line">// 这时控制台会输出 value,2</div></pre></td></tr></table></figure>
+<p>也就是说，Promise.resolve里传入的参数或者promise对象，会被then方法接收，Promise.reject里传入的参数或者promise对象，会被catch方法接收，这一点在上面的<code>new Promise((resolve,reject)=&gt;{if(…){resolve(v)}else{reject(v)}})</code>已经讲过了，意思是一样的，不同之处在于使用的方式不同，下面的方法是直接调用的promise里的静态方法，而没有用到promise这个构造函数。</p>
+<p>除了返回基本数据外，一个promise里面也可以返回另一个promise对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var original = Promise.resolve(true);</div><div class="line">var cast = Promise.resolve(original);</div><div class="line">cast.then(function(v) &#123;</div><div class="line">  console.log(v); </div><div class="line">&#125;);</div><div class="line">// 控制台会输出 true</div></pre></td></tr></table></figure>
+<p>我们也可以在promise中抛出异常，这里有同步代码异常和异步代码异常两种。</p>
+<p>这是同步代码异常，直接调用promise的reject方法，传入一个error就好了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Promise.reject(new Error(&quot;什么鬼&quot;));</div></pre></td></tr></table></figure>
+<p>下面是异步代码异常：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">new Promise(function (resolve, reject) &#123;</div><div class="line">    throw new Error(&apos;悲剧了，又出 bug 了&apos;);</div><div class="line">  &#125;).catch(function(err)&#123;</div><div class="line">    console.log(err);</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<p>如果有多个callback函数连续回调，可以分别写成promise的状态，然后在每一个promise对象中return下一个promise，for example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">var p1 = new Promise((resolve,reject)=&gt;&#123;</div><div class="line">  resolve(1);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">var p2 = new Promise((resolve,reject)=&gt;&#123;</div><div class="line">  resolve(p1);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">var p3 = new Promise((resolve,reject)=&gt;&#123;</div><div class="line">  resolve(p2);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">p3.then(function(v) &#123;</div><div class="line">  console.log(v); // true</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 上面是promise链式调用的一种情况，下面是另一种情况，其核心原因都是差不多的。</div><div class="line"></div><div class="line">var p1 = (resolve,reject)=&gt;&#123;</div><div class="line">  resolve(1);</div><div class="line">&#125;</div><div class="line"></div><div class="line">var p2 = (resolve,reject)=&gt;&#123;</div><div class="line">  resolve(2);</div><div class="line">&#125;</div><div class="line"></div><div class="line">var p3 = (resolve,reject)=&gt;&#123;</div><div class="line">  resolve(3);</div><div class="line">&#125;</div><div class="line"></div><div class="line">new Promise(p3).then(function(v) &#123;</div><div class="line">  console.log(v); </div><div class="line">  return new Promise(p2).then((v)=&gt;&#123;</div><div class="line">    console.log(v)</div><div class="line">    return new Promise(p1).then((v)=&gt;&#123;</div><div class="line">      console.log(v)</div><div class="line">    &#125;)</div><div class="line">  &#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+      
 
-        <div class="article-info info-on-right">
-          
-          
-
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>thanks !<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oatasl78l.bkt.clouddn.com/alipay pic.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oatasl78l.bkt.clouddn.com/wx pic.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://wisdommm.github.io/2017/04/06/promise/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/05/http cache/" class="archive-article-date">
-  	<time datetime="2017-04-05T09:15:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-05</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/05/http cache/">http cache</a>
-    </h1>
+    <a href="/2017/04/11/震惊，大多数前端都还不知道这道题的答案/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          震惊！大多数前端都不知道的知识
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/05/http cache/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">http cache</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://wisdommm.github.io/2017/04/06/promise/", 
+    sourceId: "promise",
+    productKey: "aafef0c8c11b4e329f06cb387dc8ba7e",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/31/js事件机制/" class="archive-article-date">
-  	<time datetime="2017-03-31T10:18:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/31/js事件机制/">javascript事件机制</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/23/fastClick/" class="archive-article-date">
-  	<time datetime="2017-03-23T06:57:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/23/fastClick/">fastClick 基本解读</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/20/ES6 TDZ/" class="archive-article-date">
-  	<time datetime="2017-03-20T11:55:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/20/ES6 TDZ/">ES6中的暂时性死区（TDZ）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/14/react生命周期/" class="archive-article-date">
-  	<time datetime="2017-02-14T12:54:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/14/react生命周期/">react生命周期解读</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -472,8 +378,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

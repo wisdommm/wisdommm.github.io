@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wisdommm.github.io">
-  <title>Archives | Wisdommm</title>
+  <title>express实现 | Wisdommm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在梦想的道路上一路狂奔">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wisdommm">
-<meta property="og:url" content="http://wisdommm.github.io/archives/index.html">
+  <meta name="description" content="express是node里面一个十分常用的库，用它来搭建服务器，事半功倍，且小巧灵活，有足够多的特性，用来进行各种网页开发。
+我们先来看下express的使用的，毕竟知己知彼，百战不殆。
+123456789101112131415161718192021//引入express，确保你的项目依赖了express库，否则的话先npm install一下var express = require(&amp;ap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="express实现">
+<meta property="og:url" content="http://wisdommm.github.io/2017/01/24/node express实现/index.html">
 <meta property="og:site_name" content="Wisdommm">
-<meta property="og:description" content="在梦想的道路上一路狂奔">
+<meta property="og:description" content="express是node里面一个十分常用的库，用它来搭建服务器，事半功倍，且小巧灵活，有足够多的特性，用来进行各种网页开发。
+我们先来看下express的使用的，毕竟知己知彼，百战不殆。
+123456789101112131415161718192021//引入express，确保你的项目依赖了express库，否则的话先npm install一下var express = require(&amp;ap">
+<meta property="og:updated_time" content="2017-01-24T09:09:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wisdommm">
-<meta name="twitter:description" content="在梦想的道路上一路狂奔">
+<meta name="twitter:title" content="express实现">
+<meta name="twitter:description" content="express是node里面一个十分常用的库，用它来搭建服务器，事半功倍，且小巧灵活，有足够多的特性，用来进行各种网页开发。
+我们先来看下express的使用的，毕竟知己知彼，百战不殆。
+123456789101112131415161718192021//引入express，确保你的项目依赖了express库，否则的话先npm install一下var express = require(&amp;ap">
   
     <link rel="alternative" href="/atom.xml" title="Wisdommm" type="application/atom+xml">
   
@@ -160,295 +167,181 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-node express实现" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      express实现
+    </h1>
+  
+
+        
+        <a href="/2017/01/24/node express实现/" class="archive-article-date">
+  	<time datetime="2017-01-24T09:09:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-24</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>express是node里面一个十分常用的库，用它来搭建服务器，事半功倍，且小巧灵活，有足够多的特性，用来进行各种网页开发。</p>
+<p>我们先来看下express的使用的，毕竟知己知彼，百战不殆。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">//引入express，确保你的项目依赖了express库，否则的话先npm install一下</div><div class="line">var express = require(&apos;express&apos;);</div><div class="line">//执行express函数，</div><div class="line">var app = express();</div><div class="line">// 使用get方法，当请求的路由是hello时，返回hello</div><div class="line">app.get(&apos;/hello&apos;, function (req, res) &#123;</div><div class="line">  res.send(&apos;hello&apos;);</div><div class="line">&#125;);</div><div class="line">// 当请求的路由是world时，返回world</div><div class="line">app.get(&apos;/world&apos;, function (req, res) &#123;</div><div class="line">  res.send(&apos;world&apos;);</div><div class="line">&#125;);</div><div class="line">// 当请求的路由是其它时，返回“没有找到匹配的路径”</div><div class="line">app.get(&apos;*&apos;, function (req, res) &#123;</div><div class="line">	res.setHeader(&apos;content-type&apos;,&apos;text/plain;charset=utf8&apos;);</div><div class="line">	res.end(&apos;没有找到匹配的路径&apos;);</div><div class="line">&#125;);</div><div class="line">// 最后监听端口</div><div class="line">var server = app.listen(3000, function () &#123;</div><div class="line">  console.log(&apos;正在监听3000端口&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>上面或许就是express最常见，也是最基本的使用吧，启动了一个服务器并且监听3000端口，对/hello的路由返回“hello”，对/world的路由返回“world”，对其他的路由返回“没有找到匹配的路径”。</p>
+<p>示例看完了，下面我们来看看具体的实现吧，在这之前，我想说一下http这个模块，毕竟express就是对http进行了一下封装，既然想看看express的内部，当然就离不开http了。</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var http = require(&apos;http&apos;);</div><div class="line">http.createServer(function (request, response) &#123;</div><div class="line">  response.writeHead(200, &#123;&apos;Content-Type&apos;: &apos;text/plain&apos;&#125;);</div><div class="line">  response.end(&apos;Hello World\n&apos;);</div><div class="line">&#125;).listen(3000, &apos;127.0.0.1&apos;);</div><div class="line">console.log(&apos;正在监听3000端口。&apos;);</div></pre></td></tr></table></figure>
+<p>就上面这几行，就已经成功地实现了一个简单的服务器了，我们可以分拆一下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http.createServer(function(...)&#123;...&#125;).listen(3000);</div></pre></td></tr></table></figure></p>
+<p>现在，我们再回过头来看看express。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">// 首先，声明express函数</div><div class="line">var express = function () &#123;&#125;;</div><div class="line">// 它的内部应该有一个app函数，用来作为实例。</div><div class="line">var express = function () &#123;</div><div class="line">	var app = function(...)&#123;...&#125;</div><div class="line">&#125;;</div><div class="line">// 这个实例还应该有很多的方法，比如get，listen等。（本来我是想用es5的方式写的，后来发现好久没用那种方法，写function写得太累了。。。）</div><div class="line">var express = ()=&gt; &#123;</div><div class="line">	var app = (req,res)=&gt;&#123;...&#125;;</div><div class="line">	app.listen = (...)=&gt;&#123;...&#125;;</div><div class="line">	app.get = (...)=&gt;&#123;...&#125;;</div><div class="line">&#125;;</div><div class="line">// 最后，为了能够完成链式调用，所以我们返回这个实例app，然后exports一下，就完成了。</div><div class="line">var express = ()=&gt; &#123;</div><div class="line">	var app = (...)=&gt;&#123;...&#125;;</div><div class="line">	app.listen = (...)=&gt;&#123;...&#125;;</div><div class="line">	app.get = (...)=&gt;&#123;...&#125;;</div><div class="line">	return app;</div><div class="line">&#125;;</div><div class="line">module.exports = exports = express;</div></pre></td></tr></table></figure>
+<p>这就是express基本的框架，如果后续有什么扩展的，也可以直接在里面增加一个函数就好了，<figure class="highlight plain"><figcaption><span>= (...)=>&#123;...&#125; ```，接下来，我们来慢慢分析里面的构造。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">先看一个最简单的吧，listen方法。</div></pre></td></tr></table></figure></p>
+<p>app.listen = function (port) {<br>    require(‘http’).createServer(app).listen(port);<br>};<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">是不是发现了什么？再上去看一眼http，是不是很相似啊。。。没错，就是这样的。</div></pre></td></tr></table></figure></p>
+<p>http.createServer(function(…){…}).listen(3000);<br>```</p>
+<p>而中间的app函数，对应的就是http.createServer的参数了。<br>感觉这个listen函数应该不需要多讲。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>thanks !<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oatasl78l.bkt.clouddn.com/alipay pic.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oatasl78l.bkt.clouddn.com/wx pic.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/07/页面表单field后台配置化方案/" class="archive-article-date">
-  	<time datetime="2017-08-07T10:25:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/07/页面表单field后台配置化方案/">页面表单后台配置化方案</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://wisdommm.github.io/2017/01/24/node express实现/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/07/算法/" class="archive-article-date">
-  	<time datetime="2017-08-07T10:24:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-07</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/07/算法/">几种常见的算法</a>
-    </h1>
+    <a href="/2017/01/24/javascript异步编程/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          javascript异步编程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/01/24/react无状态组件和高阶组件/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">react——无状态组件和高阶组件</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://wisdommm.github.io/2017/01/24/node express实现/", 
+    sourceId: "node express实现",
+    productKey: "aafef0c8c11b4e329f06cb387dc8ba7e",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/04/react demo/" class="archive-article-date">
-  	<time datetime="2017-05-04T06:29:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/04/react demo/">redux 店铺装修</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/11/震惊，大多数前端都还不知道这道题的答案/" class="archive-article-date">
-  	<time datetime="2017-04-11T12:56:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/11/震惊，大多数前端都还不知道这道题的答案/">震惊！大多数前端都不知道的知识</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/06/promise/" class="archive-article-date">
-  	<time datetime="2017-04-06T06:41:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/06/promise/">promise 详解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/05/http cache/" class="archive-article-date">
-  	<time datetime="2017-04-05T09:15:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/05/http cache/">http cache</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/31/js事件机制/" class="archive-article-date">
-  	<time datetime="2017-03-31T10:18:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/31/js事件机制/">javascript事件机制</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/23/fastClick/" class="archive-article-date">
-  	<time datetime="2017-03-23T06:57:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/23/fastClick/">fastClick 基本解读</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/20/ES6 TDZ/" class="archive-article-date">
-  	<time datetime="2017-03-20T11:55:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/20/ES6 TDZ/">ES6中的暂时性死区（TDZ）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/14/react生命周期/" class="archive-article-date">
-  	<time datetime="2017-02-14T12:54:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/14/react生命周期/">react生命周期解读</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -472,8 +365,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
