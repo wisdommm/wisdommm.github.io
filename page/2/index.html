@@ -162,52 +162,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-md5算法解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/27/md5算法解析/">md5算法</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/27/md5算法解析/" class="archive-article-date">
-  	<time datetime="2017-11-27T11:56:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>好久没写过博客了，主要原因是平时工作太忙，难得有个休假也就想躺在床上看看电影听听歌，放松一下。。。最近突然看到某个公众号里的几篇和md5相关的文章，本来也不想看的，然后就想到了大学，想到了吴梃教授在离散数学课上和我们聊的md5。。。觉得不想把大学里的东西丢太多，所以还是好好看了下这几篇md5的文章，<a href="https://mp.weixin.qq.com/s?__biz=MzI1MTIzMzI2MA==&amp;mid=2650561400&amp;idx=1&amp;sn=4b70e39b1c30ccfddd148eeee50d9519&amp;chksm=f1feedfbc68964ed463d83e88bde0ed175077e113beaa582e6bd5968da3c39145c8cec2e7889&amp;scene=38#wechat_redirect">md5算法</a>，<a href="https://mp.weixin.qq.com/s?__biz=MzI1MTIzMzI2MA==&amp;mid=2650561437&amp;idx=1&amp;sn=518154774fb3d39284048289afcba861&amp;chksm=f1feed1ec6896408e2bb52ec1e8c8e033fedaa7d2e6776f343af46c75ae3a40cb986e0bfdc7d&amp;scene=38#wechat_redirect">破解md5</a>，然后自己仔做整理，沉淀下来。</p>
-        
-          <a class="article-more-a" href="/2017/11/27/md5算法解析/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
     <article id="post-页面表单field后台配置化方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -612,6 +566,55 @@
 <p>这条微博下面有很多的评论，有的厉害的人一眼就指出了这是由于TDZ的原因，并不是什么V8的bug，TDZ是什么？下面我们就来慢慢揭开这层面纱。</p>
         
           <a class="article-more-a" href="/2017/03/20/ES6 TDZ/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-react生命周期" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/14/react生命周期/">react生命周期解读</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/14/react生命周期/" class="archive-article-date">
+  	<time datetime="2017-02-14T12:54:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前几天在工作中出现了一个比较怪异的bug，不过还好由于react的单向数据流，从最外层父组件一层一层地往里面找，在每一层都检查一下state和props的值是否正确，总会找到问题，只不过那个组件被前人嵌套了四五层，所以在定位问题的时候比较蛋疼，所以还是最好养成良好的习惯，组件嵌套层级不要太多，而且在开发的时候每一层就别忘了检测props和state，否则后来人会很累的。。。</p>
+<p>经过了long long time，才在某一层组件中找到了问题，具体问题是父组件传入的props改变后子组件通过props来渲染的页面没有发生改变，有疑问吗？父组件传入的props改变，子组件的props不是会自动接收变化并且render吗？嗯，是的，为什么这里没有呢。。。原来有人在开发的时候在getInitialState函数中加了这么一句：this.state.xxx = this.props.xxx，通过这样，他就把props和state关联了起来，心中顿时有无数草泥马狂奔。。。怎么改呢？难道要我把和state关联了的props都取消关联？这个工作量不小。。。还好，react里有个监测props变化的函数：componentWillReceiveProps，然后我再在里面把更新后的props和state关联起来，让state等于新的props就好了，大功告成，这个怪异的问题就解决了。</p>
+<p>有人会觉得奇怪吗？为什么在getInitialState函数中使用了this.state.xxx = this.props.xxx，而在当props更新后传进来时，state依然等于原来的props，这就说到了本片文章的主要，就是react的生命周期。</p>
+<h4 id="react组件的详细说明和生命周期"><a href="#react组件的详细说明和生命周期" class="headerlink" title="react组件的详细说明和生命周期"></a>react组件的详细说明和生命周期</h4><p>先来说一下react场见的函数吧。</p>
+        
+          <a class="article-more-a" href="/2017/02/14/react生命周期/#more">more >></a>
         
       
 
